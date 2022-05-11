@@ -2,6 +2,9 @@
 #define __main_h
 
 #define DEBUG_MODE
+#ifdef DEBUG_MODE
+    // #define DEBUG_TASK_STACK
+#endif
 
 #include <Arduino.h>
 
@@ -18,10 +21,13 @@
 
 #include "hal/hal_uart.h"
 #include "hal/hal_wdt.h"
+#include "hal/hal_info.h"
 
 #include "mid/serial.h"
 #include "mid/report.h"
 #include "mid/input_buffer.h"
+#include "mid/settings.h"
+#include "mid/setttingDefinitions.h"
 
 
 #include "lvgl.h"

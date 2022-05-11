@@ -19,6 +19,8 @@ void lvgl_freertos_task(void *parg);
 
 void lvgl_task_init(void) {
 
+    tft_TS35_init();
+
     lv_init();
     lv_disp_buf_init(&disp_buf, bmp_public_buf, bmp_private_buf1, LV_BUF_SIZE); // Initialize the display buffer
 
@@ -105,10 +107,8 @@ void lvgl_freertos_task(void *parg) {
 
     TickType_t       xLastWakeTime;
     const TickType_t xDisplayFrequency = 5;                  
-    xLastWakeTime = xTaskGetTickCount();   
-
-    debug_send(CLIENT_SERIAL, "enter lvgl task\n");
-
+    xLastWakeTime = xTaskGetTickCount();  
+    
     while(1) {
 
         lv_task_handler();

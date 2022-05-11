@@ -19,9 +19,10 @@ static uint8_t getClientChar(uint8_t* data) {
 }
 
 void clientCheckTask(void* pvParameters) {
+
     uint8_t            data = 0;
     uint8_t            client;  // who sent the data
-    static UBaseType_t uxHighWaterMark = 0;
+    
     while (true) {  // run continuously
 
         while ((client = getClientChar(&data)) != CLIENT_ALL) {
@@ -31,11 +32,6 @@ void clientCheckTask(void* pvParameters) {
         }  // if something available
 
         vTaskDelay(1 / portTICK_RATE_MS);  // Yield to other tasks
-        
-        static UBaseType_t uxHighWaterMark = 0;
-#ifdef DEBUG_TASK_STACK
-        reportTaskStackSize(uxHighWaterMark);
-#endif
     }
 }
 
@@ -49,10 +45,6 @@ void client_reset_read_buffer(uint8_t client) {
 
 
 void client_init() {
-#ifdef DEBUG_REPORT_HEAP_SIZE
-    // For a 2000-word stack, uxTaskGetStackHighWaterMark reports 288 words available
-    xTaskCreatePinnedToCore(heapCheckTask, "ADC_WIDTH_10BiteapTask", 2000, NULL, 1, NULL, 1);
-#endif
 
 #ifdef REVERT_TO_ARDUINO_SERIAL
     Serial.begin(BAUD_RATE, SERIAL_8N1, 3, 1, false);

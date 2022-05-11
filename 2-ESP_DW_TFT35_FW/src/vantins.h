@@ -3,6 +3,11 @@
 
 #include "main.h"
 
+#define EEPROM_VERSION      "20220511"
+#define BOARD_NAME          "ESP32_DW_MINI"
+#define FW_VERSION          "ESP_DW_V20220511_001"
+#define UPDATA_DATA         "2022-05-11"
+
 /* for ESP32, main core is core 1 */
 #define SUPPORT_TASK_CORE 1  // Reference: CONFIG_ARDUINO_RUNNING_CORE = 1
 
@@ -56,7 +61,6 @@
 
 typedef enum {
     TYPE_MC_FMD_MARLIN_2_0,
-    // TYPE_MC_FMD_XXXX,   /// ???
     TYPE_MC_32_GRBL_CNC,
     TYPE_MC_32_GRBL_LASER,
     TYPE_MC_8_GRBL_1_1_CNC,
@@ -78,9 +82,10 @@ typedef struct {
 }s_lcd_t;
 
 
-
-
 /* Some common function */
 void delay_ms(uint16_t ms);
+
+// Init or get info form EEPROM or NVS
+void lcd_controller_init(void);
 
 #endif

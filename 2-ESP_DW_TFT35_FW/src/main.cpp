@@ -12,14 +12,17 @@ void app_task_init(void) {
 
 void setup() {
 
+    // if any bug reset?
     wdt_set_disable();
 
     // tunr off the lcd and wait the logo is OK
     tft_backlight_disable(); 
-
-    tft_TS35_init();
-
+    
+    // all task init here
     app_task_init();
+
+    // disp Board Info
+    report_mcu_info();
 
     // int test
     lv_draw_test();
@@ -28,9 +31,10 @@ void setup() {
     tft_backlight_enable();
 }
 
+
 void loop() {
-    // lv_task_handler();
-    // delay(5);
+    
+
 }
 
 
