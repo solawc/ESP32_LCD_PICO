@@ -5,11 +5,9 @@ void report_mcu_info(void) {
     
     // Init and get mc info;
     lcd_controller_init();
-
-
     
     serial_send(CLIENT_ALL, "/**************************************************/\n");
-    serial_sendf(CLIENT_ALL, "/*-Board Support from Makerbase\n");
+    serial_sendf(CLIENT_ALL, "         Board Support from Makerbase\n");
     serial_sendf(CLIENT_ALL, "/*-Board Name:%s\n", BOARD_NAME);
     serial_sendf(CLIENT_ALL, "/*-Machine Axis Num:4\n");
     serial_sendf(CLIENT_ALL, "/*-Chip ID:%s\n", String((uint16_t)(ESP.getEfuseMac() >> 32)));

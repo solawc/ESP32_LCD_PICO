@@ -107,6 +107,8 @@ void Setting::init() {
     if (!_handle) {
         if (esp_err_t err = nvs_open("Grbl_ESP32", NVS_READWRITE, &_handle)) {
             serial_sendf(CLIENT_SERIAL, "nvs_open failed with error %d\r\n", err);
+        }else {
+            debug_send(CLIENT_ALL, "debug:nvs_open succeed\n");
         }
     }
 }

@@ -93,6 +93,7 @@ public:
 //             return Error::NvsGetStatsFailed;
 //         }
 //         grbl_sendf(out->client(), "[MSG: NVS Used: %d Free: %d Total: %d]\r\n", stats.used_entries, stats.free_entries, stats.total_entries);
+
 // #if 0  // The SDK we use does not have this yet
 //         nvs_iterator_t it = nvs_entry_find(NULL, NULL, NVS_TYPE_ANY);
 //         while (it != NULL) {
