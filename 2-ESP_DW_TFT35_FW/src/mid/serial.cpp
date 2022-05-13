@@ -73,6 +73,14 @@ void client_init() {
 }
 
 
+int client_read(uint8_t client) {
+    vTaskEnterCritical(&myMutex);
+    int data = client_buffer[client].read();
+    vTaskExitCritical(&myMutex);
+    return data;
+}
+
+
 
 void client_write(uint8_t client, const char* text) {
     if (client == CLIENT_INPUT) {

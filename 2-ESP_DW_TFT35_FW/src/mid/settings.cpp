@@ -113,6 +113,35 @@ void Setting::init() {
     }
 }
 
+Setting* Setting::List = NULL;
+
+Word::Word(type_t type, permissions_t permissions, const char* description, const char* grblName, const char* fullName) :
+    _description(description), _grblName(grblName), _fullName(fullName), _type(type), _permissions(permissions) {}
+
+Setting::Setting(
+    const char* description, type_t type, permissions_t permissions, const char* grblName, const char* fullName, bool (*checker)(char*)) :
+    Word(type, permissions, description, grblName, fullName),
+    _checker(checker) {
+    link = List;
+    List = this;
+
+    // NVS keys are limited to 15 characters, so if the setting name is longer
+    // than that, we derive a 15-character name from a hash function
+    size_t len = strlen(fullName);
+    if (len <= 15) {
+        _keyName = _fullName;
+    } else {
+        // This is Donald Knuth's hash function from Vol 3, chapter 6.4
+        char*    hashName = (char*)malloc(16);
+        uint32_t hash     = len;
+        for (const char* s = fullName; *s; s++) {
+            hash = ((hash << 5) ^ (hash >> 27)) ^ (*s);
+        }
+        sprintf(hashName, "%.7s%08x", fullName, hash);
+        _keyName = hashName;
+    }
+}
+
 IntSetting::IntSetting(const char*   description,
                        type_t        type,
                        permissions_t permissions,
@@ -151,22 +180,17 @@ void IntSetting::setDefault() {
 
 
 bool IntSetting::setStringValue(char* s) {
-    s         = trim(s);
+    // s         = trim(s);
     bool err  = check(s);
-    // if (err != Error::Ok) {
-    //     return err;
-    // }
 
     if(err != true) return false; 
 
     char*   endptr;
     int32_t convertedValue = strtol(s, &endptr, 10);
     if (endptr == s || *endptr != '\0') {
-        // return Error::BadNumberFormat;
         return false;
     }
     if (convertedValue < _minValue || convertedValue > _maxValue) {
-        // return Error::NumberRange;
         return false;
     }
 
@@ -180,14 +204,12 @@ bool IntSetting::setStringValue(char* s) {
             nvs_erase_key(_handle, _keyName);
         } else {
             if (nvs_set_i32(_handle, _keyName, convertedValue)) {
-                // return Error::NvsSetFailed;
                 return false;
             }
             _storedValue = convertedValue;
         }
     }
     check(NULL);
-    // return Error::Ok;
     return true;
 }
 

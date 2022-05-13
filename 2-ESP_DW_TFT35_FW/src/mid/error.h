@@ -7,7 +7,12 @@
 enum class Error :uint8_t { 
 
     // common grbl and Marlin
-    OK = 0,
-
+    Ok                          = 0,
+    Overflow                    = 11,
+    Eol                         = 111,
 };
 
+
+
+
+void grbl_protocol_main_loop();

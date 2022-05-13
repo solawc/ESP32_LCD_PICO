@@ -28,7 +28,7 @@
 #include "mid/input_buffer.h"
 #include "mid/settings.h"
 #include "mid/setttingDefinitions.h"
-
+#include "mid/cmd_grbl_protocol.h"
 
 #include "lvgl.h"
 #include "lv_ui/draw_test.h"

@@ -22,3 +22,7 @@ void serial_sendf(uint8_t client, const char* format, ...);
 
 // run at DEBUG_MODE
 void debug_send(uint8_t client, const char* text);
+
+// debug report line
+void debug_line_received(char* line, uint8_t client);
+

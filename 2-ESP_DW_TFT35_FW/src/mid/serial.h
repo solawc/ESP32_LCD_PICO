@@ -11,5 +11,6 @@ void client_init();
 // Write a string to uart fifo and send to client out;
 void client_write(uint8_t client, const char* text);
 
-
+// read a byte from buff
+int client_read(uint8_t client);
 

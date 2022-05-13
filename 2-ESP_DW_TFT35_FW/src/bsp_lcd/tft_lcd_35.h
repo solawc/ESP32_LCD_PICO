@@ -16,7 +16,11 @@ extern TFT_eSPI tft;
 #define LCD_BLK_ON          digitalWrite(LCD_EN, LOW)
 #define LCD_BLK_OFF         digitalWrite(LCD_EN, HIGH)
 
+#ifdef USE_FT6336_TOUCH
+#define DEFAULT_TOUCH_TYPE  TOUCH_TYPE_CAP
+#else
 #define DEFAULT_TOUCH_TYPE  TOUCH_TYPE_RES
+#endif
 
 typedef enum {
     TOUCH_TYPE_CAP,         // 电容屏类型

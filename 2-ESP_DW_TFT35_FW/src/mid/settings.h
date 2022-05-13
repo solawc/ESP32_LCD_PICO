@@ -1,8 +1,9 @@
 #pragma once
 
+#include "../main.h"
 #include <map>
 #include <nvs.h>
-#include "../main.h"
+
 
 #undef bit
 #define bit(n) (1 << static_cast<unsigned int>(n))
@@ -127,9 +128,8 @@ public:
     // Derived classes may override it to do something.
     // virtual void addWebui(WebUI::JSONencoder*) {};
 
-    // virtual Error       setStringValue(char* value) = 0;
-    // Error               setStringValue(String s) { return setStringValue(s.c_str()); }
-
+    virtual bool       setStringValue(char* value) = 0;
+    bool               setStringValue(String s) { return setStringValue(s.c_str()); }
     virtual const char* getStringValue() = 0;
     virtual const char* getCompatibleValue() { return getStringValue(); }
     virtual const char* getDefaultString() = 0;
