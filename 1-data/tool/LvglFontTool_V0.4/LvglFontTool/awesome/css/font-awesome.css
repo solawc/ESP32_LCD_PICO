@@ -1,0 +1,155 @@
+@font-face {
+  font-family: "FontAwesome"; /* Project id 3274404 */
+  src: url('../fonts/fontawesome-webfont.eot?v=4.7.0'),
+       url('../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('../fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('../fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('woff'),
+       url('iconfont.ttf?t=1652794240054') format('truetype');
+}
+
+.DLC32-CNC {
+  font-family: "DLC32-CNC" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Back:before {
+  content: "\e646";
+}
+
+.icon-keyboard_back1:before {
+  content: "\e63d";
+}
+
+.icon-keyboard_del:before {
+  content: "\e645";
+}
+
+.icon-keyboard_confirm:before {
+  content: "\e64b";
+}
+
+.icon-a-Mechanicalcoordinates-1:before {
+  content: "\e65a";
+}
+
+.icon-home:before {
+  content: "\e65b";
+}
+
+.icon-a-Y:before {
+  content: "\e65e";
+}
+
+.icon-wifi:before {
+  content: "\e662";
+}
+
+.icon-a-Workingcoordinates:before {
+  content: "\e663";
+}
+
+.icon-a-XYClear:before {
+  content: "\e665";
+}
+
+.icon-Add:before {
+  content: "\e636";
+}
+
+.icon-a-Connectionsucceeded:before {
+  content: "\e637";
+}
+
+.icon-about:before {
+  content: "\e639";
+}
+
+.icon-Confirm:before {
+  content: "\e63a";
+}
+
+.icon-Next:before {
+  content: "\e63c";
+}
+
+.icon-Knife:before {
+  content: "\e63e";
+}
+
+.icon-Position:before {
+  content: "\e63f";
+}
+
+.icon-Pause:before {
+  content: "\e640";
+}
+
+.icon-a-Mechanicalcoordinates:before {
+  content: "\e641";
+}
+
+.icon-file:before {
+  content: "\e642";
+}
+
+.icon-Adjustment:before {
+  content: "\e643";
+}
+
+.icon-Reduce:before {
+  content: "\e644";
+}
+
+.icon-Spindle:before {
+  content: "\e647";
+}
+
+.icon-up:before {
+  content: "\e648";
+}
+
+.icon-Refresh:before {
+  content: "\e649";
+}
+
+.icon-Stop:before {
+  content: "\e64a";
+}
+
+.icon-Start:before {
+  content: "\e64d";
+}
+
+.icon-X-:before {
+  content: "\e64e";
+}
+
+.icon-Z-:before {
+  content: "\e64f";
+}
+
+.icon-a-X:before {
+  content: "\e650";
+}
+
+.icon-Cooling:before {
+  content: "\e651";
+}
+
+.icon-a-WifiDisconnect:before {
+  content: "\e652";
+}
+
+.icon-a-Z:before {
+  content: "\e656";
+}
+
+.icon-a-ZClear:before {
+  content: "\e658";
+}
+
+.icon-Y-:before {
+  content: "\e659";
+}
+

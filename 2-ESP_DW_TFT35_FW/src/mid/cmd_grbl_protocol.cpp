@@ -48,6 +48,7 @@ Error add_char_to_line(char c, uint8_t client) {
 
 void grbl_protocol_main_loop(void) {
 
+    empty_lines();
     int c;
 
     for(;;) {
@@ -65,7 +66,7 @@ void grbl_protocol_main_loop(void) {
 
                         line = client_lines[client].buffer;
                         
-                        debug_line_received(line, CLIENT_SERIAL);
+                        // debug_line_received(line, CLIENT_SERIAL);
 
                         empty_line(client);
                         break;
@@ -78,4 +79,32 @@ void grbl_protocol_main_loop(void) {
             }  // while serial read
         }      // for clients
     }
+}
+
+
+char* normalize_key(char* start) {
+    char c;
+
+    // In the usual case, this loop will exit on the very first test,
+    // because the first character is likely to be non-white.
+    // Null ('\0') is not considered to be a space character.
+    while (isspace(c = *start) && c != '\0') {
+        ++start;
+    }
+
+    // start now points to either a printable character or end of string
+    if (c == '\0') {
+        return start;
+    }
+
+    // Having found the beginning of the printable string,
+    // we now scan forward until we find a space character.
+    char* end;
+    for (end = start; (c = *end) != '\0' && !isspace(c); end++) {}
+
+    // end now points to either a whitespace character of end of string
+    // In either case it is okay to place a null there
+    *end = '\0';
+
+    return start;
 }

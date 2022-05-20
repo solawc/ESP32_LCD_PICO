@@ -28,7 +28,9 @@ void setup() {
     report_mcu_info();
 
     // init test
-    lv_draw_test();
+    // lv_draw_test();
+
+    
 
     // turn on the lcd and finish Init
     tft_backlight_enable();

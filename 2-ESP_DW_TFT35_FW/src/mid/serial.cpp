@@ -26,9 +26,7 @@ void clientCheckTask(void* pvParameters) {
     while (true) {  // run continuously
 
         while ((client = getClientChar(&data)) != CLIENT_ALL) {
-            vTaskEnterCritical(&myMutex);
-            client_buffer[client].write(data);
-            vTaskExitCritical(&myMutex);
+            client_write_data(client, data);
         }  // if something available
 
         vTaskDelay(1 / portTICK_RATE_MS);  // Yield to other tasks
@@ -72,12 +70,17 @@ void client_init() {
     );
 }
 
-
 int client_read(uint8_t client) {
     vTaskEnterCritical(&myMutex);
     int data = client_buffer[client].read();
     vTaskExitCritical(&myMutex);
     return data;
+}
+
+void client_write_data(uint8_t client, uint8_t data) {
+    vTaskEnterCritical(&myMutex);
+    client_buffer[client].write(data);
+    vTaskExitCritical(&myMutex);
 }
 
 

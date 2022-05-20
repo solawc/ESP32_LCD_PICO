@@ -6,7 +6,7 @@ static lv_color_t       bmp_public_buf[LV_BUF_SIZE];
 static lv_color_t       bmp_private_buf1[LV_BUF_SIZE]; 
 
 #define DISP_TASK_STACK                 4096*2
-#define DISP_TASK_PRO                   2
+#define DISP_TASK_PRO                   4
 #define DISP_TASK_CORE                  1
 
 TaskHandle_t lv_disp_tcb = NULL;
@@ -106,15 +106,20 @@ bool my_indev_touch(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data) 
 void lvgl_freertos_task(void *parg) {
 
     TickType_t       xLastWakeTime;
-    const TickType_t xDisplayFrequency = 5;                  
+    
+    const TickType_t xDisplayFrequency = 1;   
+
     xLastWakeTime = xTaskGetTickCount();  
+
+    draw_logo_init();
+
+    draw_home();
     
     while(1) {
 
         lv_task_handler();
 
         vTaskDelayUntil(&xLastWakeTime, xDisplayFrequency); //使用相对延时，保证时间精准
-
     }
 }
 

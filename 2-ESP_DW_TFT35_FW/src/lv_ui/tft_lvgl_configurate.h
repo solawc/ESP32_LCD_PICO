@@ -2,7 +2,16 @@
 
 #include "../main.h"
 
+enum {
 
+
+    PAGE_HOME = 0,
+
+    PAGE_LOADING = 0,
+
+
+
+};
 
 
 

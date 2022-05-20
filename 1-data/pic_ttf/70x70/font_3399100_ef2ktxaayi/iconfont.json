@@ -1,0 +1,30 @@
+{
+  "id": "3399100",
+  "name": "70x70",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "29705778",
+      "name": "Control",
+      "font_class": "Control",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "29705779",
+      "name": "Tools",
+      "font_class": "Tools",
+      "unicode": "e63c",
+      "unicode_decimal": 58940
+    },
+    {
+      "icon_id": "29705780",
+      "name": "Sculpture",
+      "font_class": "Sculpture",
+      "unicode": "e63d",
+      "unicode_decimal": 58941
+    }
+  ]
+}

@@ -14,3 +14,6 @@ void client_write(uint8_t client, const char* text);
 // read a byte from buff
 int client_read(uint8_t client);
 
+// write a data to ringbuffer
+void client_write_data(uint8_t client, uint8_t data);
+

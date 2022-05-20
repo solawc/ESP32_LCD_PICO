@@ -1,0 +1,1 @@
+lv_font_conv --no-compress --format lvgl --font path<...> -o path<...> --bpp 4 --size 40 -r 0xe63a-0xe665

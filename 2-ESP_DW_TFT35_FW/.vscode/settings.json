@@ -3,6 +3,7 @@
         "*.tcc": "cpp",
         "map": "cpp",
         "limits": "cpp",
-        "random": "cpp"
+        "random": "cpp",
+        "lvgl.h": "c"
     }
 }

@@ -29,10 +29,15 @@
 #include "mid/settings.h"
 #include "mid/setttingDefinitions.h"
 #include "mid/cmd_grbl_protocol.h"
+#include "mid/error.h"
 
 #include "lvgl.h"
+#include "lv_ui/font_pic.h"
 #include "lv_ui/draw_test.h"
-#include "lv_ui//tft_lvgl_configurate.h"
+#include "lv_ui/tft_lvgl_configurate.h"
+#include "lv_ui/draw_ui.h"
+#include "lv_ui/draw_logo.h"
+#include "lv_ui/draw_home.h"
 
 
 
