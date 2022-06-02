@@ -10,6 +10,7 @@ void draw_logo_init(void) {
 
     ui_init_style();
 
+    serial_sendf(CLIENT_SERIAL, "COLOTR1:0x%x", ui.src_style.text.color);
     lv_obj_set_style(ui.src, &ui.src_style);
 }
 

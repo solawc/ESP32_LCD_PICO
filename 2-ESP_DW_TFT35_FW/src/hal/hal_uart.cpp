@@ -89,4 +89,4 @@ bool Uart::flushTxTimed(TickType_t ticks) {
 }
 
 Uart Uart0(0);
-Uart Uart1(1);
+Uart Uart2(2);

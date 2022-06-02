@@ -57,3 +57,6 @@ typedef struct {
     uint8_t gcode_send_buff[96];
     uint8_t gcode_receive_buff[255];
 }gcode_cmd_t;
+
+
+void grbl_cmd_send(uint8_t client, const char *text);

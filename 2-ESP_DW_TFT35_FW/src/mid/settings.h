@@ -177,6 +177,9 @@ public:
 
     int32_t get() { return _currentValue; }
 };
+extern IntSetting* Machine_type;
+extern IntSetting* Machine_theme;
+
 
 
 class FloatSetting : public Setting {

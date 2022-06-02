@@ -8,6 +8,10 @@
 
 #include <Arduino.h>
 
+#include "stdio.h"
+#include "stdlib.h"
+#include "stdbool.h"
+
 #include <SPI.h>
 
 #include <driver/rmt.h>
@@ -29,6 +33,7 @@
 #include "mid/settings.h"
 #include "mid/setttingDefinitions.h"
 #include "mid/cmd_grbl_protocol.h"
+#include "mid/cmd_protocol.h"
 #include "mid/error.h"
 
 #include "lvgl.h"
@@ -38,9 +43,7 @@
 #include "lv_ui/draw_ui.h"
 #include "lv_ui/draw_logo.h"
 #include "lv_ui/draw_home.h"
-
-
-
-
+#include "lv_ui/draw_style.h"
+#include "lv_ui/draw_control.h"
 
 #endif

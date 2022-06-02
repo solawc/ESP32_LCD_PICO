@@ -17,7 +17,7 @@
 #define FONT_PIC_ABOUT                                  "\xEE\x98\xB9"                        //0xe639
 #define FONT_PIC_CONFIRM  	                            "\xEE\x98\xBA"                        //0xe63a
 #define FONT_PIC_NEXT     	                            "\xEE\x98\xBC"                        //0xe63c
-#define FONT_PIC_KNIFE      	                        "\xEE\x99\x8E"                        //0xe64e
+#define FONT_PIC_KNIFE      	                        "\xEE\x99\x8E"                        //0xe63e
 
 #define FONT_PIC_POSITION       	                    "\xEE\x98\xBF"                        //0xe63f	
 #define FONT_PIC_PAUSE       	                        "\xEE\x99\x80"                        //0xe640

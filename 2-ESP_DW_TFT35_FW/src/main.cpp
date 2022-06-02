@@ -1,6 +1,7 @@
 #include "main.h"
 
 
+
 void app_task_init(void) {
 
     // 初始化串口， 开启串口任务
@@ -30,15 +31,12 @@ void setup() {
     // init test
     // lv_draw_test();
 
-    
-
     // turn on the lcd and finish Init
     tft_backlight_enable();
 }
 
 
 void loop() {
-    
     grbl_protocol_main_loop();
 }
 

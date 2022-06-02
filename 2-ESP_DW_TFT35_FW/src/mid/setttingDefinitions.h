@@ -2,7 +2,8 @@
 
 #include "../main.h"
 #include "settings.h"
-// extern IntSetting* Machine_type;
+
+
 
 
 

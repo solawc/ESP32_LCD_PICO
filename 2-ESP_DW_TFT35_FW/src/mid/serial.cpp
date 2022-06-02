@@ -10,9 +10,13 @@ static uint8_t getClientChar(uint8_t* data) {
     int res;
 
     if (client_buffer[CLIENT_SERIAL].availableforwrite() && (res = Uart0.read()) != -1) {
-
         *data = res;
         return CLIENT_SERIAL;
+    }
+
+    if (client_buffer[CLIENT_SERIAL_LCD].availableforwrite() && (res = Uart2.read()) != -1) {
+        *data = res;
+        return CLIENT_SERIAL_LCD;
     }
 
     return CLIENT_ALL;
@@ -51,6 +55,9 @@ void client_init() {
 #else
     Uart0.setPins(1, 3);  // Tx 1, Rx 3 - standard hardware pins
     Uart0.begin(BAUD_RATE, Uart::Data::Bits8, Uart::Stop::Bits1, Uart::Parity::None);
+
+    Uart2.setPins(17, 16);  // Tx 1, Rx 3 - standard hardware pins
+    Uart2.begin(BAUD_RATE, Uart::Data::Bits8, Uart::Stop::Bits1, Uart::Parity::None);
 
     client_reset_read_buffer(CLIENT_ALL);
     Uart0.write("\r\n");  // create some white space after ESP32 boot info
@@ -105,12 +112,16 @@ void client_write(uint8_t client, const char* text) {
         WebUI::telnet_server.write((const uint8_t*)text, strlen(text));
     }
 #endif
-    // if (client == CLIENT_SERIAL || client == CLIENT_ALL || client == CLIENT_LCD) {
     if (client == CLIENT_SERIAL || client == CLIENT_ALL) {
-#ifdef REVERT_TO_ARDUINO_SERIAL
-        Serial.write(text);
-#else
         Uart0.write(text);
-#endif
     }
+
+    if (client == CLIENT_SERIAL_LCD || client == CLIENT_ALL) {
+        Uart2.write(text);
+    }
+}
+
+void send_cmd(uint8_t client, const char *text) {
+
+    client_write(client, text);
 }

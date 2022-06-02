@@ -2,6 +2,8 @@
 
 IntSetting* Machine_type;
 
+IntSetting* Machine_theme;
+
 /*  数据将会从NVS中加载出来，保存带List中 
     List里面每当new一个新的对象时，List会自动添加
     这个对象的值，并且装载到Flash中使用，因此这个
@@ -34,6 +36,8 @@ void eeprom_init(void) {
 void make_pargrame_list(void) {
 
     Machine_type = new IntSetting(GRBL, WG, "0", "MachineType", 1, 0, 10);
+
+    Machine_theme = new IntSetting(GRBL, WG, "1", "MachineTheme", 1, 0, 4);
 }
 
 

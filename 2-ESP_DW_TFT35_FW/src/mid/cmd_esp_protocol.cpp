@@ -40,6 +40,5 @@ Error doing_esp32_cmd(char *line) {
             *value++ = '\0';
         }
     }
-
     return Error::Ok;
 }

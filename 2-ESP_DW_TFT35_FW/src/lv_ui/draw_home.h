@@ -1,8 +1,13 @@
 #pragma once
 
+/***************************************************************************
+ *                            include   
+***************************************************************************/
 #include "../main.h"
 
-
+/***************************************************************************
+ *                            typedef struct    
+***************************************************************************/
 typedef struct {
 
 // for grbl page;
@@ -17,6 +22,8 @@ typedef struct {
     lv_obj_t *label_x_wpos;
     lv_obj_t *label_y_wpos;
     lv_obj_t *label_z_wpos;
+
+
 
     lv_obj_t *btn_control;
     lv_obj_t *btn_sculpture;
@@ -33,6 +40,12 @@ typedef struct {
     lv_obj_t *reg_w;
     lv_obj_t *reg_m;
 
+    lv_obj_t *label_w;
+    lv_obj_t *label_m;
+
+    lv_obj_t *label_w_pic;
+    lv_obj_t *label_m_pic;
+
     lv_style_t btn_pre_style;
     lv_style_t btn_rel_style;
 
@@ -41,4 +54,10 @@ typedef struct {
 
 }ui_home_t; 
 
+
+/***************************************************************************
+ *                              extern
+***************************************************************************/
+
 void draw_home(void);
+void clean_home_page(void);

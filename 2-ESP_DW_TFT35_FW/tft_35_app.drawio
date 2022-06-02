@@ -1,0 +1,100 @@
+<mxfile host="65bd71144e">
+    <diagram id="kzZhhSu9VX72E4UibNk3" name="第 1 页">
+        <mxGraphModel dx="1508" dy="705" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="ESP-TFT-DW" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="290" width="60" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="串口数据解析" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="170" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="LVGL UI控制" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="460" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="ESP32 CMD" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="120" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="GRBL CMD" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="160" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Marlin CMD" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="200" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="RRF CMD" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="240" width="120" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
+                    <mxGeometry x="250" y="110" width="20" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="APP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="540" width="600" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="ESP32 HAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" parent="1" vertex="1">
+                    <mxGeometry x="110" y="610" width="570" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="UART" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="650" width="90" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="LCD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="650" width="70" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="TOUCH" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
+                    <mxGeometry x="379" y="650" width="71" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="WIFI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="650" width="70" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="BL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;" parent="1" vertex="1">
+                    <mxGeometry x="540" y="650" width="80" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="590" width="600" height="115" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="ESP32 CMD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="720" width="200" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="ESP100" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="770" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="获取版本信息" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="790" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="ESP101" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="770" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="获取当前WIFI SSID" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="190" y="790" width="90" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="ESP102" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="820" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="获取当前WIFI 密码" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="90" y="840" width="90" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="ESP103" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="820" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="设置WIFI SSID" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="195" y="840" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="ESP104" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="870" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="设置WIFI密码" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="100" y="890" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="ESP105" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="870" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="设置WIFI模式" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=9;" parent="1" vertex="1">
+                    <mxGeometry x="200" y="890" width="70" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="GRBL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#6F0000;" parent="1" vertex="1">
+                    <mxGeometry x="300" y="720" width="200" height="40" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

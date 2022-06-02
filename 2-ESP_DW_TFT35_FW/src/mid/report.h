@@ -7,8 +7,9 @@
 #define CLIENT_WEBUI 2
 #define CLIENT_TELNET 3
 #define CLIENT_INPUT 4
+#define CLIENT_SERIAL_LCD   5
 #define CLIENT_ALL 0xFF
-#define CLIENT_COUNT 5  // total number of client types regardless if they are used
+#define CLIENT_COUNT 6  // total number of client types regardless if they are used
 
 
 

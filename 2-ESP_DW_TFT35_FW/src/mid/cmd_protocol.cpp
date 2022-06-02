@@ -1,22 +1,13 @@
+/****************************************************************
+ *                      Include
+****************************************************************/
 #include "cmd_protocol.h"
 
 
-void init_gc_report() {
 
-
+/****************************************************************
+ *                      grbl_cmd_send
+****************************************************************/
+void grbl_cmd_send(uint8_t client, const char *text) {
+    send_cmd(client, text);
 }
-
-void reset_gc_report() {
-
-
-}
-
-gc_report_t report_wait_on() {
-
-
-    return GC_OK;
-}
-
-
-
-
