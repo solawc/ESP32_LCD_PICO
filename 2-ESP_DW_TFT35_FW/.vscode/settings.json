@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "*.tcc": "cpp",
-        "map": "cpp",
-        "limits": "cpp",
-        "random": "cpp",
-        "lvgl.h": "c"
-    }
-}
