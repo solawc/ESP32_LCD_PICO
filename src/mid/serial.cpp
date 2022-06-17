@@ -9,11 +9,13 @@ WebUI::InputBuffer client_buffer[CLIENT_COUNT];  // create a buffer for each cli
 static uint8_t getClientChar(uint8_t* data) {
     int res;
 
+    /* UART0 */
     if (client_buffer[CLIENT_SERIAL].availableforwrite() && (res = Uart0.read()) != -1) {
         *data = res;
         return CLIENT_SERIAL;
     }
-
+    
+    /*UART2*/
     if (client_buffer[CLIENT_SERIAL_LCD].availableforwrite() && (res = Uart2.read()) != -1) {
         *data = res;
         return CLIENT_SERIAL_LCD;
@@ -30,7 +32,9 @@ void clientCheckTask(void* pvParameters) {
     while (true) {  // run continuously
 
         while ((client = getClientChar(&data)) != CLIENT_ALL) {
+            vTaskEnterCritical(&myMutex);
             client_write_data(client, data);
+            vTaskExitCritical(&myMutex);
         }  // if something available
 
         vTaskDelay(1 / portTICK_RATE_MS);  // Yield to other tasks
@@ -56,11 +60,12 @@ void client_init() {
     Uart0.setPins(1, 3);  // Tx 1, Rx 3 - standard hardware pins
     Uart0.begin(BAUD_RATE, Uart::Data::Bits8, Uart::Stop::Bits1, Uart::Parity::None);
 
-    Uart2.setPins(17, 16);  // Tx 1, Rx 3 - standard hardware pins
+    Uart2.setPins(17, 16);  // Tx 17, Rx 16 - standard hardware pins
     Uart2.begin(BAUD_RATE, Uart::Data::Bits8, Uart::Stop::Bits1, Uart::Parity::None);
 
     client_reset_read_buffer(CLIENT_ALL);
     Uart0.write("\r\n");  // create some white space after ESP32 boot info
+    Uart2.write("\r\n");
 #endif
     clientCheckTaskHandle = 0;
     // create a task to check for incoming data

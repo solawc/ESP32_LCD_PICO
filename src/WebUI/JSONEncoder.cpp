@@ -1,6 +1,6 @@
 // Class for creating JSON-encoded strings.
 
-#include "../Grbl.h"
+// #include "../Grbl.h"
 
 #include "JSONEncoder.h"
 

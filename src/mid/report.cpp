@@ -38,7 +38,7 @@ void debug_send(uint8_t client, const char* text) {
 }
 
 void debug_line_received(char* line, uint8_t client) {
-    serial_sendf(client, "%s\n", line);
+    serial_sendf(client, "[client:%d]%s\n", client, line);
 }
 
 

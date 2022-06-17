@@ -51,8 +51,6 @@
 #define FONT_PIC_CUSTOMIZE_2     	                    "\xEE\x99\x82"                        //0xe642
 #define FONT_PIC_CUSTOMIZE_3     	                    "\xEE\x99\x83"                        //0xe643
 
-
-
 //*****************70*70*******************
 #define FONT_PIC_CONTROL     	                        "\xEE\x98\xBB"                        //0xe63b
 #define FONT_PIC_TOOLS      	                        "\xEE\x98\xBC"                        //0xe63c

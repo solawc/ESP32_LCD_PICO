@@ -3,7 +3,7 @@
 
 grbl_cmd_t grbl_cmd;
 
-#define LINE_BUFFER_SIZE 256
+#define LINE_BUFFER_SIZE 1024
 static char    line[LINE_BUFFER_SIZE];     // Line to be executed. Zero-terminated.
 
 typedef struct {
@@ -138,12 +138,6 @@ void excute_grbl_report_back(char *line) {
 **********************************/
 
 }
-
-
-
-
-
-
 
 
 void grbl_connect_task(void *parg) {

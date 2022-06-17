@@ -3,8 +3,6 @@
 
 #include "../main.h"
 
-
-
 typedef struct {
 
     lv_obj_t *btn_x_n;

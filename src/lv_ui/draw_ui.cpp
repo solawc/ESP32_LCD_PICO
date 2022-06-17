@@ -74,11 +74,11 @@ void ui_theme_set(void) {
 
     /********************************* 60x60字库的样式********************************************/
     lv_style_copy(&ui.di_font_60_60 , &lv_style_scr);
-    ui.di_font_60_60.text.font = &dlc_font_70x70;
+    ui.di_font_60_60.text.font = &dlc_font_60x60;
     ui.di_font_60_60.text.color = lv_color_hex(ui.ui_theme.font_rel_color); //lv_color_hex(0x4DE585);
 
     lv_style_copy(&ui.di_font_60_60_pre , &lv_style_scr);
-    ui.di_font_60_60_pre.text.font = &dlc_font_70x70;
+    ui.di_font_60_60_pre.text.font = &dlc_font_60x60;
     ui.di_font_60_60_pre.text.color = lv_color_hex(0x191919);
     /*********************************************************************************************/
 
@@ -94,20 +94,28 @@ void ui_theme_set(void) {
 
     /********************************* back的样式********************************************/
     lv_style_copy(&ui.com_back , &lv_style_scr);
-    ui.com_back.body.border.color = lv_color_hex(ui.ui_theme.font_rel_color);
-    ui.com_back.body.border.width = 1;
     ui.com_back.body.grad_color = lv_color_hex(F_THEME_BTN_REL_COLOR);
-    ui.com_back.body.main_color = lv_color_hex(F_THEME_BTN_REL_COLOR);
-    ui.com_back.body.radius = 8;
-    ui.com_back.text.color = lv_color_hex(ui.ui_theme.font_rel_color);
+	ui.com_back.body.main_color = lv_color_hex(F_THEME_BTN_REL_COLOR);
+    ui.com_back.body.radius = 10;
+    ui.com_back.text.color = lv_color_hex(get_current_color());
+    // ui.com_back.body.border.color = lv_color_hex(ui.ui_theme.font_rel_color);
+    // ui.com_back.body.border.width = 1;
+    // ui.com_back.body.grad_color = lv_color_hex(F_THEME_BTN_REL_COLOR);
+    // ui.com_back.body.main_color = lv_color_hex(F_THEME_BTN_REL_COLOR);
+    // ui.com_back.body.radius = 8;
+    // ui.com_back.text.color = lv_color_hex(ui.ui_theme.font_rel_color);
 
     lv_style_copy(&ui.com_back_pre , &lv_style_scr);
-    ui.com_back_pre.body.border.color = lv_color_hex(ui.ui_theme.font_rel_color);
-    ui.com_back_pre.body.border.width = 1;
-    ui.com_back_pre.body.grad_color = lv_color_hex(ui.ui_theme.font_rel_color);
-    ui.com_back_pre.body.main_color = lv_color_hex(ui.ui_theme.font_rel_color);
-    ui.com_back_pre.body.radius = 8;
-    ui.com_back_pre.text.color = lv_color_hex(F_THEME_BTN_REL_COLOR);
+    ui.com_back_pre.body.grad_color = lv_color_hex(get_current_color());;
+	ui.com_back_pre.body.main_color = lv_color_hex(get_current_color());;
+    ui.com_back_pre.body.radius = 10;
+    ui.com_back_pre.text.color = lv_color_hex(0x191919);
+    // ui.com_back_pre.body.border.color = lv_color_hex(ui.ui_theme.font_rel_color);
+    // ui.com_back_pre.body.border.width = 1;
+    // ui.com_back_pre.body.grad_color = lv_color_hex(ui.ui_theme.font_rel_color);
+    // ui.com_back_pre.body.main_color = lv_color_hex(ui.ui_theme.font_rel_color);
+    // ui.com_back_pre.body.radius = 8;
+    // ui.com_back_pre.text.color = lv_color_hex(F_THEME_BTN_REL_COLOR);
 
     /*********************************************************************************************/
 }
@@ -162,12 +170,18 @@ void set_current_color(theme_type_t color) {
 }
 
 uint32_t get_current_color(void) {
-
+    
     return ui.ui_theme.font_rel_color;
 }
 
 
+lv_obj_t* lv_obj_set(lv_obj_t* scr, lv_obj_t* obj, lv_coord_t btn_w, lv_coord_t btn_h, lv_coord_t x, lv_coord_t y) {
 
+    obj = lv_obj_create(scr, NULL);
+    lv_obj_set_size(obj, btn_w, btn_h);
+    lv_obj_set_pos(obj, x, y);
+    return obj;
+}
 
 lv_obj_t* lv_btn_set(lv_obj_t* scr, lv_obj_t* btn, lv_coord_t btn_w, lv_coord_t btn_h, lv_coord_t x, lv_coord_t y, lv_event_cb_t event_cb) {
 

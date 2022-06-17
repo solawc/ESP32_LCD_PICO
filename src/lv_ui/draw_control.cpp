@@ -24,7 +24,6 @@ static void action_step(char axis, int len, uint32_t speed);
 ***************************************************************************/
 
 enum {
-
     ID_C_X_N,
     ID_C_X_P,
     ID_C_Y_N,
@@ -88,19 +87,19 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
             break;
 
             case ID_C_Y_N:
-
+                action_step('Y', 10, 1000);
             break;
 
             case ID_C_Y_P: 
-
+                action_step('Y', -10, 1000);
             break;
 
             case ID_C_Z_N: 
-
+                action_step('Z', 10, 1000);
             break;
 
             case ID_C_Z_P: 
-
+                action_step('Z', -10, 1000);
             break;
 
 
@@ -357,10 +356,9 @@ static void set_spindle_rate() {
 }
 
 static void action_step(char axis, int len, uint32_t speed) {
-
     char cmd[96];
     sprintf(cmd, "$J=G91%c%dF%d\n", axis, len, speed);
-    grbl_cmd_send(CLIENT_ALL, cmd);
+    grbl_cmd_send(CLIENT_SERIAL_LCD, cmd);
 }
 
 

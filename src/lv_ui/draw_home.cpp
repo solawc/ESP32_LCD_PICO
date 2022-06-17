@@ -52,8 +52,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
         switch(id) {
             case ID_HOME_CONTROL: 
-                clean_home_page();
-                draw_control();
+                
             break;
 
             case ID_HOME_SCULPTRUE:
@@ -71,17 +70,19 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
         set_font_pic_color(id, false);
         
          switch(id) {
-             case ID_HOME_CONTROL: 
-
+            case ID_HOME_CONTROL: 
+                clean_home_page();
+                draw_control();
             break;
 
             case ID_HOME_SCULPTRUE:
-
+                clean_home_page();
+                draw_file_list();
             break;
 
             case ID_HOME_TOOL: 
                 clean_home_page();
-                draw_style();
+                draw_tool();
             break;
         }
     }
@@ -107,14 +108,14 @@ void draw_home(void) {
     home_page.btn_pre_style.text.color = lv_color_hex(0x191919);
     
     lv_style_copy(&home_page.btn_rel_style , &lv_style_scr);
-    home_page.btn_rel_style.body.grad_color = lv_color_hex(0x333333);
-	home_page.btn_rel_style.body.main_color = lv_color_hex(0x333333);
+    home_page.btn_rel_style.body.grad_color = lv_color_hex(F_THEME_BTN_REL_COLOR);
+	home_page.btn_rel_style.body.main_color = lv_color_hex(F_THEME_BTN_REL_COLOR);
     home_page.btn_rel_style.body.radius = 10;
     home_page.btn_rel_style.text.color = lv_color_hex(get_current_color());
 
     lv_style_copy(&home_page.btn_reg_style , &lv_style_scr);
-    home_page.btn_reg_style.body.grad_color = lv_color_hex(0x191919);
-	home_page.btn_reg_style.body.main_color = lv_color_hex(0x191919);
+    home_page.btn_reg_style.body.grad_color = lv_color_hex(F_THEME_FONR_REL_COLOR);
+	home_page.btn_reg_style.body.main_color = lv_color_hex(F_THEME_FONR_REL_COLOR);
     home_page.btn_reg_style.body.border.color = lv_color_hex(get_current_color());
     home_page.btn_reg_style.body.border.width = 1;
     home_page.btn_reg_style.body.radius = 8;

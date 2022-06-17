@@ -37,6 +37,7 @@ void setup() {
 
 
 void loop() {
+    // for grbl main
     grbl_protocol_main_loop();
 }
 

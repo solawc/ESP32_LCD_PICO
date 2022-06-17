@@ -45,5 +45,13 @@
 #include "lv_ui/draw_home.h"
 #include "lv_ui/draw_style.h"
 #include "lv_ui/draw_control.h"
+#include "lv_ui/draw_tool.h"
+#include "lv_ui/draw_language.h"
+#include "lv_ui/draw_file_list.h"
+#include "lv_ui/draw_wireless.h"
+#include "lv_ui/draw_about.h"
+#include "lv_ui/draw_wireless_sign_in.h"
+#include "lv_ui/draw_set_config.h"
+#include "lv_ui/draw_init_set.h"
 
 #endif
