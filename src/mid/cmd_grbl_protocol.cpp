@@ -136,7 +136,7 @@ void excute_grbl_report_back(char *line) {
  * step1:
  * 
 **********************************/
-    get_sd_filename(line);
+    // get_sd_filename(line);
 }
 void get_sd_file_name()
 {
