@@ -61,7 +61,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
         switch(id) {
             case ID_FLIE_LIST_FILE0: 
-                
+            
             break;
 
             case ID_FLIE_LIST_FILE1:
@@ -85,7 +85,8 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
         switch(id) {
             case ID_FLIE_LIST_FILE0: 
-                
+                clean_file_list_page();
+                draw_print();
             break;
 
             case ID_FLIE_LIST_FILE1:

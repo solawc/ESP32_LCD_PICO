@@ -56,6 +56,7 @@ typedef struct {
 
     lv_obj_t    *src;                           // 作为主页
     lv_obj_t    *src_1;               
+    lv_obj_t    *src_2;               
 
     
 

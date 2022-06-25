@@ -35,6 +35,7 @@
 #include "mid/cmd_grbl_protocol.h"
 #include "mid/cmd_protocol.h"
 #include "mid/error.h"
+#include "mid/sd_info.h"
 
 #include "lvgl.h"
 #include "lv_ui/font_pic.h"
@@ -53,5 +54,8 @@
 #include "lv_ui/draw_wireless_sign_in.h"
 #include "lv_ui/draw_set_config.h"
 #include "lv_ui/draw_init_set.h"
+#include "lv_ui/draw_print.h"
+#include "lv_ui/draw_adjustment.h"
+#include "lv_ui/draw_keyboard.h"
 
 #endif

@@ -68,7 +68,8 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
         switch(id) {
             case ID_WIRELESS_NAME: 
-                
+                clean_wireless_sign_in_page();
+                draw_keyboard();
             break;
 
             case ID_WIRELESS_PASSWORD:
