@@ -14,6 +14,8 @@
 
 #include <SPI.h>
 
+#include "CommonMarco.h"
+
 #include <driver/rmt.h>
 #include <esp_task_wdt.h>
 #include "esp32-hal.h"

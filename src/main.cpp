@@ -4,7 +4,7 @@
 
 void app_task_init(void) {
 
-    // 初始化串口， 开启串口任务
+    // init client and init serial port
     client_init();
 
     // EEPROM(NVS) init
