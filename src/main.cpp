@@ -7,11 +7,15 @@ void app_task_init(void) {
     // 初始化串口， 开启串口任务
     client_init();
 
+    send_buff_init();
+
     // EEPROM(NVS) init
     eeprom_init();
 
     // task init lvgl
     lvgl_task_init();
+
+    Timer_Init();
 }
 
 void setup() {

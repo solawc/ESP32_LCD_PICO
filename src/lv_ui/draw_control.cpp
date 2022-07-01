@@ -368,6 +368,9 @@ void draw_control(void) {
     draw_bar();
 
     set_btn();
+
+    mks_ui_page.mks_ui_page = MKS_UI_PAGE_CONTROL;
+
 }
 
 

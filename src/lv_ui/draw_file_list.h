@@ -14,32 +14,31 @@ typedef struct{
     lv_obj_t *btn_file1;
     lv_obj_t *btn_file2;
     lv_obj_t *btn_file3;
-    // lv_obj_t *btn_file4;
-    // lv_obj_t *btn_file5;
-    // lv_obj_t *btn_file6;
-    // lv_obj_t *btn_file7;
+    lv_obj_t *btn_file4;
+    lv_obj_t *btn_file5;
+    lv_obj_t *btn_file6;
+    lv_obj_t *btn_file7;
 
     lv_style_t btn_pre_style;
     lv_style_t btn_rel_style;
 
-    lv_obj_t *label_file0_pic;
-    lv_obj_t *label_file1_pic;
-    lv_obj_t *label_file2_pic;
-    lv_obj_t *label_file3_pic;
-    // lv_obj_t *label_file4_pic;
-    // lv_obj_t *label_file5_pic;
-    // lv_obj_t *label_file6_pic;
-    // lv_obj_t *label_file7_pic;
-
+    lv_obj_t *label_pic_file0;
+    lv_obj_t *label_pic_file1;
+    lv_obj_t *label_pic_file2;
+    lv_obj_t *label_pic_file3;
+    lv_obj_t *label_pic_file4;
+    lv_obj_t *label_pic_file5;
+    lv_obj_t *label_pic_file6;
+    lv_obj_t *label_pic_file7;
 
     lv_obj_t *label_file0;
     lv_obj_t *label_file1;
     lv_obj_t *label_file2;
     lv_obj_t *label_file3;
-    // lv_obj_t *label_file4;
-    // lv_obj_t *label_file5;
-    // lv_obj_t *label_file6;
-    // lv_obj_t *label_file7;
+    lv_obj_t *label_file4;
+    lv_obj_t *label_file5;
+    lv_obj_t *label_file6;
+    lv_obj_t *label_file7;
 
     lv_obj_t *btn_back;
     lv_obj_t *label_back_pic;
@@ -54,6 +53,16 @@ typedef struct{
     lv_obj_t *label_next;
     
 }ui_file_list_t;
+
+#define PAGE_MAX_FILE_NUM 8
+#define MAX_PAGE_NUM 4
+
+typedef struct{
+    bool updata_flag = false;
+    uint16_t cur_page;
+    uint16_t cur_page_file_num;
+}ui_file_updata_t;
+extern ui_file_updata_t ui_file_list_page_updata;
 
 #define FILE_LIST_BTN_LIST_X1 8
 #define FILE_LIST_BTN_LIST_X2 126
@@ -78,3 +87,4 @@ typedef struct{
 
 void draw_file_list(void);
 void clean_file_list_page(void);
+void disp_file_name(int num , int page);

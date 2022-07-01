@@ -36,6 +36,10 @@
 #include "mid/cmd_protocol.h"
 #include "mid/error.h"
 #include "mid/sd_info.h"
+#include "mid/serial_cmd_send.h"
+#include "mid/timer.h""
+
+
 
 #include "lvgl.h"
 #include "lv_ui/font_pic.h"
