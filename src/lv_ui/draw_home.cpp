@@ -71,16 +71,20 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
         
          switch(id) {
             case ID_HOME_CONTROL: 
+                mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 clean_home_page();
                 draw_control();
             break;
 
             case ID_HOME_SCULPTRUE:
+                mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 clean_home_page();
+                MKS_PICO_CMD_SEND("[ESP210]\n");
                 draw_file_list();
             break;
 
             case ID_HOME_TOOL: 
+                mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 clean_home_page();
                 draw_tool();
             break;
@@ -98,9 +102,8 @@ static void draw_bar(void) {
 }
 
 void draw_home(void) {
-    
+    char buff[50];
     draw_bar();
-
     lv_style_copy(&home_page.btn_pre_style , &lv_style_scr);
     home_page.btn_pre_style.body.grad_color = lv_color_hex(get_current_color());;
 	home_page.btn_pre_style.body.main_color = lv_color_hex(get_current_color());;
@@ -152,14 +155,25 @@ void draw_home(void) {
     lv_label_set_style(home_page.label_w_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
     lv_label_set_style(home_page.label_m_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
 
+    FD_ZERO(buff);
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_m_pos);
+    home_page.label_x_mpos = lv_label_set(ui.src, home_page.label_x_mpos, 56, 104, buff);
+    FD_ZERO(buff);
+    sprintf(buff,"Y:%0.2f",grbl_cmd.grbl_basic_info.y_m_pos);
+    home_page.label_y_mpos = lv_label_set(ui.src, home_page.label_y_mpos, 56, 136, buff);
+    FD_ZERO(buff);
+    sprintf(buff,"Z:%0.2f",grbl_cmd.grbl_basic_info.z_m_pos);
+    home_page.label_z_mpos = lv_label_set(ui.src, home_page.label_z_mpos, 56, 168, buff);
 
-    home_page.label_x_mpos = lv_label_set(ui.src, home_page.label_x_mpos, 56, 104, "X:0.0");
-    home_page.label_y_mpos = lv_label_set(ui.src, home_page.label_y_mpos, 56, 136, "Y:0.0");
-    home_page.label_z_mpos = lv_label_set(ui.src, home_page.label_z_mpos, 56, 168, "Z:0.0");
-
-    home_page.label_x_wpos = lv_label_set(ui.src, home_page.label_x_wpos, 292, 104, "X:0.0");
-    home_page.label_y_wpos = lv_label_set(ui.src, home_page.label_y_wpos, 292, 136, "Y:0.0");
-    home_page.label_z_wpos = lv_label_set(ui.src, home_page.label_z_wpos, 292, 168, "Z:0.0");
+    FD_ZERO(buff);
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_w_pos);
+    home_page.label_x_wpos = lv_label_set(ui.src, home_page.label_x_wpos, 292, 104, buff);
+    FD_ZERO(buff);
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.y_w_pos);
+    home_page.label_y_wpos = lv_label_set(ui.src, home_page.label_y_wpos, 292, 136, buff);
+    FD_ZERO(buff);
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.z_w_pos);
+    home_page.label_z_wpos = lv_label_set(ui.src, home_page.label_z_wpos, 292, 168, buff);
 
     home_page.label_control_pic = lv_label_create(home_page.btn_control, NULL);
     lv_label_set_text(home_page.label_control_pic, FONT_PIC_CONTROL);
@@ -185,6 +199,8 @@ void draw_home(void) {
     home_page.label_tool = lv_label_create(home_page.btn_tool, NULL);
     lv_obj_align(home_page.label_tool, home_page.label_tool_pic, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
     lv_label_set_text(home_page.label_tool, "Tool");
+
+    mks_ui_page.mks_ui_page = MKS_UI_PAGE_HOME;
 }
 
 /* 
@@ -214,6 +230,32 @@ static void set_font_pic_color(uint8_t id, bool status) {
 
 }
 
+void disp_home_data_updata()
+{
+    
+    char buff[50];
+    FD_ZERO(buff);
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_m_pos);
+    lv_label_set_text(home_page.label_x_mpos,buff);
+    FD_ZERO(buff);
+    sprintf(buff,"Y:%0.2f",grbl_cmd.grbl_basic_info.y_m_pos);
+    lv_label_set_text(home_page.label_y_mpos,buff);
+    FD_ZERO(buff);
+    sprintf(buff,"Z:%0.2f",grbl_cmd.grbl_basic_info.z_m_pos);
+    lv_label_set_text(home_page.label_z_mpos,buff);
+
+
+    FD_ZERO(buff);
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_w_pos);
+    lv_label_set_text(home_page.label_x_wpos,buff);
+    FD_ZERO(buff);
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.y_w_pos);
+    lv_label_set_text(home_page.label_y_wpos,buff);
+    FD_ZERO(buff);
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.z_w_pos);
+    lv_label_set_text(home_page.label_z_wpos,buff);
+
+}
 
 void clean_home_page(void) {
 

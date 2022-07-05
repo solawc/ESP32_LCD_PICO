@@ -7,7 +7,7 @@
  *                            global   
 ***************************************************************************/
 ui_print_t print_page;
-
+PRINT_TIME_t print_time;
 /***************************************************************************
  *                          static function
  * - static void set_print_font_pic_color(uint8_t id, bool status) 
@@ -40,7 +40,7 @@ static uint8_t get_event(lv_obj_t* obj) {
 
 
 static void event_handler(lv_obj_t* obj, lv_event_t event) {
-
+    char buf_cmd[]={0x18,10};
     uint8_t id = get_event(obj);
 
     if(event == LV_EVENT_PRESSED) {
@@ -71,11 +71,25 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
         switch(id) {
             case ID_PRINT_START: 
-                
+            // char buff[20];
+            // memset(buff,0,sizeof(buff));
+            serial_sendf(CLIENT_SERIAL,"mode %d\n",grbl_cmd.grbl_mode);
+            if(grbl_cmd.grbl_mode == GRBL_HOLD) {
+                print_time_enable();
+                MKS_PICO_CMD_SEND("~\n");
+            }   
+            else if(grbl_cmd.grbl_mode == GRBL_RUN)    {
+                print_time_disable();
+                MKS_PICO_CMD_SEND("!\n");
+            } 
             break;
 
             case ID_PRINT_STOP:
-
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+                print_time_disable();
+                clean_print_page();
+                draw_home();
             break;
 
             case ID_PRINT_ADJUSTMENT: 
@@ -165,24 +179,56 @@ void draw_print(void) {
     lv_bar_set_style(print_page.bar, LV_BAR_STYLE_INDIC, &print_page.bar_indic_style);
     lv_bar_set_style(print_page.bar, LV_BAR_STYLE_BG, &print_page.bar_bg_style);
     lv_bar_set_anim_time(print_page.bar, 1000);
-    lv_bar_set_value(print_page.bar, 10, LV_ANIM_ON);
+    lv_bar_set_value(print_page.bar, 0, LV_ANIM_ON);
 
     int per_num = 10;
     char buff[20];
-    FD_ZERO(buff);
+    memset(buff,0,sizeof(buff));
     sprintf(buff,"%d\%",per_num);
     print_page.label_bar_percen = lv_label_create(ui.src, NULL);
     lv_obj_align(print_page.label_bar_percen, print_page.bar, LV_ALIGN_IN_RIGHT_MID, 0, 0);
     lv_label_set_text(print_page.label_bar_percen, buff);
     lv_obj_set_style(print_page.label_bar_percen,&print_page.label_bar_style);
 
-    int time_num = 10;
-    FD_ZERO(buff);
-    sprintf(buff,"%d\%",time_num);
+    // int time_num = 10;
+    // memset(buff,0,sizeof(buff));
+    sprintf(buff,"%d:%d:%d\n",print_time.hour,print_time.min,print_time.sec);
     print_page.label_bar_time = lv_label_create(ui.src, NULL);
     lv_obj_align(print_page.label_bar_time, print_page.bar, LV_ALIGN_IN_LEFT_MID, 10, 0);
     lv_label_set_text(print_page.label_bar_time, buff);
     lv_obj_set_style(print_page.label_bar_time,&print_page.label_bar_style);
+
+
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_m_pos);
+    print_page.label_work_x = lv_label_set(ui.src, print_page.label_work_x, 48, 108, buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"Y:%0.2f",grbl_cmd.grbl_basic_info.y_m_pos);
+    print_page.label_work_y = lv_label_set(ui.src, print_page.label_work_y, 48, 136, buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"Z:%0.2f",grbl_cmd.grbl_basic_info.z_m_pos);
+    print_page.label_work_z = lv_label_set(ui.src, print_page.label_work_z, 48, 164, buff);
+
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_w_pos);
+    print_page.label_mechang_x = lv_label_set(ui.src, print_page.label_mechang_x, 208, 108, buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"Y:%0.2f",grbl_cmd.grbl_basic_info.y_w_pos);
+    print_page.label_mechang_y = lv_label_set(ui.src, print_page.label_mechang_y, 208, 136, buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"Z:%0.2f",grbl_cmd.grbl_basic_info.z_w_pos);
+    print_page.label_mechang_z = lv_label_set(ui.src, print_page.label_mechang_z, 208, 164, buff);
+
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"F:%d",grbl_cmd.grbl_basic_info.f_override);
+    print_page.label_speed_f = lv_label_set(ui.src, print_page.label_speed_f, 368, 108, buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"S:%d",grbl_cmd.grbl_basic_info.spindle_speed_ovr);
+    print_page.label_speed_s = lv_label_set(ui.src, print_page.label_speed_s, 368, 136, buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"R:%d",grbl_cmd.grbl_basic_info.r_override);
+    print_page.label_speed_r = lv_label_set(ui.src, print_page.label_speed_r, 368, 164, buff);
+
 
 
     print_page.btn_start =  lv_btn_set(ui.src, print_page.btn_start, PRINT_BTN_W, PRINT_BTN_H, PRINT_BTN_X1, PRINT_BTN_Y, event_handler);
@@ -256,6 +302,9 @@ void draw_print(void) {
     print_page.label_speed_region = lv_label_create(ui.src, NULL);
     lv_obj_align(print_page.label_speed_region, print_page.label_speed_region_pic, LV_ALIGN_OUT_RIGHT_MID, 0, 0);
     lv_label_set_text(print_page.label_speed_region, PRINT_SPINDLE_EN);
+    mks_ui_page.mks_ui_page = MKS_UI_PAGE_PRINT;
+    print_time_init();
+    print_time_enable();
 
 }
 
@@ -264,6 +313,52 @@ void draw_print(void) {
  *  status: true:press, false:relase
 
 */
+
+void disp_printing_bar()
+{
+    char buff[30];
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"%d",(uint32_t)grbl_cmd.grbl_basic_info.per_val);
+    lv_label_set_text(print_page.label_bar_percen, buff);
+    lv_bar_set_value(print_page.bar, (uint32_t)grbl_cmd.grbl_basic_info.per_val, LV_ANIM_ON);
+    // char buff[50];
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_m_pos);
+    lv_label_set_text(print_page.label_mechang_x,buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"Y:%0.2f",grbl_cmd.grbl_basic_info.y_m_pos);
+    lv_label_set_text(print_page.label_mechang_y,buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"Z:%0.2f",grbl_cmd.grbl_basic_info.z_m_pos);
+    lv_label_set_text(print_page.label_mechang_z,buff);
+
+
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_w_pos);
+    lv_label_set_text(print_page.label_work_x,buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"Y:%0.2f",grbl_cmd.grbl_basic_info.y_w_pos);
+    lv_label_set_text(print_page.label_work_y,buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"Z:%0.2f",grbl_cmd.grbl_basic_info.z_w_pos);
+    lv_label_set_text(print_page.label_work_z,buff);
+
+
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"F:%d",grbl_cmd.grbl_basic_info.f_override);
+    lv_label_set_text(print_page.label_speed_f,buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"S:%d",grbl_cmd.grbl_basic_info.spindle_speed_ovr);
+    lv_label_set_text(print_page.label_speed_s,buff);
+    memset(buff,0,sizeof(buff));
+    sprintf(buff,"R:%d",grbl_cmd.grbl_basic_info.r_override);
+    lv_label_set_text(print_page.label_speed_r,buff);
+
+    sprintf(buff,"%d:%d:%d\n",print_time.hour,print_time.min,print_time.sec);
+    lv_obj_align(print_page.label_bar_time, print_page.bar, LV_ALIGN_IN_LEFT_MID, 10, 10);
+    lv_label_set_text(print_page.label_bar_time, buff);
+
+}
 static void set_print_font_pic_color(uint8_t id, bool status) {
 
     // switch(id) {
@@ -287,8 +382,38 @@ static void set_print_font_pic_color(uint8_t id, bool status) {
 
 }
 
+void print_time_init()
+{
+    print_time.hour = 0;
+    print_time.min = 0;
+    print_time.sec = 0;
+}
+void print_time_enable()
+{
+    print_time.flag = true;
+}
+void print_time_disable()
+{
+    print_time.flag = false;
+}
 
-
+void print_time_change_pro()
+{
+    if(print_time.flag)
+    {
+        print_time.sec++;
+        if(print_time.sec >= 59)
+        {
+            print_time.min++;
+            print_time.sec = 0;
+            if(print_time.min >= 59)
+            {
+                print_time.hour++;
+                print_time.min = 0;
+            }
+        }
+    }
+}
 
 
 void clean_print_page(void) {

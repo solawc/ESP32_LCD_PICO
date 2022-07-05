@@ -41,8 +41,25 @@ typedef struct {
     lv_obj_t *label_zclear;
     lv_obj_t *label_knife_pic;
     lv_obj_t *label_knife;
+    lv_obj_t *label_next_pic;
+    lv_obj_t *label_next;
 
+    lv_obj_t *label_xy_home_pic;
+    lv_obj_t *label_xy_home;
 
+    lv_obj_t *label_z_home_pic;
+    lv_obj_t *label_z_home;
+
+    /*up*/  
+    lv_obj_t *btn_cool;
+    lv_obj_t *label_cool_pic;
+    lv_obj_t *label_cool;
+    lv_obj_t *btn_position;
+    lv_obj_t *label_position_pic;
+    lv_obj_t *label_position;
+    lv_obj_t *btn_up;
+    lv_obj_t *label_up_pic;
+    lv_obj_t *label_up;
 
     lv_obj_t *label_x_pos;
     lv_obj_t *label_y_pos;
@@ -62,8 +79,11 @@ typedef struct {
 
 
 
-
-
+void disp_step_len(uint8_t len);
+void disp_step_speed(uint8_t speed);
 void draw_control(void);
 void clear_control_page();
+void disp_control_data_updata();
+void draw_next();
+void draw_up();
 

@@ -61,3 +61,4 @@ typedef struct {
 
 void draw_home(void);
 void clean_home_page(void);
+void disp_home_data_updata();

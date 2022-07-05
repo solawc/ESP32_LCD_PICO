@@ -14,6 +14,18 @@ typedef enum {
 
 }grbl_event_t;
 
+typedef enum {
+    GRBL_MPOS,
+    GRBL_FS,
+    GRBL_PN,
+    GRBL_WCO,
+    GRBL_OV,
+    GRBL_SD,
+};
+
+typedef enum {
+
+}grbl_error_code_t;
 
 /***************************************
  * 用于描述GRBL的机器状态
@@ -29,6 +41,20 @@ typedef enum {
     GRBL_DOOR,
     GRBL_SLEEP,
 }grbl_mode_t;
+
+/***************************************
+ * 发送指令后对接收指令的筛选
+ * ************************************/
+typedef enum {
+    REC_IDLE,
+    REC_SD_LIST,
+    REC_POS,
+    REC_MOVE,
+    REC_OPEN_FILE,
+    REC_PAUSE,
+    REC_CONTINUE,
+
+}grbl_rec_mode_t;
 
 /***************************************
  * 用于描述GRBL的机器返回的错误
@@ -62,15 +88,24 @@ typedef struct {
 
 
 typedef struct {
-    uint32_t x_m_pos;
-    uint32_t y_m_pos;
-    uint32_t z_m_pos;
-    uint32_t a_m_pos;
+    float x_m_pos = 1;
+    float y_m_pos = 1;
+    float z_m_pos = 1;
+    float a_m_pos = 1;
 
-    uint32_t x_w_pos;
-    uint32_t y_w_pos;
-    uint32_t z_w_pos;
-    uint32_t a_w_pos;
+    float x_w_pos = 1;
+    float y_w_pos = 1;
+    float z_w_pos = 1;
+    float a_w_pos = 1;
+    float per_val;
+
+    uint32_t current_speed;
+    uint32_t spindle_speed;
+    uint32_t f_override;
+    uint32_t r_override;
+    uint32_t spindle_speed_ovr;
+    int16_t pin_state;
+    char print_fname[60];
 
 }grbl_parg_t;
 
@@ -88,7 +123,10 @@ typedef struct {
     grbl_event_t    grbl_event;                     // GRBL需要等待的事件
     grbl_mode_t     grbl_mode;                      // GRBL当前机器执行的模式
     grbl_err_t      grbl_error;                     // GRBL的报错类型
-    grbl_flag_t     grbl_flag;                      // GRBL连接过程返回标志           
+    grbl_flag_t     grbl_flag;                      // GRBL连接过程返回标志
+    grbl_rec_mode_t     grbl_rec_mode;              // GRBL发送指令后对接收指令的筛选
+    grbl_error_code_t   grbl_error_code;
+    grbl_parg_t     grbl_basic_info;                // GRBL的基本信息
     char            send_grbl_cmd[96];              // GRBL的指令从这里发出
     char            get_grbl_cmd[255];              // GRBL返回的指令从这里解析 
 }grbl_cmd_t;
@@ -100,3 +138,7 @@ extern grbl_cmd_t grbl_cmd;
 void grbl_protocol_main_loop(void);
 char* normalize_key(char* start);
 void excute_grbl_report_back(char *line);
+
+extern char public1_buff[60];
+extern char public2_buff[60];
+extern char public3_buff[60];

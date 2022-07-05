@@ -10,6 +10,13 @@
 ***************************************************************************/
 
 typedef struct{
+    uint16_t hour;
+    uint16_t min;
+    uint16_t sec;
+    bool flag;
+}PRINT_TIME_t;
+
+typedef struct{
     lv_obj_t *btn_start;
     lv_obj_t *btn_stop;
     lv_obj_t *btn_adjustment;
@@ -94,3 +101,9 @@ typedef struct{
 
 void draw_print(void);
 void clean_print_page(void);
+void disp_printing_bar();
+
+void print_time_init();
+void print_time_enable();
+void print_time_disable();
+void print_time_change_pro();

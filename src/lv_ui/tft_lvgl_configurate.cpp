@@ -10,11 +10,11 @@ static lv_color_t       bmp_private_buf1[LV_BUF_SIZE];
 #define DISP_TASK_CORE                  1
 
 TaskHandle_t lv_disp_tcb = NULL;
-
+LVGL_UI_PAGE_t mks_ui_page;
 /* Function */
 void my_disp_flush(lv_disp_drv_t * disp, const lv_area_t * area, lv_color_t * color_p);
 bool my_indev_touch(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
-
+void mks_page_data_updata(void);
 void lvgl_freertos_task(void *parg);
 
 void lvgl_task_init(void) {
@@ -116,11 +116,52 @@ void lvgl_freertos_task(void *parg) {
     draw_home();
     
     while(1) {
-
         lv_task_handler();
-
+        mks_page_data_updata();
         vTaskDelayUntil(&xLastWakeTime, xDisplayFrequency); //使用相对延时，保证时间精准
     }
 }
 
-
+uint32_t count_updata = 0;
+void mks_page_data_updata(void) { 
+    
+    if(mks_ui_page.mks_ui_page == MKS_UI_PAGE_SD_LIST)
+    {
+         if((count_updata >= 200) ) { 
+                // disp_open_file();
+                if((sd_content.gain_all_name) && (ui_file_list_page_updata.updata_flag))
+                {
+                    ui_file_list_page_updata.updata_flag = false;
+                    // serial_sendf(CLIENT_SERIAL,"hiuu %d\n",sd_content.file_num);
+                    disp_file_name(sd_content.file_num , 1);
+                    // for(int i = 0; i < sd_content.file_num;i++)
+                    // {
+                    //     serial_sendf(CLIENT_SERIAL, "file %d %s %s\n", sd_content.filetype[i],sd_content.filename[i],sd_content.filesize[i]);
+                    // }
+                }
+                count_updata = 0;
+            }
+    }
+    if(mks_ui_page.mks_ui_page == MKS_UI_PAGE_HOME)
+    {
+        if((count_updata >= 200) ) {
+            disp_home_data_updata();
+            count_updata = 0;
+        }
+    }
+    if(mks_ui_page.mks_ui_page == MKS_UI_PAGE_CONTROL)
+    {
+        if((count_updata >= 200) ) {
+            disp_control_data_updata();
+            count_updata = 0;
+        }
+    }
+    if(mks_ui_page.mks_ui_page == MKS_UI_PAGE_PRINT)
+    {
+    if((count_updata >= 200) ) {
+            disp_printing_bar();
+            count_updata = 0;
+        }
+    }
+    count_updata++;
+}
