@@ -87,5 +87,9 @@ extern ui_file_updata_t ui_file_list_page_updata;
 
 void draw_file_list(void);
 void clean_file_list_page(void);
+<<<<<<< HEAD
 void disp_file_name(int num , int page);
 void disp_open_file();
+=======
+void disp_file_name(int num , int page);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
