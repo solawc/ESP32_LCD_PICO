@@ -73,6 +73,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
             case ID_HOME_CONTROL: 
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 clean_home_page();
+                // MKS_PICO_CMD_SEND("?\n");
                 draw_control();
             break;
 

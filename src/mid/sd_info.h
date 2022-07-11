@@ -25,7 +25,10 @@ typedef struct{
     char filesize[FILE_MAX_NUM][FILE_NAME_LEN];
     bool sd_mount;
     bool gain_all_name = false;
+<<<<<<< HEAD
     bool open_file_flag = false;
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     double sd_free_space;
     double sd_used_space;
     double sd_total_space;

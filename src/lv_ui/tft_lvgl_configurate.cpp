@@ -124,11 +124,18 @@ void lvgl_freertos_task(void *parg) {
 
 uint32_t count_updata = 0;
 void mks_page_data_updata(void) { 
+<<<<<<< HEAD
     
     if(mks_ui_page.mks_ui_page == MKS_UI_PAGE_SD_LIST)
     {
          if((count_updata >= 200) ) { 
                 // disp_open_file();
+=======
+
+    if(mks_ui_page.mks_ui_page == MKS_UI_PAGE_SD_LIST)
+    {
+         if((count_updata >= 200) ) { 
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
                 if((sd_content.gain_all_name) && (ui_file_list_page_updata.updata_flag))
                 {
                     ui_file_list_page_updata.updata_flag = false;
@@ -144,11 +151,16 @@ void mks_page_data_updata(void) {
     }
     if(mks_ui_page.mks_ui_page == MKS_UI_PAGE_HOME)
     {
+<<<<<<< HEAD
         if((count_updata >= 200) ) {
+=======
+        if((count_updata >= 500) ) {
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
             disp_home_data_updata();
             count_updata = 0;
         }
     }
+<<<<<<< HEAD
     if(mks_ui_page.mks_ui_page == MKS_UI_PAGE_CONTROL)
     {
         if((count_updata >= 200) ) {
@@ -163,5 +175,7 @@ void mks_page_data_updata(void) {
             count_updata = 0;
         }
     }
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     count_updata++;
 }

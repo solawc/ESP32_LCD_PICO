@@ -146,16 +146,21 @@ void event_ok_the_pre_mode()
         //     serial_sendf(CLIENT_SERIAL, "file %d %s %s\n", sd_content.filetype[i],sd_content.filename[i],sd_content.filesize[i]);
         // }
         break;
+<<<<<<< HEAD
     case REC_POS:
         grbl_cmd.grbl_flag.is_connect = true;
         break;
     // case REC_OPEN_FILE:
     //     sd_content.open_file_flag = true;
     //     break;
+=======
+    
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     default:
         break;
     }
 }
+<<<<<<< HEAD
 void excute_event_wait_error(char *line)
 {
         memset(public2_buff,0,sizeof(public2_buff));
@@ -195,6 +200,8 @@ void excute_event_print_done(char *line)
     }
 }
 
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 void excute_event_wait_ok(char *line)
 {
     if(grbl_cmd.grbl_event == GRBL_EVENT_WAIT_OK)
@@ -302,14 +309,20 @@ uint16_t get_grbl_basic_data_type(char *data)
     {
         return GRBL_OV;
     }
+<<<<<<< HEAD
     else if(strcmp(data,"A") == 0)
     {
         return GRBL_A;
     }
+=======
+<<<<<<< HEAD
+>>>>>>> 3fc87eb2a8cffb20c2c65f158e4709c880709526
     else if(strcmp(data,"SD") == 0)
     {
         return GRBL_SD;
     }
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 }
 void get_Apin_state(char *data)
 {
@@ -402,6 +415,102 @@ void get_pin_state(char *data)
 
     // serial_sendf(CLIENT_SERIAL,"state %d\n",grbl_cmd.grbl_basic_info.pin_state);
     
+<<<<<<< HEAD
+=======
+}
+void get_grbl_basic_data_num(char *data,uint16_t type,uint16_t num)
+{
+    // serial_sendf(CLIENT_SERIAL,"num %d\n",num);
+    char buff[50];
+    FD_ZERO(buff);
+    strcpy(buff,data);
+    switch (type)
+    {
+    case GRBL_MPOS:
+        if(num == 0)
+        {
+            grbl_cmd.grbl_basic_info.x_m_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"XX %s %.2f\n",data,grbl_cmd.grbl_basic_info.x_m_pos);
+        }
+        else if(num == 1)
+        {
+            grbl_cmd.grbl_basic_info.y_m_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"YY %s %.2f\n",data,grbl_cmd.grbl_basic_info.y_m_pos);
+        }
+        else if(num == 2)
+        {
+            grbl_cmd.grbl_basic_info.z_m_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"ZZ %s %.2f\n",data,grbl_cmd.grbl_basic_info.z_m_pos);
+        }
+        else if(num == 3)
+        {
+            grbl_cmd.grbl_basic_info.a_m_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"AA %s %.2f\n",data,grbl_cmd.grbl_basic_info.a_m_pos);
+        }
+        break;
+    case GRBL_FS:
+        if(num == 0)
+        {
+            grbl_cmd.grbl_basic_info.current_speed = atoi(buff);
+            // serial_sendf(CLIENT_SERIAL,"CUR %s %d\n",data,grbl_cmd.grbl_basic_info.current_speed);
+        }
+        else if(num == 1)
+        {
+            grbl_cmd.grbl_basic_info.spindle_speed = atoi(buff);
+            // serial_sendf(CLIENT_SERIAL,"SPI %s %d\n",data,grbl_cmd.grbl_basic_info.spindle_speed);
+        }
+        break;
+    case GRBL_PN:
+        if(num == 0)
+        {
+            // grbl_cmd.grbl_basic_info.current_speed = atoi(buff);
+            // serial_sendf(CLIENT_SERIAL,"PN %s\n",data);
+            get_pin_state(data);
+        }
+        break;
+    case GRBL_WCO:
+        if(num == 0)
+        {
+            grbl_cmd.grbl_basic_info.x_w_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"XX %s %.2f\n",data,grbl_cmd.grbl_basic_info.x_w_pos);
+        }
+        else if(num == 1)
+        {
+            grbl_cmd.grbl_basic_info.y_w_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"YY %s %.2f\n",data,grbl_cmd.grbl_basic_info.y_w_pos);
+        }
+        else if(num == 2)
+        {
+            grbl_cmd.grbl_basic_info.z_w_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"ZZ %s %.2f\n",data,grbl_cmd.grbl_basic_info.z_w_pos);
+        }
+        else if(num == 3)
+        {
+            grbl_cmd.grbl_basic_info.a_w_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"AA %s %.2f\n",data,grbl_cmd.grbl_basic_info.a_w_pos);
+        }
+        break;
+    case GRBL_OV:
+        if(num == 0)
+        {
+            grbl_cmd.grbl_basic_info.f_override = atoi(buff);
+            // serial_sendf(CLIENT_SERIAL,"f %s %d f\n",data,grbl_cmd.grbl_basic_info.f_override);
+        }
+        else if(num == 1)
+        {
+            grbl_cmd.grbl_basic_info.r_override = atoi(buff);
+            // serial_sendf(CLIENT_SERIAL,"r %s %d r\n",data,grbl_cmd.grbl_basic_info.r_override);
+        }
+        else if(num == 2)
+        {
+            grbl_cmd.grbl_basic_info.spindle_speed_ovr = atoi(buff);
+            // serial_sendf(CLIENT_SERIAL,"ovr %s %d ovr\n",data,grbl_cmd.grbl_basic_info.spindle_speed_ovr);
+        }
+        break;
+    default:
+        break;
+    }
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 }
 void get_grbl_basic_data_num(char *data,uint16_t type,uint16_t num)
 {
@@ -569,7 +678,11 @@ void get_grbl_basic_data_num(char *data,uint16_t type,uint16_t num)
 
 bool get_grbl_basic_data(char *line)
 {
+<<<<<<< HEAD
     memset(public2_buff,0,sizeof(public2_buff));
+=======
+    FD_ZERO(public2_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     char *p = public2_buff;
     uint16_t counter = 0;
     uint16_t type;
@@ -581,7 +694,11 @@ bool get_grbl_basic_data(char *line)
             *p = '\0';
             // serial_sendf(CLIENT_SERIAL,"pos %s\n",public2_buff);
             type = get_grbl_basic_data_type(public2_buff);
+<<<<<<< HEAD
             memset(public2_buff,0,sizeof(public2_buff));
+=======
+            FD_ZERO(public2_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
             p = public2_buff;
         }
         if(*line == ',')
@@ -590,7 +707,11 @@ bool get_grbl_basic_data(char *line)
             *p = '\0';
             // serial_sendf(CLIENT_SERIAL,"num %s\n",public2_buff);
             get_grbl_basic_data_num(public2_buff,type,counter);
+<<<<<<< HEAD
             memset(public2_buff,0,sizeof(public2_buff));
+=======
+            FD_ZERO(public2_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
             p = public2_buff;
             counter++;
         }
@@ -600,8 +721,13 @@ bool get_grbl_basic_data(char *line)
             *p = '\0';
             get_grbl_basic_data_num(public2_buff,type,counter);
             // serial_sendf(CLIENT_SERIAL,"num %s\n",public2_buff);
+<<<<<<< HEAD
             memset(public2_buff,0,sizeof(public2_buff));
             memset(public1_buff,0,sizeof(public1_buff));
+=======
+            FD_ZERO(public2_buff);
+            FD_ZERO(public1_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
             break;
         }
         
@@ -614,7 +740,11 @@ void get_xyz_pos(char *line)
 {
     char *p = NULL;
     bool mode_flag = false;
+<<<<<<< HEAD
     memset(public1_buff,0,sizeof(public1_buff));
+=======
+    FD_ZERO(public1_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     p = public1_buff;
     while(*line != '\0')
     {
@@ -631,7 +761,11 @@ void get_xyz_pos(char *line)
                 if(get_grbl_mode(public1_buff))
                 {
                     // serial_sendf(CLIENT_SERIAL,"mode %d\n",grbl_cmd.grbl_mode);
+<<<<<<< HEAD
                     memset(public1_buff,0,sizeof(public1_buff));
+=======
+                    FD_ZERO(public1_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
                     p = public1_buff;
                 }
                 else
@@ -645,7 +779,11 @@ void get_xyz_pos(char *line)
                 *p = '\0';
                 // serial_sendf(CLIENT_SERIAL,"ls %s\n",public1_buff);
                 get_grbl_basic_data(public1_buff);
+<<<<<<< HEAD
                 memset(public1_buff,0,sizeof(public1_buff));
+=======
+                FD_ZERO(public1_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
                 p = public1_buff;
             }
             line++;
@@ -663,6 +801,7 @@ void excute_grbl_report_back(char *line) {
 **********************************/
     excute_event_print_done(line);
     excute_event_wait_ok(line);
+<<<<<<< HEAD
     excute_event_wait_error(line);
 
     if(grbl_cmd.grbl_rec_mode == REC_SD_LIST)
@@ -674,6 +813,19 @@ void excute_grbl_report_back(char *line) {
         get_xyz_pos(line);  
     }
 }
+
+=======
+
+    if(grbl_cmd.grbl_rec_mode == REC_SD_LIST)
+    {
+        get_sd_filename(line);  
+    }
+    else if(grbl_cmd.grbl_rec_mode == REC_POS)
+    {
+        get_xyz_pos(line);  
+    }
+}
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 
 
 void grbl_connect_task(void *parg) {

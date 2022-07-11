@@ -146,6 +146,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
                 draw_print();
             break;
+<<<<<<< HEAD
             case ID_FLIE_LIST_FILE4: 
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
@@ -188,6 +189,8 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 clean_file_list_page();
                 draw_print();
             break;
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
             case ID_FLIE_LIST_UP:
                 ui_file_list_page_updata.cur_page--;
                 if(ui_file_list_page_updata.cur_page >= 1)
@@ -202,12 +205,24 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
             break;
             case ID_FLIE_LIST_NEXT:
+<<<<<<< HEAD
                 // if(sd_content.file_num > 0)
                 // {
                     if(ui_file_list_page_updata.cur_page_file_num < 8)
+=======
+                if(ui_file_list_page_updata.cur_page_file_num < 8)
+                {
+                    ui_file_list_page_updata.cur_page = ui_file_list_page_updata.cur_page;
+                }
+                else
+                {
+<<<<<<< HEAD
+                    if((sd_content.file_num - ui_file_list_page_updata.cur_page * 8) > 0)
+>>>>>>> 3fc87eb2a8cffb20c2c65f158e4709c880709526
                     {
                         ui_file_list_page_updata.cur_page = ui_file_list_page_updata.cur_page;
                     }
+<<<<<<< HEAD
                     else
                     {
                         if((sd_content.file_num - ui_file_list_page_updata.cur_page * 8) > 0)
@@ -219,6 +234,14 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                     }
                 // }
 
+=======
+=======
+                    del_sd_file_btn();
+                    ui_file_list_page_updata.cur_page++;
+                    disp_file_name(sd_content.file_num,ui_file_list_page_updata.cur_page);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
+                }
+>>>>>>> 3fc87eb2a8cffb20c2c65f158e4709c880709526
 
             break;
             case ID_FILE_LIST_BACK: 
@@ -312,7 +335,10 @@ void draw_file_list(void) {
 
     mks_ui_page.mks_ui_page = MKS_UI_PAGE_SD_LIST;
     ui_file_list_page_updata.updata_flag = true;
+<<<<<<< HEAD
     // sd_content.open_file_flag = false;
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     ui_file_list_page_updata.cur_page = 1;
 
 }
@@ -331,6 +357,7 @@ void draw_file_list(void) {
  #define  FILE_LSIT_LABEL_FILE(X)  file_list_page.label_file##X
  #define  FILE_LIST_BTN_FILE_ARRAY(X) FILE_LIST_BTN_FILE_ARRAY##X
 
+<<<<<<< HEAD
 void disp_open_file()
 {
     if(sd_content.open_file_flag)
@@ -341,6 +368,8 @@ void disp_open_file()
     }
 }
 
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 void disp_file_name(int num , int page)
 {
     uint16_t index = 0;

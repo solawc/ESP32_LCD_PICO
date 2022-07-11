@@ -13,8 +13,13 @@ void get_sd_filename(char *line)
     bool get_flag = true;
     bool sd_size_flag = false;
     bool sd_file_size_flag = false;
+<<<<<<< HEAD
     memset(public1_buff,0,sizeof(public1_buff));
     char *p = public1_buff;
+=======
+
+    char *p = NULL;
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     while (*line != '\0')
     {
         if(*line == '[')
@@ -46,7 +51,10 @@ void get_sd_filename(char *line)
                 }
                 else
                 {
+<<<<<<< HEAD
                     line++;
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
                     p = sd_content.filename[sd_content.file_num];
                 }
             }
@@ -109,6 +117,7 @@ void get_sd_filename(char *line)
 }
 /*
 把MB GB 转化成 KB
+<<<<<<< HEAD
 
 */
 double sd_space_unit_change(uint16_t type, double data)
@@ -206,6 +215,105 @@ uint16_t get_sd_space_type(char *data)
         return SD_SPACE_TYPE_TOTAL;
     }
 
+=======
+
+*/
+double sd_space_unit_change(uint16_t type, double data)
+{
+    switch (type)
+    {
+    case 0:
+        return data;
+        break;
+    case 1:
+        return data * 1024;
+        break;
+    case 2:
+        return data * 1024 * 1024;
+        break;
+    default:
+        break;
+    }
+}
+/*
+获取不同sd卡容量类型的大小 
+并且最终转化成kb单位的大小
+*/
+uint16_t get_sd_space_num(uint16_t type,char *data)
+{
+    // char buff[60];
+    FD_ZERO(public3_buff);
+    uint16_t unit = 0;  // 0代表K 1代表M 2代表G
+    char *p = public3_buff;
+    while(*data != '\0')
+    {
+        if((*data >= 48 && *data <= 58)||(*data == '.'))
+        {
+            *p++ = *data;
+        }
+        else
+        {
+            *p = '\0';
+        }
+        switch (*data)
+        {
+        case 'G':
+            unit = 2;
+            break;
+        case 'M':
+            unit = 1;
+            break;
+        case 'K':
+            unit = 0;
+            break;
+        default:
+            break;
+        }
+        data++;
+    }
+    switch (type)
+    {
+    case SD_SPACE_TYPE_FREE:
+        sd_content.sd_free_space = strtof(public3_buff,NULL);
+        sd_content.sd_free_space = sd_space_unit_change(unit,sd_content.sd_free_space);
+        // serial_sendf(CLIENT_SERIAL,"data1 %0.2f\n",sd_content.sd_free_space);
+        break;
+    case SD_SPACE_TYPE_USED:
+        sd_content.sd_used_space = strtof(public3_buff,NULL);
+        sd_content.sd_used_space = sd_space_unit_change(unit,sd_content.sd_used_space);
+        // serial_sendf(CLIENT_SERIAL,"data1 %0.2f\n",sd_content.sd_used_space);
+        break;
+    case SD_SPACE_TYPE_TOTAL:
+        sd_content.sd_total_space = strtof(public3_buff,NULL);
+        sd_content.sd_total_space = sd_space_unit_change(unit,sd_content.sd_total_space);
+        // serial_sendf(CLIENT_SERIAL,"data1 %0.2f\n",sd_content.sd_total_space);
+        break;
+    default:
+        break;
+    }
+}
+/*获取到sd卡容量类型
+sd空闲空间大小
+sd已经使用的大小
+sd卡总容量
+*/
+uint16_t get_sd_space_type(char *data)
+{
+    static uint8_t sd_space_type = 0;
+    if (strcmp(data,"SDFree") == 0)
+    {
+        return SD_SPACE_TYPE_FREE;
+    }
+    else if(strcmp(data,"Used") == 0)
+    {
+        return SD_SPACE_TYPE_USED;
+    }
+    else if(strcmp(data,"Total") == 0)
+    {
+        return SD_SPACE_TYPE_TOTAL;
+    }
+
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 }
 /*
 对获取到的sd卡容量的字符串进行解析

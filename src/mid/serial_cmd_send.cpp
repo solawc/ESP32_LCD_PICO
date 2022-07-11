@@ -1,7 +1,10 @@
 #include "serial_cmd_send.h"
 
 static TaskHandle_t clientSendTaskHandle = 0;
+<<<<<<< HEAD
 portMUX_TYPE mysMutex = portMUX_INITIALIZER_UNLOCKED;
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 
 
 WebUI::InputBuffer send_buffer;  // create a buffer for each client
@@ -16,14 +19,22 @@ void clientSendTask(void* pvParameters) {
     
     while (true) {  // run continuously
         send_buffer_out_serila();
+<<<<<<< HEAD
         vTaskDelay(1 / portTICK_RATE_MS);  // Yield to other tasks
+=======
+        vTaskDelay(2 / portTICK_RATE_MS);  // Yield to other tasks
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     }
 }
 
 void send_buff_init()
 {
     send_buffer.begin();
+<<<<<<< HEAD
     memset(send_buff,0,sizeof(send_buff));;
+=======
+    FD_ZERO(send_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     xTaskCreatePinnedToCore(clientSendTask,    // task
                             "clientCheckTask",  // name for task
                             2048,               // size of task stack
@@ -37,9 +48,13 @@ void send_buff_init()
 }
 void serila_write_send_buffer(uint8_t *data)
 {
+<<<<<<< HEAD
     vTaskEnterCritical(&mysMutex);
     send_buffer.push((const char *)data);
     vTaskExitCritical(&mysMutex);
+=======
+    send_buffer.push((const char *)data);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 }
 
 void send_buffer_out_serila()
@@ -69,6 +84,7 @@ void send_data_analysis()
     char c = send_buffer.read();
     if(c == '\n')
     {
+<<<<<<< HEAD
             *str_p++ = '\n';
             *str_p = '\0';
             flag = false;
@@ -80,6 +96,16 @@ void send_data_analysis()
             send_overtime_init();
             send_overtime.start_time = millis();
             memset(send_buff,0,sizeof(send_buff));
+=======
+            *str_p++ = '\0';
+            flag = false;
+            send_data_com_and_state_chang(send_buff);
+            serial_sendf(CLIENT_SERIAL_LCD,"%s\n",send_buff);
+            serial_sendf(CLIENT_SERIAL,"%s\n",send_buff);
+            send_overtime_init();
+            send_overtime.start_time = millis();
+            FD_ZERO(send_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
             str_p = send_buff;
     }
     else
@@ -100,7 +126,11 @@ void send_data_analysis()
     //     cur_send_state = SEND_WAIT;
     //     send_data_com_and_state_chang(send_buff);
     //     serial_sendf(CLIENT_SERIAL_LCD,"%s\n",send_buff);
+<<<<<<< HEAD
     //     memset(send_buff,0,sizeof(send_buff));;
+=======
+    //     FD_ZERO(send_buff);
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     //     str_p = send_buff;
     //     }
     // if(flag)
@@ -111,7 +141,11 @@ void send_data_analysis()
 
 void send_data_com_and_state_chang(char *line)
 {
+<<<<<<< HEAD
     if(!strcmp(line,"[ESP210]\n"))
+=======
+    if(!strcmp(line,"[ESP210]"))
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     {
         sd_content.file_num = 0;
         sd_content.gain_all_name = false;
@@ -119,13 +153,18 @@ void send_data_com_and_state_chang(char *line)
         grbl_cmd.grbl_event = GRBL_EVENT_WAIT_OK;
         grbl_cmd.grbl_rec_mode = REC_SD_LIST;
     }
+<<<<<<< HEAD
     else if(!strcmp(line,"?\n"))
+=======
+    else if(!strcmp(line,"?"))
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     {
         cur_send_state = SEND_WAIT;
         grbl_cmd.grbl_event = GRBL_EVENT_WAIT_OK;
         grbl_cmd.grbl_rec_mode = REC_POS;
         // serial_send(CLIENT_SERIAL,"hipp\n");
     }
+<<<<<<< HEAD
     else if(strstr(line,"$J=G91"))
     {
         cur_send_state = SEND_WAIT;
@@ -160,6 +199,8 @@ void send_data_com_and_state_chang(char *line)
     //     grbl_cmd.grbl_rec_mode = REC_OPEN_FILE;
     //     // serial_send(CLIENT_SERIAL,"hipp\n");
     // }
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 }
 
 void send_overtime_init()
@@ -168,6 +209,7 @@ void send_overtime_init()
     send_overtime.start_time = 0;
 }
 
+<<<<<<< HEAD
 void event_overtime_the_pre_mode()
 {
     switch (grbl_cmd.grbl_rec_mode)
@@ -192,6 +234,16 @@ void send_overtime_check()
         if(send_overtime.end_time - send_overtime.start_time >= 10000)
         {
             event_overtime_the_pre_mode();
+=======
+void send_overtime_check()
+{
+    send_overtime.check_time++;
+    if(send_overtime.check_time > 1000)
+    {
+        send_overtime.end_time = millis();
+        if(send_overtime.end_time - send_overtime.start_time >= 100000)
+        {
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
             cur_send_state = SEND_IDLE;
             grbl_cmd.grbl_event = GRBL_EVENT_EMPTY;
             grbl_cmd.grbl_rec_mode = REC_IDLE;

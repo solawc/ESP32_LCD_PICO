@@ -21,13 +21,20 @@ typedef enum {
     GRBL_PN,
     GRBL_WCO,
     GRBL_OV,
+<<<<<<< HEAD
     GRBL_A,
+=======
+<<<<<<< HEAD
+>>>>>>> 3fc87eb2a8cffb20c2c65f158e4709c880709526
     GRBL_SD,
 };
 
 typedef enum {
 
 }grbl_error_code_t;
+=======
+};
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 
 /***************************************
  * 用于描述GRBL的机器状态
@@ -51,10 +58,17 @@ typedef enum {
     REC_IDLE,
     REC_SD_LIST,
     REC_POS,
+<<<<<<< HEAD
     REC_MOVE,
     REC_OPEN_FILE,
     REC_PAUSE,
     REC_CONTINUE,
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
+>>>>>>> 3fc87eb2a8cffb20c2c65f158e4709c880709526
 }grbl_rec_mode_t;
 
 /***************************************
@@ -89,6 +103,7 @@ typedef struct {
 
 
 typedef struct {
+<<<<<<< HEAD
     float x_m_pos = 0;
     float y_m_pos = 0;
     float z_m_pos = 0;
@@ -104,15 +119,39 @@ typedef struct {
     float z_wco_pos = 0;
     float a_wco_pos = 0;
     
+=======
+    float x_m_pos = 1;
+    float y_m_pos = 1;
+    float z_m_pos = 1;
+    float a_m_pos = 1;
+
+    float x_w_pos = 1;
+    float y_w_pos = 1;
+    float z_w_pos = 1;
+    float a_w_pos = 1;
+<<<<<<< HEAD
+>>>>>>> 3fc87eb2a8cffb20c2c65f158e4709c880709526
     float per_val;
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 
     uint32_t current_speed;
     uint32_t spindle_speed;
     uint32_t f_override;
     uint32_t r_override;
     uint32_t spindle_speed_ovr;
+<<<<<<< HEAD
     int16_t pin_state;
+<<<<<<< HEAD
     int16_t apin_state;
+=======
+    char print_fname[60];
+=======
+
+    int16_t pin_state;
+
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
+>>>>>>> 3fc87eb2a8cffb20c2c65f158e4709c880709526
 
     char print_fname[60];
     bool pin_state_flag = false;
@@ -135,7 +174,10 @@ typedef struct {
     grbl_err_t      grbl_error;                     // GRBL的报错类型
     grbl_flag_t     grbl_flag;                      // GRBL连接过程返回标志
     grbl_rec_mode_t     grbl_rec_mode;              // GRBL发送指令后对接收指令的筛选
+<<<<<<< HEAD
     grbl_error_code_t   grbl_error_code;
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
     grbl_parg_t     grbl_basic_info;                // GRBL的基本信息
     char            send_grbl_cmd[96];              // GRBL的指令从这里发出
     char            get_grbl_cmd[255];              // GRBL返回的指令从这里解析 

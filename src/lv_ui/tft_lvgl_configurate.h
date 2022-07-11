@@ -20,7 +20,10 @@ enum{
     MKS_UI_PAGE_SD_LIST,  
     MKS_UI_PAGE_TOOL,
     MKS_UI_PAGE_CONTROL,
+<<<<<<< HEAD
     MKS_UI_PAGE_PRINT,
+=======
+>>>>>>> cb5f09ac69d4aa9827ecc96315e0f03b397e0f00
 };
 
 typedef struct {
