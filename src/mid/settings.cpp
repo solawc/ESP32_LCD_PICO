@@ -1,4 +1,5 @@
 #include "settings.h"
+// portMUX_TYPE mynewMutex = portMUX_INITIALIZER_UNLOCKED;
 
 char* trim(char* str) {
     char* end;
@@ -187,28 +188,43 @@ bool IntSetting::setStringValue(char* s) {
 
     char*   endptr;
     int32_t convertedValue = strtol(s, &endptr, 10);
+    // serial_sendf(CLIENT_SERIAL,"NUM %d\n",convertedValue);
+    // serial_sendf(CLIENT_SERIAL,"NUMy %d\n",_currentValue);
+    // serial_sendf(CLIENT_SERIAL,"NUMd %d\n",_defaultValue);
+
+
     if (endptr == s || *endptr != '\0') {
+        // serial_send(CLIENT_SERIAL,"HELLO1\n");
         return false;
     }
     if (convertedValue < _minValue || convertedValue > _maxValue) {
+        // serial_send(CLIENT_SERIAL,"HELLO2\n");
         return false;
     }
 
     // If we don't see the NVM state, we have to make this the live value:
     if (!_currentIsNvm) {
+        // serial_send(CLIENT_SERIAL,"HELLO3\n");
         _currentValue = convertedValue;
     }
 
     if (_storedValue != convertedValue) {
         if (convertedValue == _defaultValue) {
+            // serial_send(CLIENT_SERIAL,"HELLO4\n");
             nvs_erase_key(_handle, _keyName);
+
         } else {
+            // serial_send(CLIENT_SERIAL,"HELLO5\n");
             if (nvs_set_i32(_handle, _keyName, convertedValue)) {
+                // serial_send(CLIENT_SERIAL,"HELLO6\n");
                 return false;
             }
             _storedValue = convertedValue;
+            // serial_sendf(CLIENT_SERIAL,"NUMj %d\n",_storedValue);
+
         }
     }
+    // serial_send(CLIENT_SERIAL,"HELLO7\n");
     check(NULL);
     return true;
 }

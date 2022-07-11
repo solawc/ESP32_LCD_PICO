@@ -76,17 +76,21 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
             serial_sendf(CLIENT_SERIAL,"mode %d\n",grbl_cmd.grbl_mode);
             if(grbl_cmd.grbl_mode == GRBL_HOLD) {
                 print_time_enable();
-                MKS_PICO_CMD_SEND("~\n");
+                serial_send(CLIENT_SERIAL_LCD,"~\n");
             }   
             else if(grbl_cmd.grbl_mode == GRBL_RUN)    {
                 print_time_disable();
-                MKS_PICO_CMD_SEND("!\n");
+                serial_send(CLIENT_SERIAL_LCD,"!\n");
             } 
             break;
 
             case ID_PRINT_STOP:
-                MKS_PICO_CMD_SEND(buf_cmd);
-                serial_send(CLIENT_SERIAL,buf_cmd);
+                grbl_cmd.grbl_basic_info.per_val = 0;
+                sd_content.gain_all_name = false;
+                // MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL_LCD,"M3 S0\n");
+                serial_send(CLIENT_SERIAL_LCD,"G90X0Y0F800\n");
+                serial_send(CLIENT_SERIAL_LCD,buf_cmd);
                 print_time_disable();
                 clean_print_page();
                 draw_home();
@@ -94,12 +98,18 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
             case ID_PRINT_ADJUSTMENT: 
                 // clean_print_page();
+                draw_print_btn_click(false);
                 draw_adjustment();
             break; 
             }
     }
 }
-
+void draw_print_btn_click(bool en)
+{
+    lv_obj_set_click(print_page.btn_start,en);
+    lv_obj_set_click(print_page.btn_stop,en);
+    lv_obj_set_click(print_page.btn_adjustment,en);
+}
 static void draw_print_bar(void) {
 
     ui.src_1 = lv_obj_create(ui.src, NULL);
@@ -161,7 +171,7 @@ void draw_print(void) {
 
     print_page.label_file_name = lv_label_create(ui.src_1, NULL);
     lv_obj_align(print_page.label_file_name, print_page.label_file_name_pic, LV_ALIGN_OUT_RIGHT_MID, 10, 0);
-    lv_label_set_text(print_page.label_file_name, FILE_NAME_EN);
+    lv_label_set_text(print_page.label_file_name, grbl_cmd.grbl_basic_info.print_fname);
 
 
     print_page.obj_work_region = lv_obj_set(ui.src, print_page.obj_work_region,PRINT_REGION_W, PRINT_REGION_H, PRINT_REGION_X1, PRINT_REGION_Y);
@@ -318,7 +328,7 @@ void disp_printing_bar()
 {
     char buff[30];
     memset(buff,0,sizeof(buff));
-    sprintf(buff,"%d",(uint32_t)grbl_cmd.grbl_basic_info.per_val);
+    sprintf(buff,"%d%%",(uint32_t)grbl_cmd.grbl_basic_info.per_val);
     lv_label_set_text(print_page.label_bar_percen, buff);
     lv_bar_set_value(print_page.bar, (uint32_t)grbl_cmd.grbl_basic_info.per_val, LV_ANIM_ON);
     // char buff[50];
@@ -417,7 +427,6 @@ void print_time_change_pro()
 
 
 void clean_print_page(void) {
-
     lv_obj_clean(ui.src);
 }
 

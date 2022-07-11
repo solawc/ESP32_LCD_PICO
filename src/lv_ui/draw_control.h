@@ -86,4 +86,4 @@ void clear_control_page();
 void disp_control_data_updata();
 void draw_next();
 void draw_up();
-
+void move_ctrl(char axis, uint8_t dir);

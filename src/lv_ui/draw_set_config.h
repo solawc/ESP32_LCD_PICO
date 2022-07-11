@@ -70,37 +70,37 @@ typedef struct{
 }ui_set_config_t;
 
 typedef enum{
-    TYPE_CNC,
+    TYPE_CNC=1,
     TYPE_LASER,
     TYPE_WRITE,
 }MACHINE_TYPE_t;
 
 typedef enum{
-    FW_VER_GRBL09,
+    FW_VER_GRBL09=1,
     FW_VER_GRBL10,
     FW_VER_DLC32,
 }FW_VER_t;
 
 typedef enum{
-    RATE_9600,
+    RATE_9600=1,
     RATE_115200,
     RATE_250000,
 }BAUD_RATE_t;
 
 typedef enum{
-    NUM_AXES_2,
+    NUM_AXES_2=1,
     NUM_AXES_3,
     NUM_AXES_4,
 }NUM_AXES_t;
 
 typedef enum{
-    WIRELESS_TYPE_WIFI_AP,
+    WIRELESS_TYPE_WIFI_AP=1,
     WIRELESS_TYPE_WIFI_STA,
     WIRELESS_TYPE_BLUETOOTH,
 }WIRELESS_TYPE_t;
 
 typedef enum{
-    CUSTOMIZE_1,
+    CUSTOMIZE_1=1,
     CUSTOMIZE_2,
     CUSTOMIZE_3,
 }CUSTOMIZE_t;

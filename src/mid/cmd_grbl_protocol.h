@@ -16,10 +16,12 @@ typedef enum {
 
 typedef enum {
     GRBL_MPOS,
+    GRBL_WPOS,
     GRBL_FS,
     GRBL_PN,
     GRBL_WCO,
     GRBL_OV,
+    GRBL_A,
     GRBL_SD,
 };
 
@@ -53,7 +55,6 @@ typedef enum {
     REC_OPEN_FILE,
     REC_PAUSE,
     REC_CONTINUE,
-
 }grbl_rec_mode_t;
 
 /***************************************
@@ -88,15 +89,21 @@ typedef struct {
 
 
 typedef struct {
-    float x_m_pos = 1;
-    float y_m_pos = 1;
-    float z_m_pos = 1;
-    float a_m_pos = 1;
+    float x_m_pos = 0;
+    float y_m_pos = 0;
+    float z_m_pos = 0;
+    float a_m_pos = 0;
 
-    float x_w_pos = 1;
-    float y_w_pos = 1;
-    float z_w_pos = 1;
-    float a_w_pos = 1;
+    float x_w_pos = 0;
+    float y_w_pos = 0;
+    float z_w_pos = 0;
+    float a_w_pos = 0;
+
+    float x_wco_pos = 0;
+    float y_wco_pos = 0;
+    float z_wco_pos = 0;
+    float a_wco_pos = 0;
+    
     float per_val;
 
     uint32_t current_speed;
@@ -105,8 +112,11 @@ typedef struct {
     uint32_t r_override;
     uint32_t spindle_speed_ovr;
     int16_t pin_state;
-    char print_fname[60];
+    int16_t apin_state;
 
+    char print_fname[60];
+    bool pin_state_flag = false;
+    bool apin_state_flag = false;
 }grbl_parg_t;
 
 

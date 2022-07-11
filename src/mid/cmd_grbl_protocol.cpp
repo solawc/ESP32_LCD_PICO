@@ -185,7 +185,15 @@ void excute_event_wait_error(char *line)
         
         
 }
-
+void excute_event_print_done(char *line)
+{
+    if(!strcmp(line,"SD print done"))
+    {
+       clean_print_page();
+       grbl_cmd.grbl_basic_info.per_val = 0;
+       draw_home();
+    }
+}
 
 void excute_event_wait_ok(char *line)
 {
@@ -274,6 +282,10 @@ uint16_t get_grbl_basic_data_type(char *data)
     {
         return GRBL_MPOS;
     }
+    else if(strcmp(data,"WPos") == 0)
+    {
+        return GRBL_WPOS;
+    }
     else if(strcmp(data,"FS") == 0)
     {
         return GRBL_FS;
@@ -290,9 +302,39 @@ uint16_t get_grbl_basic_data_type(char *data)
     {
         return GRBL_OV;
     }
+    else if(strcmp(data,"A") == 0)
+    {
+        return GRBL_A;
+    }
     else if(strcmp(data,"SD") == 0)
     {
         return GRBL_SD;
+    }
+}
+void get_Apin_state(char *data)
+{
+    grbl_cmd.grbl_basic_info.apin_state = 0;
+    uint16_t   counter= 0;
+ while (*data != '\0')
+    {
+        switch (*data)
+        {
+        case 'S':
+            grbl_cmd.grbl_basic_info.apin_state |= (1 << 0);
+            break;
+        case 'C':
+            grbl_cmd.grbl_basic_info.apin_state |= (2 << 0);
+            break;
+        case 'F':
+            grbl_cmd.grbl_basic_info.apin_state |= (1 << 2);
+            break;
+        case 'M':
+            grbl_cmd.grbl_basic_info.apin_state |= (1 << 3);
+            break;
+        default:
+            break;
+        }
+        data++;
     }
 }
 void get_pin_state(char *data)
@@ -374,21 +416,25 @@ void get_grbl_basic_data_num(char *data,uint16_t type,uint16_t num)
         if(num == 0)
         {
             grbl_cmd.grbl_basic_info.x_m_pos = strtof(buff,NULL);
+            grbl_cmd.grbl_basic_info.x_w_pos = grbl_cmd.grbl_basic_info.x_m_pos - grbl_cmd.grbl_basic_info.x_wco_pos;
             // serial_sendf(CLIENT_SERIAL,"XX %s %.2f\n",data,grbl_cmd.grbl_basic_info.x_m_pos);
         }
         else if(num == 1)
         {
             grbl_cmd.grbl_basic_info.y_m_pos = strtof(buff,NULL);
+            grbl_cmd.grbl_basic_info.y_w_pos = grbl_cmd.grbl_basic_info.y_m_pos - grbl_cmd.grbl_basic_info.y_wco_pos;
             // serial_sendf(CLIENT_SERIAL,"YY %s %.2f\n",data,grbl_cmd.grbl_basic_info.y_m_pos);
         }
         else if(num == 2)
         {
             grbl_cmd.grbl_basic_info.z_m_pos = strtof(buff,NULL);
+            grbl_cmd.grbl_basic_info.z_w_pos = grbl_cmd.grbl_basic_info.z_m_pos - grbl_cmd.grbl_basic_info.z_wco_pos;
             // serial_sendf(CLIENT_SERIAL,"ZZ %s %.2f\n",data,grbl_cmd.grbl_basic_info.z_m_pos);
         }
         else if(num == 3)
         {
             grbl_cmd.grbl_basic_info.a_m_pos = strtof(buff,NULL);
+            grbl_cmd.grbl_basic_info.a_w_pos = grbl_cmd.grbl_basic_info.a_m_pos - grbl_cmd.grbl_basic_info.a_wco_pos;
             // serial_sendf(CLIENT_SERIAL,"AA %s %.2f\n",data,grbl_cmd.grbl_basic_info.a_m_pos);
         }
         break;
@@ -405,6 +451,7 @@ void get_grbl_basic_data_num(char *data,uint16_t type,uint16_t num)
         }
         break;
     case GRBL_PN:
+        grbl_cmd.grbl_basic_info.pin_state_flag = true;
         if(num == 0)
         {
             // grbl_cmd.grbl_basic_info.current_speed = atoi(buff);
@@ -412,7 +459,39 @@ void get_grbl_basic_data_num(char *data,uint16_t type,uint16_t num)
             get_pin_state(data);
         }
         break;
+    case GRBL_A:
+        grbl_cmd.grbl_basic_info.apin_state_flag = true;
+        if(num == 0)
+        {
+            // grbl_cmd.grbl_basic_info.current_speed = atoi(buff);
+            // serial_sendf(CLIENT_SERIAL,"PN %s\n",data);
+            get_Apin_state(data);
+        }
+        break;
     case GRBL_WCO:
+
+        if(num == 0)
+        {
+            grbl_cmd.grbl_basic_info.x_wco_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"XX %s %.2f\n",data,grbl_cmd.grbl_basic_info.x_w_pos);
+        }
+        else if(num == 1)
+        {
+            grbl_cmd.grbl_basic_info.y_wco_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"YY %s %.2f\n",data,grbl_cmd.grbl_basic_info.y_w_pos);
+        }
+        else if(num == 2)
+        {
+            grbl_cmd.grbl_basic_info.z_wco_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"ZZ %s %.2f\n",data,grbl_cmd.grbl_basic_info.z_w_pos);
+        }
+        else if(num == 3)
+        {
+            grbl_cmd.grbl_basic_info.a_wco_pos = strtof(buff,NULL);
+            // serial_sendf(CLIENT_SERIAL,"AA %s %.2f\n",data,grbl_cmd.grbl_basic_info.a_w_pos);
+        }
+        break;
+    case GRBL_WPOS:
         if(num == 0)
         {
             grbl_cmd.grbl_basic_info.x_w_pos = strtof(buff,NULL);
@@ -435,6 +514,23 @@ void get_grbl_basic_data_num(char *data,uint16_t type,uint16_t num)
         }
         break;
     case GRBL_OV:
+        if(grbl_cmd.grbl_basic_info.pin_state_flag)
+        {
+            grbl_cmd.grbl_basic_info.pin_state_flag = false;
+        }
+        else
+        {
+            grbl_cmd.grbl_basic_info.pin_state = 0;
+        }
+        if(grbl_cmd.grbl_basic_info.apin_state_flag)
+        {
+            // serial_sendf(CLIENT_SERIAL,"state %d\n",grbl_cmd.grbl_basic_info.apin_state);
+            grbl_cmd.grbl_basic_info.apin_state_flag = false;
+        }
+        else
+        {
+            grbl_cmd.grbl_basic_info.apin_state = 0;
+        }
         if(num == 0)
         {
             grbl_cmd.grbl_basic_info.f_override = atoi(buff);
@@ -565,8 +661,10 @@ void excute_grbl_report_back(char *line) {
  * step1:
  * 
 **********************************/
+    excute_event_print_done(line);
     excute_event_wait_ok(line);
     excute_event_wait_error(line);
+
     if(grbl_cmd.grbl_rec_mode == REC_SD_LIST)
     {
         get_sd_filename(line);  

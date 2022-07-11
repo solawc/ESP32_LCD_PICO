@@ -59,8 +59,8 @@ typedef struct{
 
 typedef struct{
     bool updata_flag = false;
-    uint16_t cur_page;
-    uint16_t cur_page_file_num;
+    uint16_t cur_page = 0;
+    uint16_t cur_page_file_num = 0;
 }ui_file_updata_t;
 extern ui_file_updata_t ui_file_list_page_updata;
 

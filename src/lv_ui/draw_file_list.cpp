@@ -108,6 +108,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
                 sprintf(buff,"[ESP220]%s\n",sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 0)]);
+                strcpy(grbl_cmd.grbl_basic_info.print_fname,sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 0)]);
                 MKS_PICO_CMD_SEND(buff);
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
                 clean_file_list_page();
@@ -118,6 +119,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
                 sprintf(buff,"[ESP220]%s\n",sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 1)]);
+                strcpy(grbl_cmd.grbl_basic_info.print_fname,sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 1)]);
                 MKS_PICO_CMD_SEND(buff);
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
                 clean_file_list_page();
@@ -128,6 +130,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
                 sprintf(buff,"[ESP220]%s\n",sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 2)]);
+                strcpy(grbl_cmd.grbl_basic_info.print_fname,sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 2)]);
                 MKS_PICO_CMD_SEND(buff);
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
                 clean_file_list_page();
@@ -137,6 +140,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
                 sprintf(buff,"[ESP220]%s\n",sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 3)]);
+                strcpy(grbl_cmd.grbl_basic_info.print_fname,sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 3)]);
                 MKS_PICO_CMD_SEND(buff);
                 clean_file_list_page();
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
@@ -146,6 +150,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
                 sprintf(buff,"[ESP220]%s\n",sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 4)]);
+                strcpy(grbl_cmd.grbl_basic_info.print_fname,sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 4)]);
                 clean_file_list_page();
                 MKS_PICO_CMD_SEND(buff);
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
@@ -156,6 +161,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
                 sprintf(buff,"[ESP220]%s\n",sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 5)]);
+                strcpy(grbl_cmd.grbl_basic_info.print_fname,sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 5)]);
                 clean_file_list_page();
                 MKS_PICO_CMD_SEND(buff);
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
@@ -166,6 +172,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
                 sprintf(buff,"[ESP220]%s\n",sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 6)]);
+                strcpy(grbl_cmd.grbl_basic_info.print_fname,sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 6)]);
                 MKS_PICO_CMD_SEND(buff);
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
                 clean_file_list_page();
@@ -175,6 +182,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 mks_ui_page.mks_ui_page = MKS_UI_PAGE_LOADING;
                 memset(buff,0,sizeof(buff));
                 sprintf(buff,"[ESP220]%s\n",sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 7)]);
+                strcpy(grbl_cmd.grbl_basic_info.print_fname,sd_content.filename[((ui_file_list_page_updata.cur_page - 1)*8 + 7)]);
                 MKS_PICO_CMD_SEND(buff);
                 // serial_sendf(CLIENT_SERIAL,"%s",buff);
                 clean_file_list_page();
@@ -194,22 +202,27 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
             break;
             case ID_FLIE_LIST_NEXT:
-                if(ui_file_list_page_updata.cur_page_file_num < 8)
-                {
-                    ui_file_list_page_updata.cur_page = ui_file_list_page_updata.cur_page;
-                }
-                else
-                {
-                    if((sd_content.file_num - ui_file_list_page_updata.cur_page * 8) > 0)
+                // if(sd_content.file_num > 0)
+                // {
+                    if(ui_file_list_page_updata.cur_page_file_num < 8)
                     {
-                        del_sd_file_btn();
-                        ui_file_list_page_updata.cur_page++;
-                        disp_file_name(sd_content.file_num,ui_file_list_page_updata.cur_page);
+                        ui_file_list_page_updata.cur_page = ui_file_list_page_updata.cur_page;
                     }
-                }
+                    else
+                    {
+                        if((sd_content.file_num - ui_file_list_page_updata.cur_page * 8) > 0)
+                        {
+                            del_sd_file_btn();
+                            ui_file_list_page_updata.cur_page++;
+                            disp_file_name(sd_content.file_num,ui_file_list_page_updata.cur_page);
+                        }
+                    }
+                // }
+
 
             break;
             case ID_FILE_LIST_BACK: 
+                ui_file_list_page_updata.cur_page_file_num = 0;
                 sd_content.gain_all_name = false;
                 clean_file_list_page();
                 draw_home();
@@ -375,6 +388,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(0), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(0), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(0) = lv_label_create(FILE_LSIT_BTN_FILE(0), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(0), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(0), FILE_LSIT_PIC_FILE(0), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(0), sd_content.filename[0 + index]);
         break;
@@ -386,6 +400,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(0), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(0), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(0) = lv_label_create(FILE_LSIT_BTN_FILE(0), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(0), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(0), FILE_LSIT_PIC_FILE(0), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(0), sd_content.filename[0 + index]);
         FILE_LSIT_BTN_FILE(1) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(1), 110, 110, FILE_LIST_BTN_FILE_ARRAY(1), event_handler);
@@ -395,6 +410,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(1), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(1), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(1) = lv_label_create(FILE_LSIT_BTN_FILE(1), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(1), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(1), FILE_LSIT_PIC_FILE(1), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(1), sd_content.filename[1 + index]);
         break;
@@ -406,6 +422,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(0), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(0), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(0) = lv_label_create(FILE_LSIT_BTN_FILE(0), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(0), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(0), FILE_LSIT_PIC_FILE(0), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(0), sd_content.filename[0 + index]);
         FILE_LSIT_BTN_FILE(1) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(1), 110, 110, FILE_LIST_BTN_FILE_ARRAY(1), event_handler);
@@ -415,6 +432,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(1), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(1), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(1) = lv_label_create(FILE_LSIT_BTN_FILE(1), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(1), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(1), FILE_LSIT_PIC_FILE(1), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(1), sd_content.filename[1 + index]);
         FILE_LSIT_BTN_FILE(2) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(2), 110, 110, FILE_LIST_BTN_FILE_ARRAY(2), event_handler);
@@ -424,6 +442,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(2), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(2), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(2) = lv_label_create(FILE_LSIT_BTN_FILE(2), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(2), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(2), FILE_LSIT_PIC_FILE(2), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(2), sd_content.filename[2 + index]);
         break;
@@ -435,6 +454,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(0), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(0), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(0) = lv_label_create(FILE_LSIT_BTN_FILE(0), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(0), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(0), FILE_LSIT_PIC_FILE(0), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(0), sd_content.filename[0 + index]);
         FILE_LSIT_BTN_FILE(1) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(1), 110, 110, FILE_LIST_BTN_FILE_ARRAY(1), event_handler);
@@ -444,6 +464,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(1), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(1), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(1) = lv_label_create(FILE_LSIT_BTN_FILE(1), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(1), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(1), FILE_LSIT_PIC_FILE(1), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(1), sd_content.filename[1 + index]);
         FILE_LSIT_BTN_FILE(2) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(2), 110, 110, FILE_LIST_BTN_FILE_ARRAY(2), event_handler);
@@ -453,6 +474,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(2), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(2), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(2) = lv_label_create(FILE_LSIT_BTN_FILE(2), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(2), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(2), FILE_LSIT_PIC_FILE(2), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(2), sd_content.filename[2 + index]);
         FILE_LSIT_BTN_FILE(3) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(3), 110, 110, FILE_LIST_BTN_FILE_ARRAY(3), event_handler);
@@ -462,6 +484,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(3), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(3), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(3) = lv_label_create(FILE_LSIT_BTN_FILE(3), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(3), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(3), FILE_LSIT_PIC_FILE(3), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(3), sd_content.filename[3 + index]);
         break;
@@ -473,6 +496,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(0), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(0), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(0) = lv_label_create(FILE_LSIT_BTN_FILE(0), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(0), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(0), FILE_LSIT_PIC_FILE(0), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(0), sd_content.filename[0 + index]);
         FILE_LSIT_BTN_FILE(1) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(1), 110, 110, FILE_LIST_BTN_FILE_ARRAY(1), event_handler);
@@ -482,6 +506,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(1), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(1), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(1) = lv_label_create(FILE_LSIT_BTN_FILE(1), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(1), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(1), FILE_LSIT_PIC_FILE(1), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(1), sd_content.filename[1 + index]);
         FILE_LSIT_BTN_FILE(2) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(2), 110, 110, FILE_LIST_BTN_FILE_ARRAY(2), event_handler);
@@ -491,6 +516,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(2), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(2), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(2) = lv_label_create(FILE_LSIT_BTN_FILE(2), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(2), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(2), FILE_LSIT_PIC_FILE(2), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(2), sd_content.filename[2 + index]);
         FILE_LSIT_BTN_FILE(3) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(3), 110, 110, FILE_LIST_BTN_FILE_ARRAY(3), event_handler);
@@ -500,6 +526,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(3), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(3), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(3) = lv_label_create(FILE_LSIT_BTN_FILE(3), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(3), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(3), FILE_LSIT_PIC_FILE(3), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(3), sd_content.filename[3 + index]);
         FILE_LSIT_BTN_FILE(4) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(4), 110, 110, FILE_LIST_BTN_FILE_ARRAY(4), event_handler);
@@ -509,6 +536,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(4), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(4), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(4) = lv_label_create(FILE_LSIT_BTN_FILE(4), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(4), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(4), FILE_LSIT_PIC_FILE(4), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(4), sd_content.filename[4 + index]);
         break;
@@ -520,6 +548,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(0), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(0), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(0) = lv_label_create(FILE_LSIT_BTN_FILE(0), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(0), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(0), FILE_LSIT_PIC_FILE(0), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(0), sd_content.filename[0 + index]);
         FILE_LSIT_BTN_FILE(1) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(1), 110, 110, FILE_LIST_BTN_FILE_ARRAY(1), event_handler);
@@ -529,6 +558,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(1), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(1), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(1) = lv_label_create(FILE_LSIT_BTN_FILE(1), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(1), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(1), FILE_LSIT_PIC_FILE(1), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(1), sd_content.filename[1 + index]);
         FILE_LSIT_BTN_FILE(2) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(2), 110, 110, FILE_LIST_BTN_FILE_ARRAY(2), event_handler);
@@ -538,6 +568,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(2), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(2), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(2) = lv_label_create(FILE_LSIT_BTN_FILE(2), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(2), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(2), FILE_LSIT_PIC_FILE(2), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(2), sd_content.filename[2 + index]);
         FILE_LSIT_BTN_FILE(3) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(3), 110, 110, FILE_LIST_BTN_FILE_ARRAY(3), event_handler);
@@ -547,6 +578,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(3), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(3), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(3) = lv_label_create(FILE_LSIT_BTN_FILE(3), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(3), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(3), FILE_LSIT_PIC_FILE(3), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(3), sd_content.filename[3 + index]);
         FILE_LSIT_BTN_FILE(4) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(4), 110, 110, FILE_LIST_BTN_FILE_ARRAY(4), event_handler);
@@ -556,6 +588,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(4), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(4), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(4) = lv_label_create(FILE_LSIT_BTN_FILE(4), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(4), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(4), FILE_LSIT_PIC_FILE(4), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(4), sd_content.filename[4 + index]);
         FILE_LSIT_BTN_FILE(5) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(5), 110, 110, FILE_LIST_BTN_FILE_ARRAY(5), event_handler);
@@ -565,6 +598,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(5), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(5), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(5) = lv_label_create(FILE_LSIT_BTN_FILE(5), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(5), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(5), FILE_LSIT_PIC_FILE(5), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(5), sd_content.filename[5 + index]);
         break;
@@ -576,6 +610,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(0), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(0), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(0) = lv_label_create(FILE_LSIT_BTN_FILE(0), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(0), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(0), FILE_LSIT_PIC_FILE(0), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(0), sd_content.filename[0 + index]);
         FILE_LSIT_BTN_FILE(1) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(1), 110, 110, FILE_LIST_BTN_FILE_ARRAY(1), event_handler);
@@ -585,6 +620,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(1), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(1), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(1) = lv_label_create(FILE_LSIT_BTN_FILE(1), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(1), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(1), FILE_LSIT_PIC_FILE(1), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(1), sd_content.filename[1 + index]);
         FILE_LSIT_BTN_FILE(2) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(2), 110, 110, FILE_LIST_BTN_FILE_ARRAY(2), event_handler);
@@ -594,6 +630,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(2), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(2), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(2) = lv_label_create(FILE_LSIT_BTN_FILE(2), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(2), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(2), FILE_LSIT_PIC_FILE(2), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(2), sd_content.filename[2 + index]);
         FILE_LSIT_BTN_FILE(3) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(3), 110, 110, FILE_LIST_BTN_FILE_ARRAY(3), event_handler);
@@ -603,6 +640,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(3), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(3), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(3) = lv_label_create(FILE_LSIT_BTN_FILE(3), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(3), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(3), FILE_LSIT_PIC_FILE(3), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(3), sd_content.filename[3 + index]);
         FILE_LSIT_BTN_FILE(4) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(4), 110, 110, FILE_LIST_BTN_FILE_ARRAY(4), event_handler);
@@ -612,6 +650,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(4), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(4), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(4) = lv_label_create(FILE_LSIT_BTN_FILE(4), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(4), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(4), FILE_LSIT_PIC_FILE(4), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(4), sd_content.filename[4 + index]);
         FILE_LSIT_BTN_FILE(5) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(5), 110, 110, FILE_LIST_BTN_FILE_ARRAY(5), event_handler);
@@ -621,6 +660,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(5), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(5), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(5) = lv_label_create(FILE_LSIT_BTN_FILE(5), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(5), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(5), FILE_LSIT_PIC_FILE(5), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(5), sd_content.filename[5 + index]);
         FILE_LSIT_BTN_FILE(6) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(6), 110, 110, FILE_LIST_BTN_FILE_ARRAY(6), event_handler);
@@ -630,6 +670,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(6), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(6), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(6) = lv_label_create(FILE_LSIT_BTN_FILE(6), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(6), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(6), FILE_LSIT_PIC_FILE(6), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(6), sd_content.filename[6 + index]);
         break;
@@ -641,6 +682,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(0), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(0), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(0) = lv_label_create(FILE_LSIT_BTN_FILE(0), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(0), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(0), FILE_LSIT_PIC_FILE(0), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(0), sd_content.filename[0 + index]);
         FILE_LSIT_BTN_FILE(1) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(1), 110, 110, FILE_LIST_BTN_FILE_ARRAY(1), event_handler);
@@ -650,6 +692,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(1), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(1), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(1) = lv_label_create(FILE_LSIT_BTN_FILE(1), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(1), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(1), FILE_LSIT_PIC_FILE(1), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(1), sd_content.filename[1 + index]);
         FILE_LSIT_BTN_FILE(2) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(2), 110, 110, FILE_LIST_BTN_FILE_ARRAY(2), event_handler);
@@ -659,6 +702,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(2), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(2), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(2) = lv_label_create(FILE_LSIT_BTN_FILE(2), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(2), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(2), FILE_LSIT_PIC_FILE(2), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(2), sd_content.filename[2 + index]);
         FILE_LSIT_BTN_FILE(3) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(3), 110, 110, FILE_LIST_BTN_FILE_ARRAY(3), event_handler);
@@ -668,6 +712,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(3), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(3), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(3) = lv_label_create(FILE_LSIT_BTN_FILE(3), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(3), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(3), FILE_LSIT_PIC_FILE(3), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(3), sd_content.filename[3 + index]);
         FILE_LSIT_BTN_FILE(4) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(4), 110, 110, FILE_LIST_BTN_FILE_ARRAY(4), event_handler);
@@ -677,6 +722,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(4), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(4), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(4) = lv_label_create(FILE_LSIT_BTN_FILE(4), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(4), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(4), FILE_LSIT_PIC_FILE(4), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(4), sd_content.filename[4 + index]);
         FILE_LSIT_BTN_FILE(5) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(5), 110, 110, FILE_LIST_BTN_FILE_ARRAY(5), event_handler);
@@ -686,6 +732,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(5), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(5), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(5) = lv_label_create(FILE_LSIT_BTN_FILE(5), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(5), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(5), FILE_LSIT_PIC_FILE(5), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(5), sd_content.filename[5 + index]);
         FILE_LSIT_BTN_FILE(6) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(6), 110, 110, FILE_LIST_BTN_FILE_ARRAY(6), event_handler);
@@ -695,6 +742,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(6), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(6), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(6) = lv_label_create(FILE_LSIT_BTN_FILE(6), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(6), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(6), FILE_LSIT_PIC_FILE(6), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(6), sd_content.filename[6 + index]);
         FILE_LSIT_BTN_FILE(7) =  lv_btn_set(ui.src, FILE_LSIT_BTN_FILE(7), 110, 110, FILE_LIST_BTN_FILE_ARRAY(7), event_handler);
@@ -704,6 +752,7 @@ void disp_file_name(int num , int page)
         lv_label_set_text(FILE_LSIT_PIC_FILE(7), FONT_PIC_FILE);
         lv_label_set_style(FILE_LSIT_PIC_FILE(7), LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
         FILE_LSIT_LABEL_FILE(7) = lv_label_create(FILE_LSIT_BTN_FILE(7), NULL);
+        lv_label_set_long_mode(FILE_LSIT_LABEL_FILE(7), LV_LABEL_LONG_SROLL);
         lv_obj_align(FILE_LSIT_LABEL_FILE(7), FILE_LSIT_PIC_FILE(7), LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
         lv_label_set_text(FILE_LSIT_LABEL_FILE(7), sd_content.filename[7 + index]);
         break;

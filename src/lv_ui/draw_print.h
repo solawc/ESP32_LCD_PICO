@@ -107,3 +107,4 @@ void print_time_init();
 void print_time_enable();
 void print_time_disable();
 void print_time_change_pro();
+void draw_print_btn_click(bool en);

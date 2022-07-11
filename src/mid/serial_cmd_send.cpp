@@ -26,7 +26,7 @@ void send_buff_init()
     memset(send_buff,0,sizeof(send_buff));;
     xTaskCreatePinnedToCore(clientSendTask,    // task
                             "clientCheckTask",  // name for task
-                            8192,               // size of task stack
+                            2048,               // size of task stack
                             NULL,               // parameters
                             1,                  // priority
                             &clientSendTaskHandle,
@@ -142,10 +142,16 @@ void send_data_com_and_state_chang(char *line)
     }
     else if(!strcmp(line,"~\n"))
     {
-        serial_send(CLIENT_SERIAL,"hipp\n");
+        
         cur_send_state = SEND_WAIT;
         grbl_cmd.grbl_event = GRBL_EVENT_WAIT_OK;
         grbl_cmd.grbl_rec_mode = REC_CONTINUE;
+    }
+    else
+    {
+        cur_send_state = SEND_WAIT;
+        grbl_cmd.grbl_event = GRBL_EVENT_WAIT_OK;
+        grbl_cmd.grbl_rec_mode = REC_IDLE;
     }
     // else if(strstr(line,"[ESP220]"))
     // {

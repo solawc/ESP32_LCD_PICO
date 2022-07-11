@@ -157,32 +157,32 @@ void draw_home(void) {
 
     FD_ZERO(buff);
     sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_m_pos);
-    home_page.label_x_mpos = lv_label_set(ui.src, home_page.label_x_mpos, 56, 104, buff);
+    home_page.label_x_mpos = lv_label_set(ui.src, home_page.label_x_mpos, 292, 104, buff);
     FD_ZERO(buff);
     sprintf(buff,"Y:%0.2f",grbl_cmd.grbl_basic_info.y_m_pos);
-    home_page.label_y_mpos = lv_label_set(ui.src, home_page.label_y_mpos, 56, 136, buff);
+    home_page.label_y_mpos = lv_label_set(ui.src, home_page.label_y_mpos, 292, 136, buff);
     FD_ZERO(buff);
     sprintf(buff,"Z:%0.2f",grbl_cmd.grbl_basic_info.z_m_pos);
-    home_page.label_z_mpos = lv_label_set(ui.src, home_page.label_z_mpos, 56, 168, buff);
+    home_page.label_z_mpos = lv_label_set(ui.src, home_page.label_z_mpos, 292, 168, buff);
 
     FD_ZERO(buff);
     sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.x_w_pos);
-    home_page.label_x_wpos = lv_label_set(ui.src, home_page.label_x_wpos, 292, 104, buff);
+    home_page.label_x_wpos = lv_label_set(ui.src, home_page.label_x_wpos, 56, 104, buff);
     FD_ZERO(buff);
-    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.y_w_pos);
-    home_page.label_y_wpos = lv_label_set(ui.src, home_page.label_y_wpos, 292, 136, buff);
+    sprintf(buff,"Y:%0.2f",grbl_cmd.grbl_basic_info.y_w_pos);
+    home_page.label_y_wpos = lv_label_set(ui.src, home_page.label_y_wpos, 56, 136, buff);
     FD_ZERO(buff);
-    sprintf(buff,"X:%0.2f",grbl_cmd.grbl_basic_info.z_w_pos);
-    home_page.label_z_wpos = lv_label_set(ui.src, home_page.label_z_wpos, 292, 168, buff);
+    sprintf(buff,"Z:%0.2f",grbl_cmd.grbl_basic_info.z_w_pos);
+    home_page.label_z_wpos = lv_label_set(ui.src, home_page.label_z_wpos, 56, 168, buff);
 
     home_page.label_control_pic = lv_label_create(home_page.btn_control, NULL);
     lv_label_set_text(home_page.label_control_pic, FONT_PIC_CONTROL);
 
     home_page.label_sculpture_pic = lv_label_create(home_page.btn_sculpture, NULL);
-    lv_label_set_text(home_page.label_sculpture_pic, FONT_PIC_TOOLS);
+    lv_label_set_text(home_page.label_sculpture_pic, FONT_PIC_SCULPTURE);
 
     home_page.label_tool_pic = lv_label_create(home_page.btn_tool, NULL);
-    lv_label_set_text(home_page.label_tool_pic, FONT_PIC_SCULPTURE);
+    lv_label_set_text(home_page.label_tool_pic, FONT_PIC_TOOLS);
 
     lv_label_set_style(home_page.label_control_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_70_70);
     lv_label_set_style(home_page.label_sculpture_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_70_70);

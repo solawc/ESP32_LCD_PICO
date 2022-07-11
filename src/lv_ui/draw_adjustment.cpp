@@ -31,10 +31,10 @@ enum{
 
 enum{
     ADJUSTMENT_STEP_1 = 1,
-    ADJUSTMENT_STEP_5 = 5,
+    // ADJUSTMENT_STEP_5 = 5,
     ADJUSTMENT_STEP_10 = 10,
 };
-int step = ADJUSTMENT_STEP_1;
+int step = ADJUSTMENT_STEP_10;
 
 typedef enum{
     CHOICE_FEED,
@@ -148,6 +148,7 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 change_adjustment_step();
             break;
             case ID_ADJUSTMENT_BACK:
+                draw_print_btn_click(true);
                 clean_adjustment_page();
             break;
             case ID_ADJUSTMENT_CONFIRM:
@@ -213,20 +214,22 @@ void draw_adjustment(void) {
     lv_btn_set_style(adjustment_page.btn_confirm, LV_BTN_STYLE_PR, &adjustment_page.btn_pre_style);   // 按下
     lv_btn_set_style(adjustment_page.btn_confirm, LV_BTN_STYLE_REL, &adjustment_page.btn_rel_style);  // 
 
-
+    feed_rate = grbl_cmd.grbl_basic_info.f_override;
+    spindle_speed = grbl_cmd.grbl_basic_info.spindle_speed_ovr;
+    rapid_speed = grbl_cmd.grbl_basic_info.r_override;
 
     char buff[20];
-    FD_ZERO(buff);
+    memset(buff,0,sizeof(buff));
     sprintf(buff,"Feed rate:%d%",feed_rate);
     adjustment_page.label_feed = lv_label_create(ui.src_2, NULL);
     lv_obj_align(adjustment_page.label_feed, adjustment_page.btn_feed, LV_ALIGN_IN_LEFT_MID, 10, 0);
     lv_label_set_text(adjustment_page.label_feed, buff);
-    FD_ZERO(buff);
+    memset(buff,0,sizeof(buff));
     sprintf(buff,"Spindle speed:%d%",spindle_speed);
     adjustment_page.label_spindle = lv_label_create(ui.src_2, NULL);
     lv_obj_align(adjustment_page.label_spindle, adjustment_page.btn_spindle, LV_ALIGN_IN_LEFT_MID, 10, 0);
     lv_label_set_text(adjustment_page.label_spindle, buff);
-    FD_ZERO(buff);
+    memset(buff,0,sizeof(buff));
     sprintf(buff,"Rapid speed:%d%",rapid_speed);
     adjustment_page.label_rapid = lv_label_create(ui.src_2, NULL);
     lv_obj_align(adjustment_page.label_rapid, adjustment_page.btn_rapid, LV_ALIGN_IN_LEFT_MID, 10, 0);
@@ -271,7 +274,7 @@ void draw_adjustment(void) {
     lv_label_set_text(adjustment_page.label_confirm_pic, ADJUSTMENT_CONFIRM_EN);
 
 
-    FD_ZERO(buff);
+    memset(buff,0,sizeof(buff));
     sprintf(buff,"%d%",step);
     adjustment_page.label_step = lv_label_create(ui.src_2, NULL);
     lv_obj_align(adjustment_page.label_step, adjustment_page.btn_step, LV_ALIGN_CENTER, 0, 0);
@@ -366,30 +369,34 @@ static void set_adjustment_font_pic_color(uint8_t id, bool status) {
 }
 static void change_adjustment_step() {
     char buff[20];
-    switch (step)
-    {
-    case ADJUSTMENT_STEP_1:
-        FD_ZERO(buff);
-        step = ADJUSTMENT_STEP_5;
-        sprintf(buff,"%d%",step);
-        lv_obj_align(adjustment_page.label_step, adjustment_page.btn_step, LV_ALIGN_CENTER, 0, 0);
-        lv_label_set_text(adjustment_page.label_step, buff);
-        break;
-    case ADJUSTMENT_STEP_5:
-        FD_ZERO(buff);
-        step = ADJUSTMENT_STEP_10;
-        sprintf(buff,"%d%",step);
-        lv_obj_align(adjustment_page.label_step, adjustment_page.btn_step, LV_ALIGN_CENTER, 0, 0);
-        lv_label_set_text(adjustment_page.label_step, buff);
-        break;
-    case ADJUSTMENT_STEP_10:
-        FD_ZERO(buff);
-        step = ADJUSTMENT_STEP_1;
-        sprintf(buff,"%d%",step);
-        lv_obj_align(adjustment_page.label_step, adjustment_page.btn_step, LV_ALIGN_CENTER, 0, 0);
-        lv_label_set_text(adjustment_page.label_step, buff);
-        break;
-    }
+    // if(current_choice_btn != CHOICE_RAPID)
+    // {
+        switch (step)
+        {
+        case ADJUSTMENT_STEP_1:
+            memset(buff,0,sizeof(buff));
+        //     step = ADJUSTMENT_STEP_5;
+        //     sprintf(buff,"%d%",step);
+        //     lv_obj_align(adjustment_page.label_step, adjustment_page.btn_step, LV_ALIGN_CENTER, 0, 0);
+        //     lv_label_set_text(adjustment_page.label_step, buff);
+        //     break;
+        // case ADJUSTMENT_STEP_5:
+        //     memset(buff,0,sizeof(buff));
+            step = ADJUSTMENT_STEP_10;
+            sprintf(buff,"%d%",step);
+            lv_obj_align(adjustment_page.label_step, adjustment_page.btn_step, LV_ALIGN_CENTER, 0, 0);
+            lv_label_set_text(adjustment_page.label_step, buff);
+            break;
+        case ADJUSTMENT_STEP_10:
+            memset(buff,0,sizeof(buff));
+            step = ADJUSTMENT_STEP_1;
+            sprintf(buff,"%d%",step);
+            lv_obj_align(adjustment_page.label_step, adjustment_page.btn_step, LV_ALIGN_CENTER, 0, 0);
+            lv_label_set_text(adjustment_page.label_step, buff);
+            break;
+        }
+    // }
+
 }
 static void add_adjustment_num() 
 {
@@ -397,16 +404,40 @@ static void add_adjustment_num()
     switch (current_choice_btn)
     {
     case CHOICE_FEED:
+            if(step == ADJUSTMENT_STEP_10)
+            {
+                char buf_cmd[]={0x91,10};
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+            }
+            else
+            {
+                char buf_cmd[]={0x93,10};
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+            }
             feed_rate += step;
-            FD_ZERO(buff);
+            memset(buff,0,sizeof(buff));
             sprintf(buff,"Feed rate:%d%",feed_rate);
             lv_obj_align(adjustment_page.label_feed, adjustment_page.btn_feed, LV_ALIGN_IN_LEFT_MID, 10, 0);
             lv_label_set_text(adjustment_page.label_feed, buff);
         break;
     
     case CHOICE_SPINDLE:
+            if(step == ADJUSTMENT_STEP_10)
+            {
+                char buf_cmd[]={0x9A,10};
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+            }
+            else
+            {
+                char buf_cmd[]={0x9C,10};
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+            }
             spindle_speed += step;
-            FD_ZERO(buff);
+            memset(buff,0,sizeof(buff));
             sprintf(buff,"Spindle speed:%d%",spindle_speed);
             lv_obj_align(adjustment_page.label_spindle, adjustment_page.btn_spindle, LV_ALIGN_IN_LEFT_MID, 10, 0);
             lv_label_set_text(adjustment_page.label_spindle, buff);
@@ -414,7 +445,7 @@ static void add_adjustment_num()
 
     case CHOICE_RAPID:
             rapid_speed += step;
-            FD_ZERO(buff);
+            memset(buff,0,sizeof(buff));
             sprintf(buff,"Rapid speed:%d%",rapid_speed);
             lv_obj_align(adjustment_page.label_rapid, adjustment_page.btn_rapid, LV_ALIGN_IN_LEFT_MID, 10, 0);
             lv_label_set_text(adjustment_page.label_rapid, buff);
@@ -427,20 +458,45 @@ static void dec_adjustment_num()
     switch (current_choice_btn)
     {
     case CHOICE_FEED:
+            if(step == ADJUSTMENT_STEP_10)
+            {
+                char buf_cmd[]={0x92,10};
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+            }
+            else
+            {
+                char buf_cmd[]={0x94,10};
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+            }
+
             feed_rate -= step;
             if(feed_rate <= 0)
                 feed_rate = 0;
-            FD_ZERO(buff);
+            memset(buff,0,sizeof(buff));
             sprintf(buff,"Feed rate:%d%",feed_rate);
             lv_obj_align(adjustment_page.label_feed, adjustment_page.btn_feed, LV_ALIGN_IN_LEFT_MID, 10, 0);
             lv_label_set_text(adjustment_page.label_feed, buff);
         break;
     
     case CHOICE_SPINDLE:
+            if(step == ADJUSTMENT_STEP_10)
+            {
+                char buf_cmd[]={0x9b,10};
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+            }
+            else
+            {
+                char buf_cmd[]={0x9D,10};
+                MKS_PICO_CMD_SEND(buf_cmd);
+                serial_send(CLIENT_SERIAL,buf_cmd);
+            }
             spindle_speed -= step;
             if(spindle_speed <= 0)
                 spindle_speed = 0;
-            FD_ZERO(buff);
+            memset(buff,0,sizeof(buff));
             sprintf(buff,"Spindle speed:%d%",spindle_speed);
             lv_obj_align(adjustment_page.label_spindle, adjustment_page.btn_spindle, LV_ALIGN_IN_LEFT_MID, 10, 0);
             lv_label_set_text(adjustment_page.label_spindle, buff);
@@ -450,7 +506,7 @@ static void dec_adjustment_num()
             rapid_speed -= step;
             if(rapid_speed <= 0)
                 rapid_speed = 0;
-            FD_ZERO(buff);
+            memset(buff,0,sizeof(buff));
             sprintf(buff,"Rapid speed:%d%",rapid_speed);
             lv_obj_align(adjustment_page.label_rapid, adjustment_page.btn_rapid, LV_ALIGN_IN_LEFT_MID, 10, 0);
             lv_label_set_text(adjustment_page.label_rapid, buff);

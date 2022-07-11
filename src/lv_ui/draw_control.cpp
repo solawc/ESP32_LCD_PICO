@@ -70,8 +70,8 @@ enum {
 static uint8_t get_event(lv_obj_t* obj) {
 
     if(obj == ui_ctrl.btn_back) return ID_C_BACK;
-    else if(obj == ui_ctrl.btn_x_n) return ID_C_X_N;
-    else if(obj == ui_ctrl.btn_x_p) return ID_C_X_P;
+    else if(obj == ui_ctrl.btn_x_n) return ID_C_X_P;
+    else if(obj == ui_ctrl.btn_x_p) return ID_C_X_N;
     else if(obj == ui_ctrl.btn_y_n) return ID_C_Y_N;
     else if(obj == ui_ctrl.btn_y_p) return ID_C_Y_P;
     else if(obj == ui_ctrl.btn_z_n) return ID_C_Z_N;
@@ -112,10 +112,36 @@ static void event_handler_up(lv_obj_t* obj, lv_event_t event) {
         draw_up();
     }
 }
+static void event_handler_cool(lv_obj_t* obj, lv_event_t event) {
+    if(event == LV_EVENT_PRESSED) {
+        lv_label_set_style(ui_ctrl.label_up_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_40_40_pre);
+    }
+    if((event == LV_EVENT_RELEASED) || (event == LV_EVENT_PRESS_LOST)) {
+        lv_label_set_style(ui_ctrl.label_up_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
+        // draw_up();
+        if(grbl_cmd.grbl_basic_info.apin_state & (1 << 2))
+        {
+            MKS_PICO_CMD_SEND("M9\n");
+        }
+        else
+        {
+            MKS_PICO_CMD_SEND("M8\n");
+        }
+    }
+}
+static void event_handler_pos(lv_obj_t* obj, lv_event_t event) {
+    if(event == LV_EVENT_PRESSED) {
+        lv_label_set_style(ui_ctrl.label_up_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_40_40_pre);
+    }
+    if((event == LV_EVENT_RELEASED) || (event == LV_EVENT_PRESS_LOST)) {
+        lv_label_set_style(ui_ctrl.label_up_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
+        // draw_up();
+        MKS_PICO_CMD_SEND("G92X0Y0Z0\n");
+    }
+}
 static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
     uint8_t id = get_event(obj);
-    // serial_sendf(CLIENT_SERIAL,"ID %d\n",id);
 
     if(event == LV_EVENT_PRESSED) {
 
@@ -129,27 +155,27 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
         switch(id) {
             
             case ID_C_X_N: 
-                action_step('X', 10, 1000);
+                move_ctrl('X', 1);
             break;
 
             case ID_C_X_P: 
-                action_step('X', -10, 1000);
+                move_ctrl('X', 0);
             break;
 
             case ID_C_Y_N:
-                action_step('Y', 10, 1000);
+                move_ctrl('Y', 1);
             break;
 
             case ID_C_Y_P: 
-                action_step('Y', -10, 1000);
+                move_ctrl('Y', 0);
             break;
 
             case ID_C_Z_N: 
-                action_step('Z', 10, 1000);
+                move_ctrl('Z', 1);
             break;
 
             case ID_C_Z_P: 
-                action_step('Z', -10, 1000);
+                move_ctrl('Z', 0);
             break;
             
             case ID_C_LEN:
@@ -185,26 +211,36 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
             case ID_C_XY_HOME:
                 MKS_PICO_CMD_SEND("M5\n");
                 MKS_PICO_CMD_SEND("$J=G90X0Y0F2000\n");
-
             break;
-
+            case ID_C_Z_HOME:
+                MKS_PICO_CMD_SEND("M5\n");
+                MKS_PICO_CMD_SEND("$J=G90Z0F1000\n");
+            break;
             case ID_C_XY_CLEAR:
-
+                MKS_PICO_CMD_SEND("G92X0Y0\n");
             break;
             case ID_C_Z_CLEAR:
-            
+                MKS_PICO_CMD_SEND("G92Z0\n");
+            break;
+            case ID_C_SPINDLE:
+                if(grbl_cmd.grbl_basic_info.apin_state & (1 << 0))
+                {
+                    MKS_PICO_CMD_SEND("M5\n");
+                    grbl_cmd.grbl_basic_info.apin_state = 0;
+                    lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_PR, &ui_ctrl.btn_move);
+                    lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_REL, &ui_ctrl.btn_move);
+                }
+                else
+                {
+                    MKS_PICO_CMD_SEND("M3 S500\n");
+                    MKS_PICO_CMD_SEND("G1 F1000\n");
+                    lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_PR, &ui_ctrl.btn_move_pre);
+                    lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_REL, &ui_ctrl.btn_move_pre);
+                }
             break;
             case ID_C_KNIFE:
-            
-            break;
-            case ID_C_POSITION:
-            
-            break;
-            case ID_C_COOL:
-            
-            break;
 
-
+            break;
             case ID_C_BACK: 
                 clear_control_page();
                 draw_home();
@@ -270,8 +306,19 @@ static void set_control_style(void) {
     lv_btn_set_style(ui_ctrl.btn_len, LV_BTN_STYLE_REL, &ui_ctrl.btn_move);
     lv_btn_set_style(ui_ctrl.btn_speed, LV_BTN_STYLE_PR, &ui_ctrl.btn_move_pre);
     lv_btn_set_style(ui_ctrl.btn_speed, LV_BTN_STYLE_REL, &ui_ctrl.btn_move);
-    lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_PR, &ui_ctrl.btn_move_pre);
-    lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_REL, &ui_ctrl.btn_move);
+
+    if(grbl_cmd.grbl_basic_info.apin_state & (1 << 0))
+    {
+        lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_PR, &ui_ctrl.btn_move_pre);
+        lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_REL, &ui_ctrl.btn_move_pre);
+    }
+    else
+    {
+        lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_PR, &ui_ctrl.btn_move);
+        lv_btn_set_style(ui_ctrl.btn_spindle, LV_BTN_STYLE_REL, &ui_ctrl.btn_move);
+    }
+
+
 
     lv_btn_set_style(ui_ctrl.btn_knife, LV_BTN_STYLE_PR, &ui_ctrl.btn_move_pre);
     lv_btn_set_style(ui_ctrl.btn_knife, LV_BTN_STYLE_REL, &ui_ctrl.btn_move);
@@ -576,8 +623,8 @@ void draw_next()
 
 
 
-    ui_ctrl.btn_cool =  lv_btn_set(ui.src, ui_ctrl.btn_cool, 60, 60, 276, 8, event_handler);
-    ui_ctrl.btn_position =  lv_btn_set(ui.src, ui_ctrl.btn_position, 60, 60, 344, 8, event_handler);
+    ui_ctrl.btn_cool =  lv_btn_set(ui.src, ui_ctrl.btn_cool, 60, 60, 276, 8, event_handler_cool);
+    ui_ctrl.btn_position =  lv_btn_set(ui.src, ui_ctrl.btn_position, 60, 60, 344, 8, event_handler_pos);
     ui_ctrl.btn_up =  lv_btn_set(ui.src, ui_ctrl.btn_up, 60, 60, 412, 8, event_handler_up);
 
     lv_btn_set_style(ui_ctrl.btn_cool, LV_BTN_STYLE_PR, &ui_ctrl.btn_move_pre);
@@ -654,6 +701,41 @@ void draw_up()
     lv_label_set_style(ui_ctrl.label_next_pic, LV_LABEL_STYLE_MAIN, &ui.di_font_40_40);
 
 }
+
+void move_ctrl(char axis, uint8_t dir)
+{
+	float step;
+	uint32_t speed;
+    if(current_len == MOVE_LEN_1MM)
+    {
+        step = 1;
+    }
+    else if (current_len == MOVE_LEN_5MM)
+    {
+        step = 5;
+    }
+    else
+    {
+        step = 10;
+    }
+    if(current_speed == MOVE_HIGH_SPEED)
+    {
+        speed = 2000;
+    }
+    else if(current_speed == MOVE_MID_SPEED)
+    {
+        speed = 1000;
+    }
+    else
+    {
+        speed = 500;
+    }
+    if(dir == 0)
+        action_step(axis, -step, speed);
+    else
+        action_step(axis, step, speed);
+}
+
 
 static void action_step(char axis, int len, uint32_t speed) {
     char cmd[96];
