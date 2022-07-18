@@ -135,7 +135,7 @@ static void draw_tool_bar(void) {
 
 
 void draw_tool(void) {
-    
+
     draw_tool_bar();
 
     lv_style_copy(&tool_page.btn_pre_style , &lv_style_scr);
@@ -235,6 +235,7 @@ void draw_tool(void) {
     tool_page.label_about = lv_label_create(tool_page.btn_about, NULL);
     lv_obj_align(tool_page.label_about, tool_page.label_about_pic, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
     lv_label_set_text(tool_page.label_about,TOOL_ABOUT_EN);
+    mks_ui_page.mks_ui_page = MKS_UI_PAGE_TOOL;
 }
 
 /* 

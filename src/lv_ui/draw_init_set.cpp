@@ -38,7 +38,20 @@ static uint8_t get_event(lv_obj_t* obj) {
    else if(obj == init_set_page.btn_next) return ID_INIT_SET_NEXT;
 
 }
+static void event_handler_next(lv_obj_t* obj, lv_event_t event) {
+ uint8_t id = get_event(obj);
 
+    if(event == LV_EVENT_PRESSED) {
+        set_init_set_font_pic_color(id, true);
+    }
+if((event == LV_EVENT_RELEASED) || (event == LV_EVENT_PRESS_LOST)) {
+
+        set_init_set_font_pic_color(id, false);
+        clean_init_set_page();
+        draw_set_config();
+    } 
+
+}
 
 static void event_handler(lv_obj_t* obj, lv_event_t event) {
 
@@ -81,10 +94,10 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
                 draw_tool();
             break;
 
-            case ID_INIT_SET_NEXT: 
-                clean_init_set_page();
-                draw_set_config();
-            break; 
+            // case ID_INIT_SET_NEXT: 
+            //     clean_init_set_page();
+            //     draw_set_config();
+            // break; 
             }
     }
 }
@@ -160,7 +173,7 @@ void draw_init_set_Initialize(void) {
     init_set_page.btn_rel_style.text.color = lv_color_hex(get_current_color());  //ui.ui_theme.font_rel_color  
 
     init_set_page.btn_cancel =  lv_btn_set(ui.src, init_set_page.btn_cancel, INIT_SET_BTN_W, INIT_SET_BTN_H, INIT_SET_BTN_X1, INIT_SET_BTN_Y, event_handler);
-    init_set_page.btn_next =  lv_btn_set(ui.src, init_set_page.btn_next, INIT_SET_BTN_W, INIT_SET_BTN_H, INIT_SET_BTN_X2, INIT_SET_BTN_Y, event_handler);
+    init_set_page.btn_next =  lv_btn_set(ui.src, init_set_page.btn_next, INIT_SET_BTN_W, INIT_SET_BTN_H, INIT_SET_BTN_X2, INIT_SET_BTN_Y, event_handler_next);
 
 
     lv_btn_set_style(init_set_page.btn_cancel, LV_BTN_STYLE_PR, &init_set_page.btn_pre_style);   // 松开
@@ -179,6 +192,7 @@ void draw_init_set_Initialize(void) {
 
     init_set_page.label_next = lv_label_create(init_set_page.btn_next, NULL);
     lv_label_set_text(init_set_page.label_next, INIT_SET_NEXT_EN);
+
 
 }
 /* 

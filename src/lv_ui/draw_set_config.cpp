@@ -169,78 +169,157 @@ static void event_handler(lv_obj_t* obj, lv_event_t event) {
             
             break;
             case ID_NEXT:
-            
+
             break;
         }
     }
-
+    // Machine_type_num->setStringValue();
+    // set_config_data.machine_type = (MACHINE_TYPE_t)(Machine_type_num->get());
+    // set_config_data.fw_ver = (FW_VER_t)(Firmware_ver_num->get());
+    // set_config_data.rate = (BAUD_RATE_t)(Baud_rate->get());
+    // set_config_data.axes = (NUM_AXES_t)(Num_of_axes->get());
+    // set_config_data.wireless_type = (WIRELESS_TYPE_t)(Wireless_type->get());
+    // set_config_data.customize = (CUSTOMIZE_t)(Customize_num->get());
+    int val = 10;
     if((event == LV_EVENT_RELEASED) || (event == LV_EVENT_PRESS_LOST)) {
 
         set_set_config_font_pic_color(id, false);
-        
-
+        // serial_send(CLIENT_SERIAL,"HELLO\n");
         switch(id) {
             case ID_CNC_TYPE: 
+                // int val = 10;
+                val = 1;
+                xQueueSend( setting_w_queue, &val, 0xffff);
             break;
 
             case ID_LASER_TYPE:
-                
+                // set_config_data.machine_type = TYPE_LASER;
+                val = 2;
+                xQueueSend( setting_w_queue, &val, 0xffff);
             break;
 
             case ID_WRITE_TYPE: 
-
+                val = 3;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.machine_type = TYPE_WRITE;
+                // Machine_type_num->setStringValue("3");
             break; 
             case ID_NUM_VER1:
-                
+                val = 4;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.fw_ver = FW_VER_GRBL09;
+                // Firmware_ver_num->setStringValue("1");
             break;
 
             case ID_NUM_VER2:
-            
+                val = 5;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.fw_ver = FW_VER_GRBL10;
+                // Firmware_ver_num->setStringValue("2");
+
             break;
             case ID_NUM_VER3:
-            
+                val = 6;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.fw_ver = FW_VER_DLC32;
+                // Firmware_ver_num->setStringValue("3");
             break;
             case ID_9600_RATE:
-            
+                val = 7;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.rate = RATE_9600;
+                // Baud_rate->setStringValue("1");
             break;
             case ID_115200_RATE:
-            
+                val = 8;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.rate = RATE_115200;
+                // Baud_rate->setStringValue("2");
             break;
             case ID_250000_RATE:
-            
+                val = 9;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.rate = RATE_250000;
+                // Baud_rate->setStringValue("3");
             break;
             case ID_2_AXES:
-            
+                val = 10;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.axes = NUM_AXES_2;
+                // Num_of_axes->setStringValue("1");
             break;
             case ID_3_AXES:
-            
+                val = 11;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.axes = NUM_AXES_3;
+                // Num_of_axes->setStringValue("2");
             break;
             case ID_4_AXES:
-            
+                val = 12;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.axes = NUM_AXES_4;
+                // Num_of_axes->setStringValue("3");
             break;
             case ID_WIFI_WIRELESS:
-            
+                val = 13;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.wireless_type = WIRELESS_TYPE_WIFI_AP;
+                // Wireless_type->setStringValue("1");
             break;
             case ID_WIFI_STA_WIRELESS:
-            
+                val = 14;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.wireless_type = WIRELESS_TYPE_WIFI_STA;
+                // Wireless_type->setStringValue("2");
             break;
             case ID_BLUETOOTH_WIRELESS:
-            
+                val = 15;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.wireless_type = WIRELESS_TYPE_BLUETOOTH;
+                // Wireless_type->setStringValue("3");
             break;
             case ID_1_CUSTOMIZE:
-            
+                val = 16;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.customize = CUSTOMIZE_1;
+                // Customize_num->setStringValue("1");
             break;
             case ID_2_CUSTOMIZE:
-            
+                val = 17;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.customize = CUSTOMIZE_2;
+                // Customize_num->setStringValue("2");
             break;
             case ID_3_CUSTOMIZE:
-            
+                val = 19;
+                xQueueSend( setting_w_queue, &val, 0xffff);
+                // set_config_data.customize = CUSTOMIZE_3;
+                // Customize_num->setStringValue("3");
             break;
             case ID_PREVIOUS:
                 clean_set_config_page();
                 draw_init_set_Initialize();
             break;
             case ID_NEXT:
+                // char buff[30];
+                // memset(buff,0,sizeof(buff));
+                // sprintf(buff,"%d",set_config_data.machine_type);
+                // Machine_type_num->setStringValue(buff);
+                // memset(buff,0,sizeof(buff));
+                // sprintf(buff,"%d",set_config_data.fw_ver);
+                // Firmware_ver_num->setStringValue(buff);
+                // memset(buff,0,sizeof(buff));
+                // sprintf(buff,"%d",set_config_data.rate);
+                // Baud_rate->setStringValue(buff);
+                // memset(buff,0,sizeof(buff));
+                // sprintf(buff,"%d",set_config_data.axes);
+                // Num_of_axes->setStringValue(buff);
+                // memset(buff,0,sizeof(buff));
+                // sprintf(buff,"%d",set_config_data.wireless_type);
+                // Wireless_type->setStringValue(buff);
+                // memset(buff,0,sizeof(buff));
+                // sprintf(buff,"%d",set_config_data.customize);
+                // Customize_num->setStringValue(buff);
                 clean_set_config_page();
                 draw_init_set_complete();
             break;
@@ -330,12 +409,7 @@ void draw_set_config(void) {
     set_config_page.btn_previos =  lv_btn_set(ui.src, set_config_page.btn_previos, SET_CONFIG_BTN_W3, SET_CONFIG_BTN_H3, SET_CONFIG_BTN3_X1, SET_CONFIG_BTN3_Y, event_handler);
     set_config_page.btn_next =  lv_btn_set(ui.src, set_config_page.btn_next, SET_CONFIG_BTN_W3, SET_CONFIG_BTN_H3, SET_CONFIG_BTN3_X2, SET_CONFIG_BTN3_Y, event_handler);
 
-    disp_machine_type_style(set_config_data.machine_type);
-    disp_firmware_version_style(set_config_data.fw_ver);
-    disp_baud_rate_style(set_config_data.rate);
-    disp_number_of_axes_style(set_config_data.axes);
-    disp_wireless_type_style(set_config_data.wireless_type);
-    disp_customize_style(set_config_data.customize);
+
 
 
     lv_btn_set_style(set_config_page.btn_previos, LV_BTN_STYLE_PR, &set_config_page.btn_pre_style);   
@@ -435,7 +509,29 @@ void draw_set_config(void) {
     // set_config_page.label_back = lv_label_create(set_config_page.btn_back, NULL);
     // lv_obj_align(set_config_page.label_back, set_config_page.label_back_pic, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
     // lv_label_set_text(set_config_page.label_back,LANGUAGE_BACK_EN);
+    
 
+    // disp_machine_type_style((MACHINE_TYPE_t)(Machine_type_num->get()));
+    // disp_firmware_version_style((FW_VER_t)(Firmware_ver_num->get()));
+    // disp_baud_rate_style((BAUD_RATE_t)(Baud_rate->get()));
+    // disp_number_of_axes_style((NUM_AXES_t)(Num_of_axes->get()));
+    // disp_wireless_type_style((WIRELESS_TYPE_t)(Wireless_type->get()));
+    // disp_customize_style((CUSTOMIZE_t)(Customize_num->get()));
+
+    set_config_data.machine_type = (MACHINE_TYPE_t)(Machine_type_num->get());
+    set_config_data.fw_ver = (FW_VER_t)(Firmware_ver_num->get());
+    set_config_data.rate = (BAUD_RATE_t)(Baud_rate->get());
+    set_config_data.axes = (NUM_AXES_t)(Num_of_axes->get());
+    set_config_data.wireless_type = (WIRELESS_TYPE_t)(Wireless_type->get());
+    set_config_data.customize = (CUSTOMIZE_t)(Customize_num->get());
+
+
+    disp_machine_type_style(set_config_data.machine_type);
+    disp_firmware_version_style(set_config_data.fw_ver);
+    disp_baud_rate_style(set_config_data.rate);
+    disp_number_of_axes_style(set_config_data.axes);
+    disp_wireless_type_style(set_config_data.wireless_type);
+    disp_customize_style(set_config_data.customize);
 
 }
 

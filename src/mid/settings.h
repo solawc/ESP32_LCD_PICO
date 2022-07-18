@@ -4,7 +4,6 @@
 #include <map>
 #include <nvs.h>
 
-
 #undef bit
 #define bit(n) (1 << static_cast<unsigned int>(n))
 
@@ -179,7 +178,12 @@ public:
 };
 extern IntSetting* Machine_type;
 extern IntSetting* Machine_theme;
-
+extern IntSetting* Machine_type_num;
+extern IntSetting* Firmware_ver_num;
+extern IntSetting* Baud_rate;
+extern IntSetting* Num_of_axes;
+extern IntSetting* Wireless_type;
+extern IntSetting* Customize_num;
 
 
 class FloatSetting : public Setting {
