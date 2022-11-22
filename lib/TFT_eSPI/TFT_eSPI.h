@@ -448,6 +448,8 @@ class TFT_eSPI : public Print { friend class TFT_eSprite; // Sprite class has ac
   void     pushColor(uint16_t color, uint32_t len),  // Deprecated, use pushBlock()
            pushColors(uint16_t  *data, uint32_t len, bool swap = true), // With byte swap option
            pushColors(uint8_t  *data, uint32_t len); // Deprecated, use pushPixels()
+  
+  void    pushColorsDMA(uint16_t  *data, uint32_t len, bool swap = true);
 
            // Write a solid block of a single colour
   void     pushBlock(uint16_t color, uint32_t len);
@@ -678,8 +680,9 @@ class TFT_eSPI : public Print { friend class TFT_eSprite; // Sprite class has ac
            // TFT chip select stays low. If you use tft.endWrite() before DMA is complete then the endWrite
            // function will wait for the DMA to complete, so this may defeat any DMA performance benefit.
            //
-
-  bool     initDMA(bool ctrl_cs = false);  // Initialise the DMA engine and attach to SPI bus - typically used in setup()
+  
+  bool        initDMA(bool ctrl_cs, transaction_cb_t trComplat);
+  // bool     initDMA(bool ctrl_cs = false);  // Initialise the DMA engine and attach to SPI bus - typically used in setup()
                                            // Parameter "true" enables DMA engine control of TFT chip select (ESP32 only)
                                            // For ESP32 only, TFT reads will not work if parameter is true
   void     deInitDMA(void);   // De-initialise the DMA engine and detach from SPI bus - typically not used

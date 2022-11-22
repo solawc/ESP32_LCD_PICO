@@ -1,126 +1,47 @@
 #include "tft_lvgl_configurate.h"
 
-#define LV_BUF_SIZE             10 * LV_HOR_RES_MAX
-static lv_disp_buf_t    disp_buf;
-static lv_color_t       bmp_public_buf[LV_BUF_SIZE];
-static lv_color_t       bmp_private_buf1[LV_BUF_SIZE]; 
 
-#define DISP_TASK_STACK                 4096*2
-#define DISP_TASK_PRO                   4
-#define DISP_TASK_CORE                  1
 
-TaskHandle_t lv_disp_tcb = NULL;
+lv_ui_t lv_ui;
 
-/* Function */
-void my_disp_flush(lv_disp_drv_t * disp, const lv_area_t * area, lv_color_t * color_p);
-bool my_indev_touch(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
+void allStyleInit(void) {
 
-void lvgl_freertos_task(void *parg);
+	lv_style_init(&lv_ui.main_style);
+	lv_style_set_bg_color(&lv_ui.main_style, lv_color_hex(MAIN_BG_COLOR));
+	lv_style_set_bg_opa(&lv_ui.main_style, LV_OPA_COVER);
+	lv_style_set_text_color(&lv_ui.main_style, lv_color_white());
+	lv_obj_add_style(lv_ui.main_src, &lv_ui.main_style, 0);
 
-void lvgl_task_init(void) {
-
-    tft_TS35_init();
-
-    lv_init();
-    lv_disp_buf_init(&disp_buf, bmp_public_buf, bmp_private_buf1, LV_BUF_SIZE); // Initialize the display buffer
-
-    /* display driver register */
-    lv_disp_drv_t disp_drv;
-    lv_disp_drv_init(&disp_drv);
-    disp_drv.hor_res = LV_HOR_RES_MAX;
-    disp_drv.ver_res = LV_VER_RES_MAX;
-    disp_drv.flush_cb = my_disp_flush;
-    disp_drv.buffer = &disp_buf;
-    lv_disp_drv_register(&disp_drv);
-
-    lv_indev_drv_t indev_drv;
-    lv_indev_drv_init(&indev_drv);  
-    indev_drv.type = LV_INDEV_TYPE_POINTER;
-    indev_drv.read_cb = my_indev_touch;
-    lv_indev_drv_register(&indev_drv);
-
-    xTaskCreatePinnedToCore(lvgl_freertos_task,     // task
-                            "lvglTask",         // name for task
-                            DISP_TASK_STACK,    // size of task stack
-                            NULL,               // parameters
-                            DISP_TASK_PRO,      // priority
-                            // nullptr,
-                            &lv_disp_tcb,
-                            DISP_TASK_CORE      // must run the task on same core
-                                                // core
-    );
+	lv_style_init(&lv_ui.src1_style);
+	lv_style_set_bg_color(&lv_ui.src1_style, lv_color_hex(SRC1_BG_COLOR));
+	lv_style_set_bg_opa(&lv_ui.src1_style, LV_OPA_COVER);
+	lv_style_set_border_width(&lv_ui.src1_style, 0);
+	lv_style_set_radius(&lv_ui.src1_style, 17);
 }
 
-
-void my_disp_flush(lv_disp_drv_t * disp, const lv_area_t * area, lv_color_t * color_p) {
-
-    uint32_t w = (area->x2 - area->x1 + 1);
-    uint32_t h = (area->y2 - area->y1 + 1);
-
-    tft.startWrite();
-    tft.setAddrWindow(area->x1, area->y1, w, h);
-    
-#if defined(USE_LCD_DMA)
-    tft.pushColorsDMA(&color_p->full, w * h, true);
-#else 
-    tft.pushColors(&color_p->full, w * h, true);
-#endif
-
-    tft.endWrite();
-    lv_disp_flush_ready(disp);
+void drawLogoTaskCb(lv_timer_t*) {
+	tft_lcd.tftBglightSetOn();
+	delay(1000);
+	lv_obj_del(lv_ui.mks_logo);
+	// draw_ready();
+	lv_timer_del(lv_ui.timer_logo);
 }
 
-bool my_indev_touch(struct _lv_indev_drv_t * indev_drv, lv_indev_data_t * data) {
+void lvDrawLogo(void) {
 
-    uint16_t touchX=0, touchY=0;
-    static uint16_t last_x = 0;
-    static uint16_t last_y = 0;
-    // boolean touched = tft.getTouch(&touchY, &touchX);
+	lv_ui.main_src = lv_obj_create(NULL);
+	lv_ui.main_src = lv_scr_act();
+	lv_obj_clear_flag(lv_ui.main_src, LV_OBJ_FLAG_SCROLLABLE);
+	lv_obj_set_size(lv_ui.main_src, 480, 320);
+	lv_obj_remove_style_all(lv_ui.main_src);
 
-    boolean touched = tp_read_task(&touchY, &touchX);
+	/* Creat logo */
+	lv_ui.mks_logo = lv_img_create(lv_ui.main_src);
+	// lv_img_set_src(lv_ui.mks_logo, "M:/mks_logo.bin");
 
-    char tempString[128]; 
-    
+	/* Init all style */
+	allStyleInit();
 
-    if(touchX > 480) { touchX = 480;}
-    if(touchY > 320) { touchY = 320;}
-
-    touchY = 320 - touchY;
-
-    if( touched != false ) {
-        last_x = touchX;
-        last_y = touchY;
-        data->point.x = last_x;
-        data->point.y = last_y;
-        data->state = LV_INDEV_STATE_PR;
-    }
-    else {
-        data->point.x = last_x;
-        data->point.y = last_y;
-        data->state = LV_INDEV_STATE_REL;
-    }
-    return false;
+	/* Tick 2000ms */
+	lv_ui.timer_logo = lv_timer_create(drawLogoTaskCb, 2000, NULL);
 }
-
-
-void lvgl_freertos_task(void *parg) {
-
-    TickType_t       xLastWakeTime;
-    
-    const TickType_t xDisplayFrequency = 1;   
-
-    xLastWakeTime = xTaskGetTickCount();  
-
-    draw_logo_init();
-
-    draw_home();
-    
-    while(1) {
-
-        lv_task_handler();
-
-        vTaskDelayUntil(&xLastWakeTime, xDisplayFrequency); //使用相对延时，保证时间精准
-    }
-}
-
-

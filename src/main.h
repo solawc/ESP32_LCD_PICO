@@ -22,7 +22,7 @@
 #include <driver/timer.h>
 
 #include "vantins.h"
-#include "bsp_lcd/tft_lcd_35.h"
+#include "bsp_lcd/tft_lcd.h"
 #include "bsp_lcd/FT6336U.h"
 
 #include "hal/hal_uart.h"
@@ -39,21 +39,7 @@
 #include "mid/error.h"
 
 #include "lvgl.h"
-#include "lv_ui/font_pic.h"
-#include "lv_ui/draw_test.h"
 #include "lv_ui/tft_lvgl_configurate.h"
-#include "lv_ui/draw_ui.h"
-#include "lv_ui/draw_logo.h"
-#include "lv_ui/draw_home.h"
-#include "lv_ui/draw_style.h"
-#include "lv_ui/draw_control.h"
-#include "lv_ui/draw_tool.h"
-#include "lv_ui/draw_language.h"
-#include "lv_ui/draw_file_list.h"
-#include "lv_ui/draw_wireless.h"
-#include "lv_ui/draw_about.h"
-#include "lv_ui/draw_wireless_sign_in.h"
-#include "lv_ui/draw_set_config.h"
-#include "lv_ui/draw_init_set.h"
+#include "lv_ui/lv_port/lv_port_init.h"
 
 #endif

@@ -2,6 +2,8 @@
 
 
 
+
+
 void app_task_init(void) {
 
     // init client and init serial port
@@ -9,9 +11,6 @@ void app_task_init(void) {
 
     // EEPROM(NVS) init
     eeprom_init();
-
-    // task init lvgl
-    lvgl_task_init();
 }
 
 void setup() {
@@ -20,7 +19,7 @@ void setup() {
     wdt_set_disable();
 
     // tunr off the lcd and wait the logo is OK
-    tft_backlight_disable(); 
+    tft_lcd.tftBglightInit();
 
     // all task init here
     app_task_init();
@@ -32,13 +31,15 @@ void setup() {
     // lv_draw_test();
 
     // turn on the lcd and finish Init
-    tft_backlight_enable();
+
+    ui.lvglTaskInit();  
+
 }
 
 
 void loop() {
     // for grbl main
-    grbl_protocol_main_loop();
+    // grbl_protocol_main_loop();
 }
 
 
