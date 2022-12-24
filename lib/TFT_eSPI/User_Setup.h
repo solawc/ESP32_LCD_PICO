@@ -216,11 +216,11 @@
 #define TFT_MISO 19
 #define TFT_MOSI 23
 #define TFT_SCLK 18
-#define TFT_CS   25  // Chip select control pin
-#define TFT_DC   33  // Data Command control pin
-#define TFT_RST  27  // Reset pin (could connect to RST pin)
+#define TFT_CS   26  // Chip select control pin
+#define TFT_DC   25  // Data Command control pin
+#define TFT_RST  22  // Reset pin (could connect to RST pin)
 
-#define TOUCH_CS 26     // Chip select pin (T_CS) of touch screen
+#define TOUCH_CS 27     // Chip select pin (T_CS) of touch screen
 
 //#define TFT_WR 22    // Write strobe for modified Raspberry Pi TFT only
 
