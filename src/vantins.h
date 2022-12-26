@@ -3,10 +3,10 @@
 
 #include "main.h"
 
-#define EEPROM_VERSION      "20220511"
-#define BOARD_NAME          "ESP32_DW_MINI"
-#define FW_VERSION          "ESP_DW_V20220511_001"
-#define UPDATA_DATA         "2022-05-11"
+#define EEPROM_VERSION      "20221226"
+#define BOARD_NAME          "ESP32_LCD_PICO"
+#define FW_VERSION          "PICO_V20221226_001"
+#define UPDATA_DATA         "2022-12-26"
 
 /* for ESP32, main core is core 1 */
 #define SUPPORT_TASK_CORE 1  // Reference: CONFIG_ARDUINO_RUNNING_CORE = 1
