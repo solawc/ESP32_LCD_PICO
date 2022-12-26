@@ -116,7 +116,7 @@ void HAL_TFT_LCD::tftBglightBeginOn(void) {
 
 uint8_t HAL_TFT_LCD::tftTouchRead(uint16_t *xPos, uint16_t *yPos) {
 
-        uint16_t x_temp, y_temp;
+    uint16_t x_temp, y_temp;
         
     if(tft_lcd.touchType == TOUCH_TYPE_CAP) {
 

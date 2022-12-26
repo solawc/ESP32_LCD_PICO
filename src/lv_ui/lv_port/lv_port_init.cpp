@@ -4,6 +4,9 @@
 // #include "../../../libraries/lvgl/demos/lv_demos.h"
 // #include "../../WebUI/fs_api.h"
 
+#include "../../lib/lvgl/examples/lv_examples.h"
+#include "../../lib/lvgl/demos/lv_demos.h"
+
 volatile bool disp_flush_enabled = true;
 
 LVGL_UI ui;
@@ -28,11 +31,8 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
         uint32_t h = (area->y2 - area->y1 + 1);
 
         tft_lcd.tft.startWrite();
-
         tft_lcd.tft.setAddrWindow(area->x1, area->y1, w, h);
-        
         tft_lcd.tft.pushColorsDMA(&color_p->full, w * h, true);
-
         tft_lcd.tft.endWrite();
     }
 }
@@ -42,8 +42,10 @@ static void touchpad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
     uint16_t touchX=0, touchY=0;
     static uint16_t last_x = 0;
     static uint16_t last_y = 0;
-    // boolean touched = tft_lcd.tft.getTouch(&touchY, &touchX);
-    uint8_t touched = tft_lcd.tftTouchRead(&touchY, &touchX);
+
+    // uint8_t touched = tft_lcd.tftTouchRead(&touchY, &touchX);
+
+    uint8_t touched = false;
 
     if(touchX > 480) { touchX = 480; }
     if(touchY > 320) { touchY = 320; }
@@ -109,12 +111,11 @@ void LVGL_UI::lvglMutexLock(void) {
 }
 
 void LVGL_UI::lvglMutexUnlock(void) {
-
     xSemaphoreGive(lvglMutex);
 }
 
 void lvglTask(void *parg)  {
-    
+
     ui.lvglMutexInit();
     lv_init();
     tft_lcd.tft_init();                               

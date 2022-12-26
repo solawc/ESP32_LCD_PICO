@@ -811,7 +811,7 @@ bool TFT_eSPI::initDMA(bool ctrl_cs, transaction_cb_t trComplat)
     .flags = SPI_DEVICE_NO_DUMMY, //0,
     .queue_size = 1,
     .pre_cb = 0, //dc_callback, //Callback to handle D/C line
-    .post_cb = 0
+    .post_cb = trComplat // 0
   };
   ret = spi_bus_initialize(spi_host, &buscfg, DMA_CHANNEL);
   ESP_ERROR_CHECK(ret);
