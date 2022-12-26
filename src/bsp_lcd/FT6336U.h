@@ -80,11 +80,13 @@ typedef enum {
     stream, 
     release, 
 } TouchStatusEnum; 
+
 typedef struct {
     TouchStatusEnum status; 
     uint16_t x; 
     uint16_t y; 
 } TouchPointType;
+
 typedef struct {
     uint8_t touch_count; 
     TouchPointType tp[2]; 

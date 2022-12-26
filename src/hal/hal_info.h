@@ -4,17 +4,4 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void report_mcu_info(void);

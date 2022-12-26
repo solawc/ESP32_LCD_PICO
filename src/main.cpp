@@ -12,7 +12,7 @@ void app_task_init(void) {
 void setup() {
 
     // if any bug reset?
-    // wdt_set_disable();
+    wdt_set_disable();
 
     // tunr off the lcd and wait the logo is OK
     tft_lcd.tftBglightInit();

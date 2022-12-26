@@ -24,8 +24,8 @@ extern TFT_eSPI tft;
 #endif
 
 typedef enum {
-    TOUCH_TYPE_CAP,         // 电容屏类型
-    TOUCH_TYPE_RES,         // 电阻屏类型
+    TOUCH_TYPE_CAP = 0,         // TP as cap type.
+    TOUCH_TYPE_RES,             // TP as res type.
 }touch_type_t;
 
 typedef struct {
@@ -37,12 +37,11 @@ typedef struct {
 }tft_lcd_t;
 
 
-
 class HAL_TFT_LCD {
 
 private:
     FT6336U_TouchPointType      capTp;           /* Cap touch */
-    touch_type_t                touchType;
+    touch_type_t                touchType = DEFAULT_TOUCH_TYPE;
 public:
     TFT_eSPI tft = TFT_eSPI();
     void tft_init(void);
@@ -56,8 +55,5 @@ public:
 };
 
 extern HAL_TFT_LCD tft_lcd;
-
-
-
 
 #endif
