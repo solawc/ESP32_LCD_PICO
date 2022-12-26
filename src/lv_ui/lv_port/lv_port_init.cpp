@@ -43,9 +43,9 @@ static void touchpad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
     static uint16_t last_x = 0;
     static uint16_t last_y = 0;
 
-    // uint8_t touched = tft_lcd.tftTouchRead(&touchY, &touchX);
+    uint8_t touched = tft_lcd.tftTouchRead(&touchY, &touchX);
 
-    uint8_t touched = false;
+    // uint8_t touched = false;
 
     if(touchX > 480) { touchX = 480; }
     if(touchY > 320) { touchY = 320; }

@@ -118,23 +118,23 @@ uint8_t HAL_TFT_LCD::tftTouchRead(uint16_t *xPos, uint16_t *yPos) {
 
     uint16_t x_temp, y_temp;
         
-    if(tft_lcd.touchType == TOUCH_TYPE_CAP) {
+    // if(tft_lcd.touchType == TOUCH_TYPE_CAP) {
 
-        tft_lcd.capTp = ft6336u.scan(); 
+    //     tft_lcd.capTp = ft6336u.scan(); 
 
-        if(tft_lcd.capTp.tp[0].status != release ) {
+    //     if(tft_lcd.capTp.tp[0].status != release ) {
 
-            x_temp = tft_lcd.capTp.tp[0].x;
-            y_temp = tft_lcd.capTp.tp[0].y;
+    //         x_temp = tft_lcd.capTp.tp[0].x;
+    //         y_temp = tft_lcd.capTp.tp[0].y;
 
-            *xPos = x_temp;
-            *yPos = y_temp;
+    //         *xPos = x_temp;
+    //         *yPos = y_temp;
 
-            return true;
-        }else {
-            return false;
-        }
-    }else {
+    //         return true;
+    //     }else {
+    //         return false;
+    //     }
+    // }else {
         if(tft.getTouch(&y_temp, &x_temp) != false) {
             x_temp = 320 - x_temp;
             *xPos = x_temp;
@@ -144,7 +144,7 @@ uint8_t HAL_TFT_LCD::tftTouchRead(uint16_t *xPos, uint16_t *yPos) {
         else{
             return false;
         } 
-    }
+    // }
 }
 
 

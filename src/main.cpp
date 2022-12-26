@@ -1,9 +1,5 @@
 #include "main.h"
 
-
-
-
-
 void app_task_init(void) {
 
     // init client and init serial port
@@ -33,7 +29,6 @@ void setup() {
     // turn on the lcd and finish Init
 
     ui.lvglTaskInit();  
-
 }
 
 
