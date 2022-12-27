@@ -1,11 +1,10 @@
 #include "tft_lvgl_configurate.h"
 
-
-
 lv_ui_t lv_ui;
 
 void allStyleInit(void) {
-
+	
+	/* Settings bg color. */
 	lv_style_init(&lv_ui.main_style);
 	lv_style_set_bg_color(&lv_ui.main_style, lv_color_hex(MAIN_BG_COLOR));
 	lv_style_set_bg_opa(&lv_ui.main_style, LV_OPA_COVER);

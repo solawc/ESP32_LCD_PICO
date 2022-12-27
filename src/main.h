@@ -28,6 +28,7 @@
 #include "hal/hal_uart.h"
 #include "hal/hal_wdt.h"
 #include "hal/hal_info.h"
+#include "hal/hal_sdcard.h"
 
 #include "mid/serial.h"
 #include "mid/report.h"

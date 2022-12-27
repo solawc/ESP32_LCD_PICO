@@ -7,6 +7,14 @@ void app_task_init(void) {
 
     // EEPROM(NVS) init
     eeprom_init();
+
+    // SDCard init
+    #if (GRBL_SPI_SS != -1) || (GRBL_SPI_MISO != -1) || (GRBL_SPI_MOSI != -1) || (GRBL_SPI_SCK != -1)
+        SD_SPI.begin(GRBL_SPI_SCK, GRBL_SPI_MISO, GRBL_SPI_MOSI, GRBL_SPI_SS);
+    #endif
+
+    if(mysdcard.mount()) { serial_send(CLIENT_SERIAL, "SD mount succeed\n"); }
+    else { serial_send(CLIENT_SERIAL, "SD mount fail\n"); }
 }
 
 void setup() {
