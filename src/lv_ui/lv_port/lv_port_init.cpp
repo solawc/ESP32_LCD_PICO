@@ -45,8 +45,6 @@ static void touchpad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 
     uint8_t touched = tft_lcd.tftTouchRead(&touchY, &touchX);
 
-    // uint8_t touched = false;
-
     if(touchX > 480) { touchX = 480; }
     if(touchY > 320) { touchY = 320; }
 
@@ -95,6 +93,7 @@ void LVGL_UI::lvPortDispInit(void) {
 }
 
 void LVGL_UI::lvPortTouchInit(void) {
+
     static lv_indev_drv_t indev_drv;
     lv_indev_drv_init(&indev_drv);
     indev_drv.type = LV_INDEV_TYPE_POINTER;
@@ -137,6 +136,8 @@ void lvglTask(void *parg)  {
         vTaskDelay(1);                  /* 这里必须大于等于5ms */
     }
 }
+
+
 
 void LVGL_UI::lvglTaskInit(void) {
 

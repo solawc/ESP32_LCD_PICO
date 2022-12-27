@@ -62,6 +62,8 @@ uint8_t HAL_TFT_LCD::tftTouchRead(uint16_t *xPos, uint16_t *yPos) {
         
     if(tft_lcd.touchType == TOUCH_TYPE_CAP) {
 
+        serial_send(CLIENT_SERIAL, "enter CAP Touch\n");
+
         tft_lcd.capTp = ft6336u.scan(); 
 
         if(tft_lcd.capTp.tp[0].status != release ) {
@@ -77,7 +79,7 @@ uint8_t HAL_TFT_LCD::tftTouchRead(uint16_t *xPos, uint16_t *yPos) {
             return false;
         }
     }else {
-
+        serial_send(CLIENT_SERIAL, "enter RES Touch\n");
         if(tft.getTouch(&y_temp, &x_temp) != false) {
             x_temp = 320 - x_temp;
             *xPos = x_temp;
