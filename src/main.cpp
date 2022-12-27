@@ -6,7 +6,7 @@ void app_task_init(void) {
     client_init();
 
     // EEPROM(NVS) init
-    // eeprom_init();
+    eeprom_init();
 }
 
 void setup() {
