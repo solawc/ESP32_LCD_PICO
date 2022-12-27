@@ -8,12 +8,8 @@ uint32_t                   sd_current_line_number;     // stores the most recent
 // static char                comment[LINE_BUFFER_SIZE];  // Line to be executed. Zero-terminated.
 SDState sd_state =         SDState::Idle;
 
-#define USE_HSPI_FOR_SD 1
 #ifdef USE_HSPI_FOR_SD
-SPIClass SPI_H(HSPI);
-// #define SD_SPI SPI_H
-#else
-#define SD_SPI SPI
+    SPIClass SPI_H(HSPI);
 #endif
 
 const int UNDEFINED_PIN    = 255;

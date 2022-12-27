@@ -13,8 +13,15 @@
 #define SDCARD_DET_PIN 			            GPIO_NUM_36
 #define GRBL_SPI_FREQ 			            4000000        /* ESP32 LCD PICO MAX Speed is 27MHz. */
 
+
+#define USE_HSPI_FOR_SD 1
+#ifdef USE_HSPI_FOR_SD
 extern SPIClass SPI_H;
 #define SD_SPI SPI_H
+#else
+#define SD_SPI SPI
+#endif
+
 
 //#define SDCARD_DET_PIN -1
 const int SDCARD_DET_VAL = 0;  // for now, CD is close to ground
