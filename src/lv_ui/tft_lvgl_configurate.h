@@ -1,6 +1,10 @@
-#pragma once
+// #pragma once
+#ifndef __tft_lvgl_configurate_h
+#define __tft_lvgl_configurate_h
 
 #include "../main.h"
+
+#include "draw_ready.h"
 
 /* Theme Color */
 #define MAIN_BG_COLOR           		0x13121A
@@ -25,3 +29,5 @@ extern lv_ui_t lv_ui;
 
 
 void lvDrawLogo(void);
+
+#endif
