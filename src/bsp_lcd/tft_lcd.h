@@ -40,10 +40,12 @@ typedef struct {
 class HAL_TFT_LCD {
 
 private:
-    FT6336U_TouchPointType      capTp;           /* Cap touch */
+    FT6336U_TouchPointType      capTp;                                  /* Cap touch */
     touch_type_t                touchType = DEFAULT_TOUCH_TYPE;
 public:
+    
     TFT_eSPI tft = TFT_eSPI();
+    
     void tft_init(void);
 
     uint8_t tftTouchRead(uint16_t *xPos, uint16_t *yPos);
@@ -51,7 +53,7 @@ public:
     void tftBglightInit(void);
     void tftBglightSetOn(void);
     void tftBglightSetOff(void);
-    void tftBglightBeginOn(void);           /* 待实现背光渐变启动的功能 */ 
+    void tftBglightBeginOn(void);                                       /* 待实现背光渐变启动的功能 */ 
 };
 
 extern HAL_TFT_LCD tft_lcd;

@@ -3,6 +3,8 @@
 #include <driver/uart.h>
 #include <Stream.h>
 
+#define UART_BUFF_Q_SIZE            256
+
 // build a uart class
 class Uart : public Stream {
 
@@ -47,6 +49,7 @@ public:
     size_t        write(const char* text);
     void          flush() { uart_flush(_uart_num); }
     bool          flushTxTimed(TickType_t ticks);
+    uint32_t      getUartBaudRate(void);
 };
 
 extern Uart Uart0;

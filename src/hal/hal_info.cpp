@@ -7,14 +7,14 @@ void report_mcu_info(void) {
     lcd_controller_init();
     
     serial_send(CLIENT_ALL, "/**************************************************/\n");
-    serial_sendf(CLIENT_ALL, "         Board Support from Makerbase\n");
+    serial_sendf(CLIENT_ALL, "         Board Support from MakeGo\n");
     serial_sendf(CLIENT_ALL, "/*-Board Name:%s\n", BOARD_NAME);
     serial_sendf(CLIENT_ALL, "/*-Machine Axis Num:4\n");
     serial_sendf(CLIENT_ALL, "/*-Chip ID:%s\n", String((uint16_t)(ESP.getEfuseMac() >> 32)));
     serial_sendf(CLIENT_ALL, "/*-CPU Freq:%s\n", String(ESP.getCpuFreqMHz()) + "Mhz");
     serial_sendf(CLIENT_ALL, "/*-CPU SDK Version:%s\n", ESP.getSdkVersion());
-    serial_sendf(CLIENT_ALL, "/*-CPU Flah size:%dM\n", (ESP.getFlashChipSize()/1024)/1024);
-    serial_sendf(CLIENT_ALL, "/*-CPU Serial baud:%s\n", String((Serial.baudRate() / 100) * 100));
+    serial_sendf(CLIENT_ALL, "/*-CPU Flah size:%dM\n", (ESP.getFlashChipSize() / 1024) / 1024);
+    serial_sendf(CLIENT_ALL, "/*-CPU Serial baud:%d\n", Uart2.getUartBaudRate());
     serial_sendf(CLIENT_ALL, "/*-WIFI Mode:%s\n", WiFi.getSleep() ? "Modem" : "None");
     serial_sendf(CLIENT_ALL, "/*-FW Work Mode:CNC\n");
     serial_sendf(CLIENT_ALL, "/*-FW Version:%s\n", FW_VERSION);
@@ -22,4 +22,10 @@ void report_mcu_info(void) {
     serial_send(CLIENT_ALL, "/**************************************************/\n");
 }
 
+void serial_debug(const char* text) {
+    serial_send(CLIENT_SERIAL, text);
+}
 
+void serial_debug_f(uint8_t client, const char* format, ...) {
+    serial_sendf(CLIENT_SERIAL, format);
+}

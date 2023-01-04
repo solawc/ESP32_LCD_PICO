@@ -8,11 +8,13 @@ void app_task_init(void) {
     // EEPROM(NVS) init
     eeprom_init();
 
-    // SDCard init
+    // SDCard init                  
+    // mysdcard.cardInit();             // need check it, will reset machine.
     #if (GRBL_SPI_SS != -1) || (GRBL_SPI_MISO != -1) || (GRBL_SPI_MOSI != -1) || (GRBL_SPI_SCK != -1)
         SD_SPI.begin(GRBL_SPI_SCK, GRBL_SPI_MISO, GRBL_SPI_MOSI, GRBL_SPI_SS);
     #endif
 
+    // mount SDCard Fatfs
     if(mysdcard.mount()) { serial_send(CLIENT_SERIAL, "SD mount succeed\n"); }
     else { serial_send(CLIENT_SERIAL, "SD mount fail\n"); }
 }
@@ -35,13 +37,12 @@ void setup() {
     // lv_draw_test();
 
     // turn on the lcd and finish Init
-
     ui.lvglTaskInit();  
 }
 
 
 void loop() {
-    // for grbl main
+     
     // grbl_protocol_main_loop();
 }
 

@@ -3,13 +3,13 @@
 SDCard mysdcard;
 
 uint8_t                    SD_client     = CLIENT_SERIAL;
-// WebUI::AuthenticationLevel SD_auth_level = WebUI::AuthenticationLevel::LEVEL_GUEST;
 uint32_t                   sd_current_line_number;     // stores the most recent line number read from the SD
-// static char                comment[LINE_BUFFER_SIZE];  // Line to be executed. Zero-terminated.
 SDState sd_state =         SDState::Idle;
 
 #ifdef USE_HSPI_FOR_SD
     SPIClass SPI_H(HSPI);
+#else 
+    SPIClass SPI_L(VSPI);
 #endif
 
 const int UNDEFINED_PIN    = 255;
@@ -125,6 +125,12 @@ bool    SDCard::isDirectory(fs::FS& fs, const char* dirname){
     File root = fs.open(dirname);
     bool ret = root.isDirectory();
     return ret;
+}
+
+boolean SDCard::cardInit() {
+    #if (GRBL_SPI_SS != -1) || (GRBL_SPI_MISO != -1) || (GRBL_SPI_MOSI != -1) || (GRBL_SPI_SCK != -1)
+        SD_SPI.begin(GRBL_SPI_SCK, GRBL_SPI_MISO, GRBL_SPI_MOSI, GRBL_SPI_SS);
+    #endif
 }
 
 /* SD卡挂载 */

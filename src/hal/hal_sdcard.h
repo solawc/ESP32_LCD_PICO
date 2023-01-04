@@ -13,15 +13,13 @@
 #define SDCARD_DET_PIN 			            GPIO_NUM_36
 #define GRBL_SPI_FREQ 			            4000000        /* ESP32 LCD PICO MAX Speed is 27MHz. */
 
-
 #define USE_HSPI_FOR_SD 1
 #ifdef USE_HSPI_FOR_SD
 extern SPIClass SPI_H;
 #define SD_SPI SPI_H
 #else
-#define SD_SPI SPI
+#define SD_SPI SPI_L
 #endif
-
 
 //#define SDCARD_DET_PIN -1
 const int SDCARD_DET_VAL = 0;  // for now, CD is close to ground
@@ -37,7 +35,6 @@ enum class SDState : uint8_t {
 
 extern bool                       SD_ready_next;  // Grbl has processed a line and is waiting for another
 extern uint8_t                    SD_client;
-// extern WebUI::AuthenticationLevel SD_auth_level;
 extern uint32_t                   sd_current_line_number;
 
 #define SD_ROOT_PATH              "/sd"
@@ -45,7 +42,7 @@ extern uint32_t                   sd_current_line_number;
 
 
 
-class SDCard{
+class SDCard {
     typedef struct file_info_t
     {
         std::vector<std::string>   list;
@@ -62,7 +59,7 @@ private:
     FILE_INFO_T                fileList;
     std::string                currentDir;    
 public:
-
+    boolean  cardInit(void);
     boolean  mount(void);
     void     unmount(void);
     SDState  get_sd_state(bool refresh);

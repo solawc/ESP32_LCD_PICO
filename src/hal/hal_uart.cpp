@@ -6,12 +6,14 @@
 #include "soc/gpio_sig_map.h"
 #include "soc/dport_reg.h"
 #include "soc/rtc.h"
+#include "esp32-hal-uart.h"
 
 Uart::Uart(int uart_num) : _uart_num(uart_port_t(uart_num)), _pushback(-1) {}
 
 void Uart::begin(unsigned long baudrate, Data dataBits, Stop stopBits, Parity parity) {
-    //    uart_driver_delete(_uart_num);
+
     uart_config_t conf;
+
     conf.baud_rate           = baudrate;
     conf.data_bits           = uart_word_length_t(dataBits);
     conf.parity              = uart_parity_t(parity);
@@ -22,7 +24,8 @@ void Uart::begin(unsigned long baudrate, Data dataBits, Stop stopBits, Parity pa
     if (uart_param_config(_uart_num, &conf) != ESP_OK) {
         return;
     };
-    uart_driver_install(_uart_num, 256, 0, 0, NULL, 0);
+
+    uart_driver_install(_uart_num, UART_BUFF_Q_SIZE, 0, 0, NULL, 0);
 }
 
 
@@ -86,6 +89,15 @@ bool Uart::setPins(int tx_pin, int rx_pin, int rts_pin, int cts_pin) {
 }
 bool Uart::flushTxTimed(TickType_t ticks) {
     return uart_wait_tx_done(_uart_num, ticks) != ESP_OK;
+}
+
+uint32_t Uart::getUartBaudRate(void) {
+
+    uint32_t baudRate = 0;
+
+    uart_get_baudrate(_uart_num, &baudRate);
+
+    return baudRate;
 }
 
 Uart Uart0(0);

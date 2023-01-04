@@ -128,7 +128,6 @@ void lvglTask(void *parg)  {
     lvDrawLogo();
 #endif
 
-    // tft_lcd.tftBglightSetOn();
     while(1) {
         ui.lvglMutexLock();
         lv_task_handler();
