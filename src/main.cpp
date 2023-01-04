@@ -15,8 +15,8 @@ void app_task_init(void) {
     #endif
 
     // mount SDCard Fatfs
-    if(mysdcard.mount()) { serial_send(CLIENT_SERIAL, "SD mount succeed\n"); }
-    else { serial_send(CLIENT_SERIAL, "SD mount fail\n"); }
+    if(mysdcard.mount()) { debug_send(CLIENT_SERIAL, "SD mount succeed\n"); }
+    else { debug_send(CLIENT_SERIAL, "SD mount fail\n"); }
 }
 
 void setup() {
