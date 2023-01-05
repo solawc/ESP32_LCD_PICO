@@ -76,7 +76,7 @@ void esp32_spi_dma_init(bool ctrl_cs, transaction_cb_t trComplat) {
   };
 
   int8_t pin = -1;
-  if (ctrl_cs) pin = TFT_CS;
+  if (ctrl_cs) pin = LCD_SPI_CS;
 
   spi_device_interface_config_t devcfg = {
     .command_bits = 0,
@@ -92,13 +92,26 @@ void esp32_spi_dma_init(bool ctrl_cs, transaction_cb_t trComplat) {
     .flags = SPI_DEVICE_NO_DUMMY, //0,
     .queue_size = 1,
     .pre_cb = 0, //dc_callback, //Callback to handle D/C line
-    .post_cb = trComplat // 0
+    .post_cb = trComplat 
   };
 
   ret = spi_bus_initialize(spi_host_dma, &buscfg, LCD_SPI_DMA_CH);
   ESP_ERROR_CHECK(ret);
   ret = spi_bus_add_device(spi_host_dma, &devcfg, &dmaDevice);
   ESP_ERROR_CHECK(ret);
+}
+
+void tft_dma_wait() {
+
+    spi_transaction_t *rtrans;
+    esp_err_t ret;
+
+    // for (int i = 0; i < spiBusyCheck; ++i)
+    // {
+    //     ret = spi_device_get_trans_result(dmaDevice, &rtrans, portMAX_DELAY);
+    //     assert(ret == ESP_OK);
+    // }
+
 }
 
 void tft_begin_trans(void) {
