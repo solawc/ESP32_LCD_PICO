@@ -122,14 +122,16 @@ void lvglTask(void *parg)  {
     ui.lvPortTouchInit();
     // ui.lvPortFsInit();
 
-#if LV_USE_DEMO_STRESS
-    lv_demo_stress();
-#elif LV_USE_DEMO_MUSIC
-    lv_demo_music();
-#elif LV_USE_DEMO_BENCHMARK
-    lv_demo_benchmark();
-#elif LV_USE_DEMO_WIDGETS
-    lv_demo_widgets();
+#if LV_BUILD_EXAMPLES
+    #if LV_USE_DEMO_STRESS
+        lv_demo_stress();
+    #elif LV_USE_DEMO_MUSIC
+        lv_demo_music();
+    #elif LV_USE_DEMO_BENCHMARK
+        lv_demo_benchmark();
+    #elif LV_USE_DEMO_WIDGETS
+        lv_demo_widgets();
+    #endif
 #else 
     lvDrawLogo();
 #endif
