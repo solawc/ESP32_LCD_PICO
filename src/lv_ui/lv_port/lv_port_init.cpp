@@ -124,6 +124,12 @@ void lvglTask(void *parg)  {
 
 #if LV_USE_DEMO_STRESS
     lv_demo_stress();
+#elif LV_USE_DEMO_MUSIC
+    lv_demo_music();
+#elif LV_USE_DEMO_BENCHMARK
+    lv_demo_benchmark();
+#elif LV_USE_DEMO_WIDGETS
+    lv_demo_widgets();
 #else 
     lvDrawLogo();
 #endif
