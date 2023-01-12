@@ -1,9 +1,4 @@
 #include "lv_port_init.h"
-// #include "../tft_driver/tft_lcd.h"
-// #include "../../../libraries/lvgl/examples/lv_examples.h"
-// #include "../../../libraries/lvgl/demos/lv_demos.h"
-// #include "../../WebUI/fs_api.h"
-
 #include "../../lib/lvgl/examples/lv_examples.h"
 #include "../../lib/lvgl/demos/lv_demos.h"
 

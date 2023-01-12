@@ -28,8 +28,6 @@ private:
     SemaphoreHandle_t   lvglMutex           = NULL;         /* LVGL互斥锁 */
     lv_indev_t*         indev_touchpad;                     /* 注册Touch句柄 */
     lv_color_t          *DispBuff;                          /* A buffer for 10 rows */
-
-    
 public:
     lv_disp_drv_t       *dispHandler;
 
