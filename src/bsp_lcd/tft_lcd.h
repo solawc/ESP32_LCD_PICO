@@ -7,6 +7,8 @@
 
 extern TFT_eSPI tft;
 
+// #define USE_MY_TFT_DRIVER   
+
 #define LCD_EN		        GPIO_NUM_5    
 
 #define I2C_SDA             0

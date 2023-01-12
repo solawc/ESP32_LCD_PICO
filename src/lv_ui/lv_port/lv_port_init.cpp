@@ -29,11 +29,17 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 
         uint32_t w = (area->x2 - area->x1 + 1);
         uint32_t h = (area->y2 - area->y1 + 1);
-
+#ifndef USE_MY_TFT_DRIVER
         tft_lcd.tft.startWrite();
         tft_lcd.tft.setAddrWindow(area->x1, area->y1, w, h);
         tft_lcd.tft.pushColorsDMA(&color_p->full, w * h, true);
         tft_lcd.tft.endWrite();
+#else
+        tft_start_write();
+        tft_set_windows(area->x1, area->y1, w, h);
+        tft_trans_buff_dma(&color_p->full, w * h, true);
+        tft_end_write();
+#endif
     }
 }
 
@@ -117,9 +123,18 @@ void lvglTask(void *parg)  {
 
     ui.lvglMutexInit();
     lv_init();
-    tft_lcd.tft_init();                               
+
+#ifndef USE_MY_TFT_DRIVER
+    tft_lcd.tft_init();         
+#else
+    tft_begin();
+#endif
+
     ui.lvPortDispInit();
+
+#ifndef USE_MY_TFT_DRIVER
     ui.lvPortTouchInit();
+#endif
     // ui.lvPortFsInit();
 
 #if LV_BUILD_EXAMPLES

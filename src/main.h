@@ -24,6 +24,7 @@
 #include "vantins.h"
 #include "bsp_lcd/tft_lcd.h"
 #include "bsp_lcd/FT6336U.h"
+#include "bsp_lcd/esp32_tft_hal.h"
 
 #include "hal/hal_uart.h"
 #include "hal/hal_wdt.h"
