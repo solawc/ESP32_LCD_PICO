@@ -59,7 +59,7 @@ private:
     FILE_INFO_T                fileList;
     std::string                currentDir;    
 public:
-    boolean  cardInit(void);
+    void  cardInit(void);
     boolean  mount(void);
     void     unmount(void);
     SDState  get_sd_state(bool refresh);
