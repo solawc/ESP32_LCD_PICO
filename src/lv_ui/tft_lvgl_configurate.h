@@ -1,4 +1,3 @@
-// #pragma once
 #ifndef __tft_lvgl_configurate_h
 #define __tft_lvgl_configurate_h
 
@@ -7,11 +6,17 @@
 #include "draw_ready.h"
 
 /* Theme Color */
-#define MAIN_BG_COLOR           		0x13121A
+#define MAIN_BG_COLOR           		0x1D2333// 0x13121A
 #define SRC1_BG_COLOR          		 	0x1F2333
 
+/* Extern define pic */
+LV_IMG_DECLARE(mg_logo)
+LV_IMG_DECLARE(pic_control)
+LV_IMG_DECLARE(pic_engraving)
+LV_IMG_DECLARE(pic_tool)
+
 typedef struct {
-	lv_obj_t* 	mks_logo;
+	lv_obj_t* 	mg_logo;	
 	lv_obj_t* 	main_src;
 	lv_obj_t* 	src1;
 	lv_obj_t* 	src2;

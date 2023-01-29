@@ -21,7 +21,7 @@ void allStyleInit(void) {
 void drawLogoTaskCb(lv_timer_t*) {
 	tft_lcd.tftBglightSetOn();
 	delay(1000);
-	lv_obj_del(lv_ui.mks_logo);
+	lv_obj_del(lv_ui.mg_logo);
 	draw_ready();
 	lv_timer_del(lv_ui.timer_logo);
 }
@@ -37,8 +37,10 @@ void lvDrawLogo(void) {
 	lv_obj_remove_style_all(lv_ui.main_src);
 
 	/* Creat logo */
-	lv_ui.mks_logo = lv_img_create(lv_ui.main_src);
-	lv_img_set_src(lv_ui.mks_logo, "M:/mks_logo.bin");
+	lv_ui.mg_logo = lv_img_create(lv_ui.main_src);
+	// lv_img_set_src(lv_ui.mg_logo, "M:/mg_logo.bin");
+	lv_img_set_src(lv_ui.mg_logo, &mg_logo);
+	
 
 	// lv_example_btn_1();		// debug demo
 

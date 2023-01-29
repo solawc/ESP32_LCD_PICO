@@ -116,7 +116,9 @@ void LVGL_UI::lvglMutexUnlock(void) {
 
 void lvglTask(void *parg)  {
 
+    // init lvgl task mutex
     ui.lvglMutexInit();
+
     lv_init();
 
 #ifndef USE_MY_TFT_DRIVER
