@@ -28,7 +28,7 @@ typedef struct {
 	lv_timer_t* timer_logo;             // a timer to jump to draw_read()
 
 }lv_ui_t;
-extern lv_ui_t lv_ui;
+extern lv_ui_t test_lv_ui;
 
 
 
