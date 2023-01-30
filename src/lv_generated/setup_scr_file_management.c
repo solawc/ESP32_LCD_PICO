@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include "gui_guider.h"
 #include "events_init.h"
-#include "custom.h"
-#include "file_grid.h"
+#include "./custom/custom.h"
+#include "./custom/file_grid.h"
 
 
 void setup_scr_file_management(lv_ui *ui){

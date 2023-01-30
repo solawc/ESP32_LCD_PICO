@@ -8,8 +8,7 @@
 #include <stdio.h>
 #include "gui_guider.h"
 #include "events_init.h"
-#include "custom.h"
-
+#include "./custom/custom.h"
 
 void setup_scr_home(lv_ui *ui){
 
