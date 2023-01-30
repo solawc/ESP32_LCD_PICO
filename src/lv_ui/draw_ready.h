@@ -22,6 +22,8 @@ typedef struct {
     lv_style_t style_def;
     lv_style_t style_pr;
 
+    lv_style_t label_style;
+
 }src_ready_t;;
 
 void draw_ready(void);

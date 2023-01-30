@@ -6,7 +6,7 @@
 #include "draw_ready.h"
 
 /* Theme Color */
-#define MAIN_BG_COLOR           		0x1D2333// 0x13121A
+#define MAIN_BG_COLOR           		0x1D2332// 0x13121A
 #define SRC1_BG_COLOR          		 	0x1F2333
 
 /* Extern define pic */

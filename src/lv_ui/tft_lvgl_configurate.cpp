@@ -32,6 +32,8 @@ void lvDrawLogo(void) {
 
 	lv_ui.main_src = lv_obj_create(NULL);
 	lv_ui.main_src = lv_scr_act();
+
+	lv_obj_set_scrollbar_mode(lv_ui.main_src, LV_SCROLLBAR_MODE_OFF);
 	lv_obj_clear_flag(lv_ui.main_src, LV_OBJ_FLAG_SCROLLABLE);
 	lv_obj_set_size(lv_ui.main_src, 480, 320);
 	lv_obj_remove_style_all(lv_ui.main_src);
