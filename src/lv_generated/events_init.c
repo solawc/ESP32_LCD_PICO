@@ -7,7 +7,7 @@
 #include "events_init.h"
 #include <stdio.h>
 #include "lvgl.h"
-#include "custom.h"
+#include "./custom/custom.h"
 
 void events_init(lv_ui *ui)
 {

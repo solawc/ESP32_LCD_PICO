@@ -1,5 +1,5 @@
 #include "file_grid.h"
-#include "gui_guider.h"
+#include "../gui_guider.h"
 
 static void event_cb(lv_event_t* e){
     lv_event_code_t code = lv_event_get_code(e);
