@@ -1,5 +1,6 @@
 #pragma once
 
+#include "main.h"
 // Class for creating JSON-encoded strings.
 
 namespace WebUI {

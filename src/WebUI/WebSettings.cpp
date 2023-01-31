@@ -20,7 +20,7 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../Grbl.h"
+#include "main.h"
 
 #include <WiFi.h>
 #include <FS.h>
@@ -31,7 +31,8 @@
 #include "ESPResponse.h"
 #include "WebServer.h"
 #include <string.h>
-#include "../mks/draw_ui.h"
+#include "WebSettings.h"
+
 
 namespace WebUI {
 
@@ -102,7 +103,9 @@ namespace WebUI {
     StringSetting* notification_ts;
 #endif
 
+    #ifdef ENABLE_WIFI
     enum_opt_t onoffOptions = { { "OFF", 0 }, { "ON", 1 } };
+    #endif
 
     static ESPResponseStream* espresponse;
 
@@ -429,8 +432,8 @@ namespace WebUI {
         webPrintln("CPU Temperature: ", String(temperatureRead(), 1) + "C");
         webPrintln("Free memory: ", ESPResponseStream::formatBytes(ESP.getFreeHeap()));
         webPrintln("SDK: ", ESP.getSdkVersion());
-        webPrintln("Board Version: ", BOARD_VERSION); // mks fix
-        webPrintln("Firmware: ", FW_VERSION); // mks fix
+        // webPrintln("Board Version: ", BOARD_VERSION); // mks fix
+        // webPrintln("Firmware: ", FW_VERSION); // mks fix
         webPrintln("Flash Size: ", ESPResponseStream::formatBytes(ESP.getFlashChipSize()));
 
         // Round baudRate to nearest 100 because ESP32 can say e.g. 115201

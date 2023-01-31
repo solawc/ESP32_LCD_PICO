@@ -25,9 +25,9 @@ void draw_ready(void) {
     lv_obj_set_scrollbar_mode(src_ready.imgbtn_engraving,               // close imgbtn scrollbar mode.
                                 LV_SCROLLBAR_MODE_OFF);
     lv_imgbtn_set_src(src_ready.imgbtn_engraving, LV_IMGBTN_STATE_RELEASED, NULL, &pic_engraving, NULL);
-    lv_imgbtn_set_src(src_ready.imgbtn_engraving, LV_IMGBTN_STATE_PRESSED, NULL, &pic_engraving, NULL);
+    lv_imgbtn_set_src(src_ready.imgbtn_engraving, LV_IMGBTN_STATE_PRESSED,  NULL, &pic_engraving, NULL);
 	lv_imgbtn_set_src(src_ready.imgbtn_engraving, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, &pic_engraving, NULL);
-	lv_imgbtn_set_src(src_ready.imgbtn_engraving, LV_IMGBTN_STATE_CHECKED_PRESSED, NULL, &pic_engraving, NULL);
+	lv_imgbtn_set_src(src_ready.imgbtn_engraving, LV_IMGBTN_STATE_CHECKED_PRESSED,  NULL, &pic_engraving, NULL);
     lv_obj_add_flag(src_ready.imgbtn_engraving, LV_OBJ_FLAG_CHECKABLE);
     lv_obj_add_event_cb(src_ready.imgbtn_engraving, event_handler, LV_EVENT_ALL, NULL);
 
@@ -44,7 +44,6 @@ void draw_ready(void) {
                         &pic_tool, NULL, NULL);
     lv_obj_set_pos(src_ready.imgbtn_tool, 328, 112);
     lv_obj_add_event_cb(src_ready.imgbtn_tool, event_handler, LV_EVENT_ALL, NULL);
-
 
     // Label for engraving
     src_ready.label_engraving = lv_label_create(lv_ui.main_src);
@@ -96,9 +95,10 @@ void draw_ready(void) {
 	lv_style_set_pad_top(&src_ready.label_style, 8);
 	lv_style_set_pad_bottom(&src_ready.label_style, 0);
 
+    // add style to label.
 	lv_obj_add_style(src_ready.label_engraving, &src_ready.label_style, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_add_style(src_ready.label_control, &src_ready.label_style, LV_PART_MAIN|LV_STATE_DEFAULT);
-    lv_obj_add_style(src_ready.label_tool, &src_ready.label_style, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_add_style(src_ready.label_control,   &src_ready.label_style, LV_PART_MAIN|LV_STATE_DEFAULT);
+    lv_obj_add_style(src_ready.label_tool,      &src_ready.label_style, LV_PART_MAIN|LV_STATE_DEFAULT);
 }
 
 

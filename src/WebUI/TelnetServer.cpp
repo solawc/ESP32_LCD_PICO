@@ -18,7 +18,9 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-#include "../Grbl.h"
+// #include "../Grbl.h"
+#include "main.h"
+
 
 #if defined(ENABLE_WIFI) && defined(ENABLE_TELNET)
 
