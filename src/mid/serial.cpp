@@ -51,8 +51,7 @@ void client_reset_read_buffer(uint8_t client) {
 
 
 void client_init() {
-
-
+    
     Uart0.setPins(1, 3);  // Tx 1, Rx 3 - standard hardware pins
     Uart0.begin(BAUD_RATE, Uart::Data::Bits8, Uart::Stop::Bits1, Uart::Parity::None);
 
