@@ -876,38 +876,38 @@ style_engraving_page_label_2_main_main_default.set_pad_bottom(0)
 engraving_page_label_2.add_style(style_engraving_page_label_2_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create engraving_page_btn_5
-engraving_page_btn_5 = lv.btn(engraving_page)
-engraving_page_btn_5.set_pos(int(364),int(13))
-engraving_page_btn_5.set_size(100,50)
-engraving_page_btn_5.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-engraving_page_btn_5_label = lv.label(engraving_page_btn_5)
-engraving_page_btn_5_label.set_text("Back")
-engraving_page_btn_5.set_style_pad_all(0, lv.STATE.DEFAULT)
-engraving_page_btn_5_label.align(lv.ALIGN.CENTER,0,0)
-# create style style_engraving_page_btn_5_main_main_default
-style_engraving_page_btn_5_main_main_default = lv.style_t()
-style_engraving_page_btn_5_main_main_default.init()
-style_engraving_page_btn_5_main_main_default.set_radius(20)
-style_engraving_page_btn_5_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
-style_engraving_page_btn_5_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_page_btn_5_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_engraving_page_btn_5_main_main_default.set_bg_opa(255)
-style_engraving_page_btn_5_main_main_default.set_border_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_page_btn_5_main_main_default.set_border_width(1)
-style_engraving_page_btn_5_main_main_default.set_border_opa(255)
-style_engraving_page_btn_5_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create engraving_page_btn_back
+engraving_page_btn_back = lv.btn(engraving_page)
+engraving_page_btn_back.set_pos(int(364),int(13))
+engraving_page_btn_back.set_size(100,50)
+engraving_page_btn_back.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_btn_back_label = lv.label(engraving_page_btn_back)
+engraving_page_btn_back_label.set_text("Back")
+engraving_page_btn_back.set_style_pad_all(0, lv.STATE.DEFAULT)
+engraving_page_btn_back_label.align(lv.ALIGN.CENTER,0,0)
+# create style style_engraving_page_btn_back_main_main_default
+style_engraving_page_btn_back_main_main_default = lv.style_t()
+style_engraving_page_btn_back_main_main_default.init()
+style_engraving_page_btn_back_main_main_default.set_radius(20)
+style_engraving_page_btn_back_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
+style_engraving_page_btn_back_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_back_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_back_main_main_default.set_bg_opa(255)
+style_engraving_page_btn_back_main_main_default.set_border_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_back_main_main_default.set_border_width(1)
+style_engraving_page_btn_back_main_main_default.set_border_opa(255)
+style_engraving_page_btn_back_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_engraving_page_btn_5_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_engraving_page_btn_back_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_engraving_page_btn_5_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_engraving_page_btn_back_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_engraving_page_btn_5_main_main_default.set_text_font(lv.font_montserrat_16)
-style_engraving_page_btn_5_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+        style_engraving_page_btn_back_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_back_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
 
-# add style for engraving_page_btn_5
-engraving_page_btn_5.add_style(style_engraving_page_btn_5_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for engraving_page_btn_back
+engraving_page_btn_back.add_style(style_engraving_page_btn_back_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
 # create engraving_page_img_1
@@ -1144,11 +1144,11 @@ engraving_page_btn_9.add_style(style_engraving_page_btn_9_main_main_default, lv.
 
 
 
-def engraving_page_btn_5_released_1_event_cb(e,main_page):
+def engraving_page_btn_back_released_1_event_cb(e,main_page):
     src = e.get_target()
     code = e.get_code()
     lv.scr_load_anim(main_page, lv.SCR_LOAD_ANIM.OVER_RIGHT, 100, 100, False)
-engraving_page_btn_5.add_event_cb(lambda e: engraving_page_btn_5_released_1_event_cb(e,main_page), lv.EVENT.RELEASED, None)
+engraving_page_btn_back.add_event_cb(lambda e: engraving_page_btn_back_released_1_event_cb(e,main_page), lv.EVENT.RELEASED, None)
 
 
 def logo_page_pressed_1_event_cb(e,main_page):

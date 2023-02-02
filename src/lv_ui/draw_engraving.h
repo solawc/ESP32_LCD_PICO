@@ -25,5 +25,4 @@ typedef struct
 }src_engraving_t;
 
 void draw_engraving(void);
-void setup_scr_engraving_page(ui_t *ui);
 #endif

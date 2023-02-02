@@ -1,10 +1,6 @@
 #include "tft_lvgl_configurate.h"
 
 lv_ui_t lv_ui;
-ui_t my_ui;
-
-void init_scr_del_flag(ui_t *ui);
-void setup_ui(ui_t *ui);
 
 void allStyleInit(void) {
 	
@@ -22,72 +18,45 @@ void allStyleInit(void) {
 	lv_style_set_radius(&lv_ui.src1_style, 17);
 }
 
-extern void setup_scr_main_page(ui_t *ui);
 
 void drawLogoTaskCb(lv_timer_t*) {
 	tft_lcd.tftBglightSetOn();
-	// delay(1000);
-	// lv_obj_del(lv_ui.mg_logo);
-	// draw_ready();
-	lv_obj_t * act_scr = lv_scr_act();
-	lv_disp_t * d = lv_obj_get_disp(act_scr);
+	delay(1000);
+	lv_obj_del(lv_ui.mg_logo);
+	draw_ready();
 
-	if (d->prev_scr == NULL && (d->scr_to_load == NULL || d->scr_to_load == act_scr))
-		{
-			lv_obj_clean(act_scr);
-			if (my_ui.main_page_del == true)
-				setup_scr_main_page(&my_ui);
-			// lv_scr_load_anim(my_ui.main_page, LV_SCR_LOAD_ANIM_NONE, 100, 100, true);
-			my_ui.logo_page_del = true;
-		}
 
-	lv_timer_del(my_ui.timer_logo);
+	lv_timer_del(lv_ui.timer_logo);
 }
 
 void lv_example_btn_1(void);
 
 void lvDrawLogo(void) {
 
-	// lv_ui.main_src = lv_obj_create(NULL);
-	// lv_ui.main_src = lv_scr_act();
+	lv_ui.main_src = lv_obj_create(NULL);
+	lv_ui.main_src = lv_scr_act();
 
-	// lv_obj_set_scrollbar_mode(lv_ui.main_src, LV_SCROLLBAR_MODE_OFF);
-	// lv_obj_clear_flag(lv_ui.main_src, LV_OBJ_FLAG_SCROLLABLE);
-	// lv_obj_set_size(lv_ui.main_src, 480, 320);
-	// lv_obj_remove_style_all(lv_ui.main_src);
+	lv_obj_set_scrollbar_mode(lv_ui.main_src, LV_SCROLLBAR_MODE_OFF);
+	lv_obj_clear_flag(lv_ui.main_src, LV_OBJ_FLAG_SCROLLABLE);
+	lv_obj_set_size(lv_ui.main_src, 480, 320);
+	lv_obj_remove_style_all(lv_ui.main_src);
 
 	/* Creat logo */
-	// lv_ui.mg_logo = lv_img_create(lv_ui.main_src);
+	lv_ui.mg_logo = lv_img_create(lv_ui.main_src);
 	// lv_img_set_src(lv_ui.mg_logo, "M:/mg_logo.bin");
-	// lv_img_set_src(lv_ui.mg_logo, &mg_logo);
+	lv_img_set_src(lv_ui.mg_logo, &mg_logo);
 	
 
 	// lv_example_btn_1();		// debug demo
 
 	/* Init all style */
-	// allStyleInit();
+	allStyleInit();
 
 	/* Tick 2000ms */
-	// lv_ui.timer_logo = lv_timer_create(drawLogoTaskCb, 2000, NULL);
+	lv_ui.timer_logo = lv_timer_create(drawLogoTaskCb, 2000, NULL);
 
-	setup_ui(&my_ui);
+	// setup_ui(&my_ui);
 }
-
-void setup_scr_logo_page(ui_t *ui) { 
-
-	ui->logo_page = lv_obj_create(NULL);
-	ui->logo_page = lv_scr_act();
-
-	lv_obj_set_scrollbar_mode(ui->logo_page, LV_SCROLLBAR_MODE_OFF);
-	lv_obj_remove_style_all(ui->logo_page);
-
-	ui->mg_logo = lv_img_create(ui->logo_page);
-	// lv_img_set_src(lv_ui.mg_logo, "M:/mg_logo.bin");
-	lv_img_set_src(ui->mg_logo, &mg_logo);
-
-	ui->timer_logo = lv_timer_create(drawLogoTaskCb, 2000, NULL);
-}
-
 
 // static void event_handler(lv_event_t * e)
 // {
@@ -123,16 +92,4 @@ void setup_scr_logo_page(ui_t *ui) {
 //     lv_label_set_text(label, "Toggle");
 //     lv_obj_center(label);
 // }
-
-
-void init_scr_del_flag(ui_t *ui) {
-	ui->logo_page_del = true;
-	ui->main_page_del = true;
-	ui->engraving_page_del = true;
-}
-
-void setup_ui(ui_t *ui){
-	init_scr_del_flag(ui);
-	setup_scr_logo_page(ui);
-	lv_scr_load(ui->logo_page);
-}
+     

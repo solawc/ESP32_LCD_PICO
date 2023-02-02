@@ -30,53 +30,6 @@ typedef struct {
 }lv_ui_t;
 extern lv_ui_t lv_ui;
 
-typedef struct {
-
-	lv_timer_t* timer_logo;
-	lv_obj_t* 	mg_logo;	
-
-	lv_obj_t *logo_page;
-	bool logo_page_del;
-	lv_obj_t *logo_page_logo_label;
-	lv_obj_t *main_page;
-	bool main_page_del;
-	lv_obj_t *main_page_imgbtn_1;
-	lv_obj_t *main_page_imgbtn_1_label;
-	lv_obj_t *main_page_imgbtn_2;
-	lv_obj_t *main_page_imgbtn_2_label;
-	lv_obj_t *main_page_imgbtn_3;
-	lv_obj_t *main_page_imgbtn_3_label;
-	lv_obj_t *main_page_label_1;
-	lv_obj_t *main_page_label_2;
-	lv_obj_t *main_page_label_3;
-	lv_obj_t *engraving_page;
-	bool engraving_page_del;
-	lv_obj_t *engraving_page_btn_frame;
-	lv_obj_t *engraving_page_btn_frame_label;
-	lv_obj_t *engraving_page_btn_home;
-	lv_obj_t *engraving_page_btn_home_label;
-	lv_obj_t *engraving_page_btn_position;
-	lv_obj_t *engraving_page_btn_position_label;
-	lv_obj_t *engraving_page_btn_start;
-	lv_obj_t *engraving_page_btn_start_label;
-	lv_obj_t *engraving_page_label_1;
-	lv_obj_t *engraving_page_label_2;
-	lv_obj_t *engraving_page_btn_5;
-	lv_obj_t *engraving_page_btn_5_label;
-	lv_obj_t *engraving_page_img_1;
-	lv_obj_t *engraving_page_imgbtn_1;
-	lv_obj_t *engraving_page_imgbtn_1_label;
-	lv_obj_t *engraving_page_btn_6;
-	lv_obj_t *engraving_page_btn_6_label;
-	lv_obj_t *engraving_page_btn_7;
-	lv_obj_t *engraving_page_btn_7_label;
-	lv_obj_t *engraving_page_btn_8;
-	lv_obj_t *engraving_page_btn_8_label;
-	lv_obj_t *engraving_page_btn_9;
-	lv_obj_t *engraving_page_btn_9_label;
-	
-}ui_t;
-extern ui_t my_ui;
 
 #include "draw_ready.h"
 #include "draw_engraving.h"

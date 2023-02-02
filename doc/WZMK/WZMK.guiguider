@@ -177,6 +177,7 @@
 			"list": [
 				{
 					"name": "logo_label",
+					"id": "3o2j3j3f",
 					"type": "label",
 					"left": 155,
 					"top": 133,
@@ -244,8 +245,7 @@
 							"shadow_ofs_x": 0,
 							"shadow_ofs_y": 0
 						}
-					],
-					"id": "3o2j3j3f"
+					]
 				}
 			],
 			"event": [
@@ -948,6 +948,7 @@
 			"list": [
 				{
 					"name": "btn_9",
+					"id": "zlkgvrri",
 					"type": "btn",
 					"left": 157,
 					"top": 127,
@@ -1078,11 +1079,11 @@
 							"font_family": "montserratMedium",
 							"text_color": "#000000"
 						}
-					],
-					"id": "zlkgvrri"
+					]
 				},
 				{
 					"name": "btn_8",
+					"id": "xxpxl6q5",
 					"type": "btn",
 					"left": 30,
 					"top": 127,
@@ -1213,11 +1214,11 @@
 							"font_family": "montserratMedium",
 							"text_color": "#000000"
 						}
-					],
-					"id": "xxpxl6q5"
+					]
 				},
 				{
 					"name": "btn_7",
+					"id": "n9bsyijj",
 					"type": "btn",
 					"left": 75,
 					"top": 196,
@@ -1348,11 +1349,11 @@
 							"font_family": "montserratMedium",
 							"text_color": "#000000"
 						}
-					],
-					"id": "n9bsyijj"
+					]
 				},
 				{
 					"name": "btn_6",
+					"id": "e7ol658a",
 					"type": "btn",
 					"left": 75,
 					"top": 70,
@@ -1483,11 +1484,11 @@
 							"font_family": "montserratMedium",
 							"text_color": "#000000"
 						}
-					],
-					"id": "e7ol658a"
+					]
 				},
 				{
 					"name": "imgbtn_1",
+					"id": "ayem5x6f",
 					"type": "imgbtn",
 					"left": 11,
 					"top": 262,
@@ -1563,11 +1564,11 @@
 							"shadow_ofs_x": 0,
 							"shadow_ofs_y": 0
 						}
-					],
-					"id": "ayem5x6f"
+					]
 				},
 				{
 					"name": "img_1",
+					"id": "96rumy8k",
 					"type": "img",
 					"left": 30,
 					"top": 62,
@@ -1597,11 +1598,10 @@
 							"image_recolor_opa": 0,
 							"image_opa": 255
 						}
-					],
-					"id": "96rumy8k"
+					]
 				},
 				{
-					"name": "btn_5",
+					"name": "btn_back",
 					"id": "65rerrs4",
 					"type": "btn",
 					"left": 364,
@@ -3925,7 +3925,7 @@
 						]
 					},
 					{
-						"name": "engraving_page_btn_5",
+						"name": "engraving_page_btn_back",
 						"id": "65rerrs4",
 						"type": "btn",
 						"scrollbar_mode": "OFF",
@@ -4809,7 +4809,7 @@
 				"is_del": true
 			},
 			{
-				"src": "engraving_page_btn_5",
+				"src": "engraving_page_btn_back",
 				"trigger": "released",
 				"dst": "main_page",
 				"action": "load_screen",

@@ -10,12 +10,14 @@
 extern "C" {
 #endif
 
+#define LV_CONF_INCLUDE_SIMPLE
+
 /***************************
  * CURRENT VERSION OF LVGL
  ***************************/
 #define LVGL_VERSION_MAJOR 8
 #define LVGL_VERSION_MINOR 3
-#define LVGL_VERSION_PATCH 1
+#define LVGL_VERSION_PATCH 3
 #define LVGL_VERSION_INFO ""
 
 /*********************

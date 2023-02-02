@@ -41,8 +41,8 @@ typedef struct
 	lv_obj_t *engraving_page_btn_start_label;
 	lv_obj_t *engraving_page_label_1;
 	lv_obj_t *engraving_page_label_2;
-	lv_obj_t *engraving_page_btn_5;
-	lv_obj_t *engraving_page_btn_5_label;
+	lv_obj_t *engraving_page_btn_back;
+	lv_obj_t *engraving_page_btn_back_label;
 	lv_obj_t *engraving_page_img_1;
 	lv_obj_t *engraving_page_imgbtn_1;
 	lv_obj_t *engraving_page_imgbtn_1_label;

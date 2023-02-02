@@ -75,7 +75,7 @@ void events_init_main_page(lv_ui *ui)
 	lv_obj_add_event_cb(ui->main_page_imgbtn_1, main_page_imgbtn_1_event_handler, LV_EVENT_ALL, ui);
 }
 
-static void engraving_page_btn_5_event_handler(lv_event_t *e)
+static void engraving_page_btn_back_event_handler(lv_event_t *e)
 {
 	lv_event_code_t code = lv_event_get_code(e);
 	switch (code)
@@ -101,5 +101,5 @@ static void engraving_page_btn_5_event_handler(lv_event_t *e)
 
 void events_init_engraving_page(lv_ui *ui)
 {
-	lv_obj_add_event_cb(ui->engraving_page_btn_5, engraving_page_btn_5_event_handler, LV_EVENT_ALL, ui);
+	lv_obj_add_event_cb(ui->engraving_page_btn_back, engraving_page_btn_back_event_handler, LV_EVENT_ALL, ui);
 }
