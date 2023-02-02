@@ -15,8 +15,9 @@ extern "C" {
 
 void events_init(lv_ui *ui);
 void video_play(lv_ui *ui);
-void events_init_screen(lv_ui *ui);
-void events_init_Engraving(lv_ui *ui);
+void events_init_logo_page(lv_ui *ui);
+void events_init_main_page(lv_ui *ui);
+void events_init_engraving_page(lv_ui *ui);
 
 #ifdef __cplusplus
 }

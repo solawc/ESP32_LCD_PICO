@@ -10,12 +10,13 @@
 
 
 void init_scr_del_flag(lv_ui *ui){
-	ui->screen_del = true;
-	ui->Engraving_del = true;
+	ui->logo_page_del = true;
+	ui->main_page_del = true;
+	ui->engraving_page_del = true;
 }
 
 void setup_ui(lv_ui *ui){
 	init_scr_del_flag(ui);
-	setup_scr_screen(ui);
-	lv_scr_load(ui->screen);
+	setup_scr_logo_page(ui);
+	lv_scr_load(ui->logo_page);
 }

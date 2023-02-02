@@ -17,7 +17,36 @@ void video_play(lv_ui *ui)
 
 }
 
-static void screen_imgbtn_1_event_handler(lv_event_t *e)
+static void logo_page_event_handler(lv_event_t *e)
+{
+	lv_event_code_t code = lv_event_get_code(e);
+	switch (code)
+	{
+	case LV_EVENT_PRESSED:
+	{
+		lv_obj_t * act_scr = lv_scr_act();
+		lv_disp_t * d = lv_obj_get_disp(act_scr);
+		if (d->prev_scr == NULL && (d->scr_to_load == NULL || d->scr_to_load == act_scr))
+		{
+			lv_obj_clean(act_scr);
+			if (guider_ui.main_page_del == true)
+				setup_scr_main_page(&guider_ui);
+			lv_scr_load_anim(guider_ui.main_page, LV_SCR_LOAD_ANIM_NONE, 100, 100, true);
+			guider_ui.logo_page_del = true;
+		}
+	}
+		break;
+	default:
+		break;
+	}
+}
+
+void events_init_logo_page(lv_ui *ui)
+{
+	lv_obj_add_event_cb(ui->logo_page, logo_page_event_handler, LV_EVENT_ALL, ui);
+}
+
+static void main_page_imgbtn_1_event_handler(lv_event_t *e)
 {
 	lv_event_code_t code = lv_event_get_code(e);
 	switch (code)
@@ -29,10 +58,10 @@ static void screen_imgbtn_1_event_handler(lv_event_t *e)
 		if (d->prev_scr == NULL && (d->scr_to_load == NULL || d->scr_to_load == act_scr))
 		{
 			lv_obj_clean(act_scr);
-			if (guider_ui.Engraving_del == true)
-				setup_scr_Engraving(&guider_ui);
-			lv_scr_load_anim(guider_ui.Engraving, LV_SCR_LOAD_ANIM_OVER_LEFT, 100, 100, true);
-			guider_ui.screen_del = true;
+			if (guider_ui.engraving_page_del == true)
+				setup_scr_engraving_page(&guider_ui);
+			lv_scr_load_anim(guider_ui.engraving_page, LV_SCR_LOAD_ANIM_OVER_LEFT, 100, 100, true);
+			guider_ui.main_page_del = true;
 		}
 	}
 		break;
@@ -41,12 +70,12 @@ static void screen_imgbtn_1_event_handler(lv_event_t *e)
 	}
 }
 
-void events_init_screen(lv_ui *ui)
+void events_init_main_page(lv_ui *ui)
 {
-	lv_obj_add_event_cb(ui->screen_imgbtn_1, screen_imgbtn_1_event_handler, LV_EVENT_ALL, ui);
+	lv_obj_add_event_cb(ui->main_page_imgbtn_1, main_page_imgbtn_1_event_handler, LV_EVENT_ALL, ui);
 }
 
-static void Engraving_btn_5_event_handler(lv_event_t *e)
+static void engraving_page_btn_5_event_handler(lv_event_t *e)
 {
 	lv_event_code_t code = lv_event_get_code(e);
 	switch (code)
@@ -58,10 +87,10 @@ static void Engraving_btn_5_event_handler(lv_event_t *e)
 		if (d->prev_scr == NULL && (d->scr_to_load == NULL || d->scr_to_load == act_scr))
 		{
 			lv_obj_clean(act_scr);
-			if (guider_ui.screen_del == true)
-				setup_scr_screen(&guider_ui);
-			lv_scr_load_anim(guider_ui.screen, LV_SCR_LOAD_ANIM_OVER_RIGHT, 100, 100, true);
-			guider_ui.Engraving_del = true;
+			if (guider_ui.main_page_del == true)
+				setup_scr_main_page(&guider_ui);
+			lv_scr_load_anim(guider_ui.main_page, LV_SCR_LOAD_ANIM_OVER_RIGHT, 100, 100, true);
+			guider_ui.engraving_page_del = true;
 		}
 	}
 		break;
@@ -70,7 +99,7 @@ static void Engraving_btn_5_event_handler(lv_event_t *e)
 	}
 }
 
-void events_init_Engraving(lv_ui *ui)
+void events_init_engraving_page(lv_ui *ui)
 {
-	lv_obj_add_event_cb(ui->Engraving_btn_5, Engraving_btn_5_event_handler, LV_EVENT_ALL, ui);
+	lv_obj_add_event_cb(ui->engraving_page_btn_5, engraving_page_btn_5_event_handler, LV_EVENT_ALL, ui);
 }

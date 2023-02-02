@@ -15,41 +15,58 @@ extern "C" {
 
 typedef struct
 {
-	lv_obj_t *screen;
-	bool screen_del;
-	lv_obj_t *screen_imgbtn_1;
-	lv_obj_t *screen_imgbtn_1_label;
-	lv_obj_t *screen_imgbtn_2;
-	lv_obj_t *screen_imgbtn_2_label;
-	lv_obj_t *screen_imgbtn_3;
-	lv_obj_t *screen_imgbtn_3_label;
-	lv_obj_t *screen_label_1;
-	lv_obj_t *screen_label_2;
-	lv_obj_t *screen_label_3;
-	lv_obj_t *Engraving;
-	bool Engraving_del;
-	lv_obj_t *Engraving_btn_1;
-	lv_obj_t *Engraving_btn_1_label;
-	lv_obj_t *Engraving_btn_2;
-	lv_obj_t *Engraving_btn_2_label;
-	lv_obj_t *Engraving_btn_3;
-	lv_obj_t *Engraving_btn_3_label;
-	lv_obj_t *Engraving_btn_4;
-	lv_obj_t *Engraving_btn_4_label;
-	lv_obj_t *Engraving_label_1;
-	lv_obj_t *Engraving_label_2;
-	lv_obj_t *Engraving_btn_5;
-	lv_obj_t *Engraving_btn_5_label;
+	lv_obj_t *logo_page;
+	bool logo_page_del;
+	lv_obj_t *logo_page_logo_label;
+	lv_obj_t *main_page;
+	bool main_page_del;
+	lv_obj_t *main_page_imgbtn_1;
+	lv_obj_t *main_page_imgbtn_1_label;
+	lv_obj_t *main_page_imgbtn_2;
+	lv_obj_t *main_page_imgbtn_2_label;
+	lv_obj_t *main_page_imgbtn_3;
+	lv_obj_t *main_page_imgbtn_3_label;
+	lv_obj_t *main_page_label_1;
+	lv_obj_t *main_page_label_2;
+	lv_obj_t *main_page_label_3;
+	lv_obj_t *engraving_page;
+	bool engraving_page_del;
+	lv_obj_t *engraving_page_btn_frame;
+	lv_obj_t *engraving_page_btn_frame_label;
+	lv_obj_t *engraving_page_btn_home;
+	lv_obj_t *engraving_page_btn_home_label;
+	lv_obj_t *engraving_page_btn_position;
+	lv_obj_t *engraving_page_btn_position_label;
+	lv_obj_t *engraving_page_btn_start;
+	lv_obj_t *engraving_page_btn_start_label;
+	lv_obj_t *engraving_page_label_1;
+	lv_obj_t *engraving_page_label_2;
+	lv_obj_t *engraving_page_btn_5;
+	lv_obj_t *engraving_page_btn_5_label;
+	lv_obj_t *engraving_page_img_1;
+	lv_obj_t *engraving_page_imgbtn_1;
+	lv_obj_t *engraving_page_imgbtn_1_label;
+	lv_obj_t *engraving_page_btn_6;
+	lv_obj_t *engraving_page_btn_6_label;
+	lv_obj_t *engraving_page_btn_7;
+	lv_obj_t *engraving_page_btn_7_label;
+	lv_obj_t *engraving_page_btn_8;
+	lv_obj_t *engraving_page_btn_8_label;
+	lv_obj_t *engraving_page_btn_9;
+	lv_obj_t *engraving_page_btn_9_label;
 }lv_ui;
 
 void init_scr_del_flag(lv_ui *ui);
 void setup_ui(lv_ui *ui);
 extern lv_ui guider_ui;
-void setup_scr_screen(lv_ui *ui);
-void setup_scr_Engraving(lv_ui *ui);
+void setup_scr_logo_page(lv_ui *ui);
+void setup_scr_main_page(lv_ui *ui);
+void setup_scr_engraving_page(lv_ui *ui);
 LV_IMG_DECLARE(_pic_control_alpha_114x114);
+LV_IMG_DECLARE(_png_move_step_10mm_alpha_222x38);
 LV_IMG_DECLARE(_pic_engraving_114x114);
 LV_IMG_DECLARE(_pic_tool_alpha_114x114);
+LV_IMG_DECLARE(_move_184x185);
 
 #ifdef __cplusplus
 }

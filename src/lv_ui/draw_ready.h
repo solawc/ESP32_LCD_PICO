@@ -2,6 +2,7 @@
 #define __draw_ready_h
 
 #include "../main.h"
+#include "tft_lvgl_configurate.h"
 
 typedef struct {
 

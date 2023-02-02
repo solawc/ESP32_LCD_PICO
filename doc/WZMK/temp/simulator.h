@@ -63,7 +63,7 @@
  *====================*/
 
 /*Default display refresh period in milliseconds. LVG will redraw changed areas with this period time*/
-#define LV_DISP_DEF_REFR_PERIOD 30
+#define LV_DISP_DEF_REFR_PERIOD 10
 
 /*Input device read period in milliseconds*/
 #define LV_INDEV_DEF_READ_PERIOD 30
@@ -228,7 +228,7 @@
  *-----------*/
 
 /*1: Show CPU usage and FPS count*/
-#define LV_USE_PERF_MONITOR 0
+#define LV_USE_PERF_MONITOR 1
 #if LV_USE_PERF_MONITOR
 #define LV_USE_PERF_MONITOR_POS LV_ALIGN_BOTTOM_RIGHT
 #endif    /* LV_USE_PERF_MONITOR */
@@ -573,7 +573,7 @@
 #define LV_USE_FS_STDIO 0
 #if LV_USE_FS_STDIO
 /*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/
-#define LV_FS_STDIO_LETTER 'C'
+#define LV_FS_STDIO_LETTER 'E'
 /*Set the working directory. File/directory paths will be appended to it.*/
 #define LV_FS_STDIO_PATH ""
 /*>0 to cache this number of bytes in lv_fs_read()*/

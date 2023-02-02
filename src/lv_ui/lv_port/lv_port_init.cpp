@@ -156,8 +156,6 @@ void lvglTask(void *parg)  {
     }
 }
 
-
-
 void LVGL_UI::lvglTaskInit(void) {
 
     xTaskCreatePinnedToCore(lvglTask,     // task

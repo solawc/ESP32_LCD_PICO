@@ -134,754 +134,1042 @@ def ta_event_cb(e,kb):
 
 
 
-# create screen
-screen = lv.obj()
-screen.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-# create style style_screen_main_main_default
-style_screen_main_main_default = lv.style_t()
-style_screen_main_main_default.init()
-style_screen_main_main_default.set_bg_color(lv.color_make(0x1D,0x23,0x32))
-style_screen_main_main_default.set_bg_opa(255)
+# create logo_page
+logo_page = lv.obj()
+logo_page.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create style style_logo_page_main_main_default
+style_logo_page_main_main_default = lv.style_t()
+style_logo_page_main_main_default.init()
+style_logo_page_main_main_default.set_bg_color(lv.color_make(0xFF,0xFF,0xFf))
+style_logo_page_main_main_default.set_bg_opa(255)
 
-# add style for screen
-screen.add_style(style_screen_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for logo_page
+logo_page.add_style(style_logo_page_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create screen_imgbtn_1
-screen_imgbtn_1 = lv.imgbtn(screen)
-screen_imgbtn_1.set_pos(int(38),int(112))
-screen_imgbtn_1.set_size(114,114)
-screen_imgbtn_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create logo_page_logo_label
+logo_page_logo_label = lv.label(logo_page)
+logo_page_logo_label.set_pos(int(155),int(133))
+logo_page_logo_label.set_size(186,45)
+logo_page_logo_label.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+logo_page_logo_label.set_text("MakeGo")
+logo_page_logo_label.set_long_mode(lv.label.LONG.WRAP)
+# create style style_logo_page_logo_label_main_main_default
+style_logo_page_logo_label_main_main_default = lv.style_t()
+style_logo_page_logo_label_main_main_default.init()
+style_logo_page_logo_label_main_main_default.set_radius(0)
+style_logo_page_logo_label_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_logo_page_logo_label_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_logo_page_logo_label_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_logo_page_logo_label_main_main_default.set_bg_opa(255)
+style_logo_page_logo_label_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp1257269981.png','rb') as f:
-        screen_imgbtn_1_imgReleased_data = f.read()
+    style_logo_page_logo_label_main_main_default.set_text_font(lv.font_montserratMedium_20)
+except AttributeError:
+    try:
+        style_logo_page_logo_label_main_main_default.set_text_font(lv.font_montserrat_20)
+    except AttributeError:
+        style_logo_page_logo_label_main_main_default.set_text_font(lv.font_montserrat_16)
+style_logo_page_logo_label_main_main_default.set_text_letter_space(2)
+style_logo_page_logo_label_main_main_default.set_text_line_space(0)
+style_logo_page_logo_label_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+style_logo_page_logo_label_main_main_default.set_pad_left(0)
+style_logo_page_logo_label_main_main_default.set_pad_right(0)
+style_logo_page_logo_label_main_main_default.set_pad_top(8)
+style_logo_page_logo_label_main_main_default.set_pad_bottom(0)
+
+# add style for logo_page_logo_label
+logo_page_logo_label.add_style(style_logo_page_logo_label_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+# create main_page
+main_page = lv.obj()
+main_page.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create style style_main_page_main_main_default
+style_main_page_main_main_default = lv.style_t()
+style_main_page_main_main_default.init()
+style_main_page_main_main_default.set_bg_color(lv.color_make(0x1D,0x23,0x32))
+style_main_page_main_main_default.set_bg_opa(255)
+
+# add style for main_page
+main_page.add_style(style_main_page_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+# create main_page_imgbtn_1
+main_page_imgbtn_1 = lv.imgbtn(main_page)
+main_page_imgbtn_1.set_pos(int(38),int(112))
+main_page_imgbtn_1.set_size(114,114)
+main_page_imgbtn_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+try:
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp793593209.png','rb') as f:
+        main_page_imgbtn_1_imgReleased_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp1257269981.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp793593209.png')
     sys.exit()
 
-screen_imgbtn_1_imgReleased = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_1_imgReleased_data),
+main_page_imgbtn_1_imgReleased = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_1_imgReleased_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR},
-  'data': screen_imgbtn_1_imgReleased_data
+  'data': main_page_imgbtn_1_imgReleased_data
 })
-screen_imgbtn_1.set_src(lv.imgbtn.STATE.RELEASED, None, screen_imgbtn_1_imgReleased, None)
+main_page_imgbtn_1.set_src(lv.imgbtn.STATE.RELEASED, None, main_page_imgbtn_1_imgReleased, None)
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp1257269981.png','rb') as f:
-        screen_imgbtn_1_imgPressed_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp793593209.png','rb') as f:
+        main_page_imgbtn_1_imgPressed_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp1257269981.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp793593209.png')
     sys.exit()
 
-screen_imgbtn_1_imgPressed = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_1_imgPressed_data),
+main_page_imgbtn_1_imgPressed = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_1_imgPressed_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR},
-  'data': screen_imgbtn_1_imgPressed_data
+  'data': main_page_imgbtn_1_imgPressed_data
 })
-screen_imgbtn_1.set_src(lv.imgbtn.STATE.PRESSED, None, screen_imgbtn_1_imgPressed, None)
+main_page_imgbtn_1.set_src(lv.imgbtn.STATE.PRESSED, None, main_page_imgbtn_1_imgPressed, None)
 
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp1257269981.png','rb') as f:
-        screen_imgbtn_1_imgCheckedReleased_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp793593209.png','rb') as f:
+        main_page_imgbtn_1_imgCheckedReleased_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp1257269981.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp793593209.png')
     sys.exit()
 
-screen_imgbtn_1_imgCheckedReleased = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_1_imgCheckedReleased_data),
+main_page_imgbtn_1_imgCheckedReleased = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_1_imgCheckedReleased_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR},
-  'data': screen_imgbtn_1_imgCheckedReleased_data
+  'data': main_page_imgbtn_1_imgCheckedReleased_data
 })
-screen_imgbtn_1.set_src(lv.imgbtn.STATE.CHECKED_RELEASED, None, screen_imgbtn_1_imgCheckedReleased, None)
+main_page_imgbtn_1.set_src(lv.imgbtn.STATE.CHECKED_RELEASED, None, main_page_imgbtn_1_imgCheckedReleased, None)
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp1257269981.png','rb') as f:
-        screen_imgbtn_1_imgCheckedPressed_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp793593209.png','rb') as f:
+        main_page_imgbtn_1_imgCheckedPressed_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp1257269981.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp793593209.png')
     sys.exit()
 
-screen_imgbtn_1_imgCheckedPressed = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_1_imgCheckedPressed_data),
+main_page_imgbtn_1_imgCheckedPressed = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_1_imgCheckedPressed_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR},
-  'data': screen_imgbtn_1_imgCheckedPressed_data
+  'data': main_page_imgbtn_1_imgCheckedPressed_data
 })
-screen_imgbtn_1.set_src(lv.imgbtn.STATE.CHECKED_PRESSED, None, screen_imgbtn_1_imgCheckedPressed, None)
+main_page_imgbtn_1.set_src(lv.imgbtn.STATE.CHECKED_PRESSED, None, main_page_imgbtn_1_imgCheckedPressed, None)
 
-screen_imgbtn_1.add_flag(lv.obj.FLAG.CHECKABLE)
-# create style style_screen_imgbtn_1_main_main_default
-style_screen_imgbtn_1_main_main_default = lv.style_t()
-style_screen_imgbtn_1_main_main_default.init()
-style_screen_imgbtn_1_main_main_default.set_text_color(lv.color_make(0xee,0xe1,0xe1))
+main_page_imgbtn_1.add_flag(lv.obj.FLAG.CHECKABLE)
+# create style style_main_page_imgbtn_1_main_main_default
+style_main_page_imgbtn_1_main_main_default = lv.style_t()
+style_main_page_imgbtn_1_main_main_default.init()
+style_main_page_imgbtn_1_main_main_default.set_text_color(lv.color_make(0xee,0xe1,0xe1))
 try:
-    style_screen_imgbtn_1_main_main_default.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_1_main_main_default.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_1_main_main_default.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_1_main_main_default.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_1_main_main_default.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_1_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
-style_screen_imgbtn_1_main_main_default.set_img_recolor(lv.color_make(0xff,0xff,0xff))
-style_screen_imgbtn_1_main_main_default.set_img_recolor_opa(0)
-style_screen_imgbtn_1_main_main_default.set_img_opa(255)
+        style_main_page_imgbtn_1_main_main_default.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_1_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+style_main_page_imgbtn_1_main_main_default.set_img_recolor(lv.color_make(0xff,0xff,0xff))
+style_main_page_imgbtn_1_main_main_default.set_img_recolor_opa(0)
+style_main_page_imgbtn_1_main_main_default.set_img_opa(255)
 
-# add style for screen_imgbtn_1
-screen_imgbtn_1.add_style(style_screen_imgbtn_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for main_page_imgbtn_1
+main_page_imgbtn_1.add_style(style_main_page_imgbtn_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
-# create style style_screen_imgbtn_1_main_main_pressed
-style_screen_imgbtn_1_main_main_pressed = lv.style_t()
-style_screen_imgbtn_1_main_main_pressed.init()
-style_screen_imgbtn_1_main_main_pressed.set_text_color(lv.color_make(0xFF,0x33,0xFF))
+# create style style_main_page_imgbtn_1_main_main_pressed
+style_main_page_imgbtn_1_main_main_pressed = lv.style_t()
+style_main_page_imgbtn_1_main_main_pressed.init()
+style_main_page_imgbtn_1_main_main_pressed.set_text_color(lv.color_make(0xFF,0x33,0xFF))
 try:
-    style_screen_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_1_main_main_pressed.set_img_recolor(lv.color_make(0x00,0x00,0x00))
-style_screen_imgbtn_1_main_main_pressed.set_img_recolor_opa(0)
-style_screen_imgbtn_1_main_main_pressed.set_img_opa(255)
+        style_main_page_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_1_main_main_pressed.set_img_recolor(lv.color_make(0x00,0x00,0x00))
+style_main_page_imgbtn_1_main_main_pressed.set_img_recolor_opa(0)
+style_main_page_imgbtn_1_main_main_pressed.set_img_opa(255)
 
-# add style for screen_imgbtn_1
-screen_imgbtn_1.add_style(style_screen_imgbtn_1_main_main_pressed, lv.PART.MAIN|lv.STATE.PRESSED)
+# add style for main_page_imgbtn_1
+main_page_imgbtn_1.add_style(style_main_page_imgbtn_1_main_main_pressed, lv.PART.MAIN|lv.STATE.PRESSED)
 
-# create style style_screen_imgbtn_1_main_main_checked
-style_screen_imgbtn_1_main_main_checked = lv.style_t()
-style_screen_imgbtn_1_main_main_checked.init()
-style_screen_imgbtn_1_main_main_checked.set_text_color(lv.color_make(0xFF,0x33,0xFF))
+# create style style_main_page_imgbtn_1_main_main_checked
+style_main_page_imgbtn_1_main_main_checked = lv.style_t()
+style_main_page_imgbtn_1_main_main_checked.init()
+style_main_page_imgbtn_1_main_main_checked.set_text_color(lv.color_make(0xFF,0x33,0xFF))
 try:
-    style_screen_imgbtn_1_main_main_checked.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_1_main_main_checked.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_1_main_main_checked.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_1_main_main_checked.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_1_main_main_checked.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_1_main_main_checked.set_img_recolor(lv.color_make(0x00,0x00,0x00))
-style_screen_imgbtn_1_main_main_checked.set_img_recolor_opa(0)
-style_screen_imgbtn_1_main_main_checked.set_img_opa(255)
+        style_main_page_imgbtn_1_main_main_checked.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_1_main_main_checked.set_img_recolor(lv.color_make(0x00,0x00,0x00))
+style_main_page_imgbtn_1_main_main_checked.set_img_recolor_opa(0)
+style_main_page_imgbtn_1_main_main_checked.set_img_opa(255)
 
-# add style for screen_imgbtn_1
-screen_imgbtn_1.add_style(style_screen_imgbtn_1_main_main_checked, lv.PART.MAIN|lv.STATE.CHECKED)
+# add style for main_page_imgbtn_1
+main_page_imgbtn_1.add_style(style_main_page_imgbtn_1_main_main_checked, lv.PART.MAIN|lv.STATE.CHECKED)
 
 
-# create screen_imgbtn_2
-screen_imgbtn_2 = lv.imgbtn(screen)
-screen_imgbtn_2.set_pos(int(183),int(112))
-screen_imgbtn_2.set_size(114,114)
-screen_imgbtn_2.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create main_page_imgbtn_2
+main_page_imgbtn_2 = lv.imgbtn(main_page)
+main_page_imgbtn_2.set_pos(int(183),int(112))
+main_page_imgbtn_2.set_size(114,114)
+main_page_imgbtn_2.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp751669586.png','rb') as f:
-        screen_imgbtn_2_imgReleased_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp-1950106130.png','rb') as f:
+        main_page_imgbtn_2_imgReleased_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp751669586.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp-1950106130.png')
     sys.exit()
 
-screen_imgbtn_2_imgReleased = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_2_imgReleased_data),
+main_page_imgbtn_2_imgReleased = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_2_imgReleased_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
-  'data': screen_imgbtn_2_imgReleased_data
+  'data': main_page_imgbtn_2_imgReleased_data
 })
-screen_imgbtn_2.set_src(lv.imgbtn.STATE.RELEASED, None, screen_imgbtn_2_imgReleased, None)
+main_page_imgbtn_2.set_src(lv.imgbtn.STATE.RELEASED, None, main_page_imgbtn_2_imgReleased, None)
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp751669586.png','rb') as f:
-        screen_imgbtn_2_imgPressed_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp-1950106130.png','rb') as f:
+        main_page_imgbtn_2_imgPressed_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp751669586.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp-1950106130.png')
     sys.exit()
 
-screen_imgbtn_2_imgPressed = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_2_imgPressed_data),
+main_page_imgbtn_2_imgPressed = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_2_imgPressed_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
-  'data': screen_imgbtn_2_imgPressed_data
+  'data': main_page_imgbtn_2_imgPressed_data
 })
-screen_imgbtn_2.set_src(lv.imgbtn.STATE.PRESSED, None, screen_imgbtn_2_imgPressed, None)
+main_page_imgbtn_2.set_src(lv.imgbtn.STATE.PRESSED, None, main_page_imgbtn_2_imgPressed, None)
 
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp751669586.png','rb') as f:
-        screen_imgbtn_2_imgCheckedReleased_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp-1950106130.png','rb') as f:
+        main_page_imgbtn_2_imgCheckedReleased_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp751669586.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp-1950106130.png')
     sys.exit()
 
-screen_imgbtn_2_imgCheckedReleased = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_2_imgCheckedReleased_data),
+main_page_imgbtn_2_imgCheckedReleased = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_2_imgCheckedReleased_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
-  'data': screen_imgbtn_2_imgCheckedReleased_data
+  'data': main_page_imgbtn_2_imgCheckedReleased_data
 })
-screen_imgbtn_2.set_src(lv.imgbtn.STATE.CHECKED_RELEASED, None, screen_imgbtn_2_imgCheckedReleased, None)
+main_page_imgbtn_2.set_src(lv.imgbtn.STATE.CHECKED_RELEASED, None, main_page_imgbtn_2_imgCheckedReleased, None)
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp751669586.png','rb') as f:
-        screen_imgbtn_2_imgCheckedPressed_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp-1950106130.png','rb') as f:
+        main_page_imgbtn_2_imgCheckedPressed_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp751669586.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp-1950106130.png')
     sys.exit()
 
-screen_imgbtn_2_imgCheckedPressed = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_2_imgCheckedPressed_data),
+main_page_imgbtn_2_imgCheckedPressed = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_2_imgCheckedPressed_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
-  'data': screen_imgbtn_2_imgCheckedPressed_data
+  'data': main_page_imgbtn_2_imgCheckedPressed_data
 })
-screen_imgbtn_2.set_src(lv.imgbtn.STATE.CHECKED_PRESSED, None, screen_imgbtn_2_imgCheckedPressed, None)
+main_page_imgbtn_2.set_src(lv.imgbtn.STATE.CHECKED_PRESSED, None, main_page_imgbtn_2_imgCheckedPressed, None)
 
-screen_imgbtn_2.add_flag(lv.obj.FLAG.CHECKABLE)
-# create style style_screen_imgbtn_2_main_main_default
-style_screen_imgbtn_2_main_main_default = lv.style_t()
-style_screen_imgbtn_2_main_main_default.init()
-style_screen_imgbtn_2_main_main_default.set_text_color(lv.color_make(0x00,0x00,0x00))
+main_page_imgbtn_2.add_flag(lv.obj.FLAG.CHECKABLE)
+# create style style_main_page_imgbtn_2_main_main_default
+style_main_page_imgbtn_2_main_main_default = lv.style_t()
+style_main_page_imgbtn_2_main_main_default.init()
+style_main_page_imgbtn_2_main_main_default.set_text_color(lv.color_make(0x00,0x00,0x00))
 try:
-    style_screen_imgbtn_2_main_main_default.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_2_main_main_default.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_2_main_main_default.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_2_main_main_default.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_2_main_main_default.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_2_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
-style_screen_imgbtn_2_main_main_default.set_img_recolor(lv.color_make(0xff,0xff,0xff))
-style_screen_imgbtn_2_main_main_default.set_img_recolor_opa(0)
-style_screen_imgbtn_2_main_main_default.set_img_opa(255)
+        style_main_page_imgbtn_2_main_main_default.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_2_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+style_main_page_imgbtn_2_main_main_default.set_img_recolor(lv.color_make(0xff,0xff,0xff))
+style_main_page_imgbtn_2_main_main_default.set_img_recolor_opa(0)
+style_main_page_imgbtn_2_main_main_default.set_img_opa(255)
 
-# add style for screen_imgbtn_2
-screen_imgbtn_2.add_style(style_screen_imgbtn_2_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for main_page_imgbtn_2
+main_page_imgbtn_2.add_style(style_main_page_imgbtn_2_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
-# create style style_screen_imgbtn_2_main_main_pressed
-style_screen_imgbtn_2_main_main_pressed = lv.style_t()
-style_screen_imgbtn_2_main_main_pressed.init()
-style_screen_imgbtn_2_main_main_pressed.set_text_color(lv.color_make(0xFF,0x33,0xFF))
+# create style style_main_page_imgbtn_2_main_main_pressed
+style_main_page_imgbtn_2_main_main_pressed = lv.style_t()
+style_main_page_imgbtn_2_main_main_pressed.init()
+style_main_page_imgbtn_2_main_main_pressed.set_text_color(lv.color_make(0xFF,0x33,0xFF))
 try:
-    style_screen_imgbtn_2_main_main_pressed.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_2_main_main_pressed.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_2_main_main_pressed.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_2_main_main_pressed.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_2_main_main_pressed.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_2_main_main_pressed.set_img_recolor(lv.color_make(0x00,0x00,0x00))
-style_screen_imgbtn_2_main_main_pressed.set_img_recolor_opa(0)
-style_screen_imgbtn_2_main_main_pressed.set_img_opa(255)
+        style_main_page_imgbtn_2_main_main_pressed.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_2_main_main_pressed.set_img_recolor(lv.color_make(0x00,0x00,0x00))
+style_main_page_imgbtn_2_main_main_pressed.set_img_recolor_opa(0)
+style_main_page_imgbtn_2_main_main_pressed.set_img_opa(255)
 
-# add style for screen_imgbtn_2
-screen_imgbtn_2.add_style(style_screen_imgbtn_2_main_main_pressed, lv.PART.MAIN|lv.STATE.PRESSED)
+# add style for main_page_imgbtn_2
+main_page_imgbtn_2.add_style(style_main_page_imgbtn_2_main_main_pressed, lv.PART.MAIN|lv.STATE.PRESSED)
 
-# create style style_screen_imgbtn_2_main_main_checked
-style_screen_imgbtn_2_main_main_checked = lv.style_t()
-style_screen_imgbtn_2_main_main_checked.init()
-style_screen_imgbtn_2_main_main_checked.set_text_color(lv.color_make(0xFF,0x33,0xFF))
+# create style style_main_page_imgbtn_2_main_main_checked
+style_main_page_imgbtn_2_main_main_checked = lv.style_t()
+style_main_page_imgbtn_2_main_main_checked.init()
+style_main_page_imgbtn_2_main_main_checked.set_text_color(lv.color_make(0xFF,0x33,0xFF))
 try:
-    style_screen_imgbtn_2_main_main_checked.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_2_main_main_checked.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_2_main_main_checked.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_2_main_main_checked.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_2_main_main_checked.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_2_main_main_checked.set_img_recolor(lv.color_make(0x00,0x00,0x00))
-style_screen_imgbtn_2_main_main_checked.set_img_recolor_opa(0)
-style_screen_imgbtn_2_main_main_checked.set_img_opa(255)
+        style_main_page_imgbtn_2_main_main_checked.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_2_main_main_checked.set_img_recolor(lv.color_make(0x00,0x00,0x00))
+style_main_page_imgbtn_2_main_main_checked.set_img_recolor_opa(0)
+style_main_page_imgbtn_2_main_main_checked.set_img_opa(255)
 
-# add style for screen_imgbtn_2
-screen_imgbtn_2.add_style(style_screen_imgbtn_2_main_main_checked, lv.PART.MAIN|lv.STATE.CHECKED)
+# add style for main_page_imgbtn_2
+main_page_imgbtn_2.add_style(style_main_page_imgbtn_2_main_main_checked, lv.PART.MAIN|lv.STATE.CHECKED)
 
 
-# create screen_imgbtn_3
-screen_imgbtn_3 = lv.imgbtn(screen)
-screen_imgbtn_3.set_pos(int(328),int(112))
-screen_imgbtn_3.set_size(114,114)
-screen_imgbtn_3.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create main_page_imgbtn_3
+main_page_imgbtn_3 = lv.imgbtn(main_page)
+main_page_imgbtn_3.set_pos(int(328),int(112))
+main_page_imgbtn_3.set_size(114,114)
+main_page_imgbtn_3.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp-1904199085.png','rb') as f:
-        screen_imgbtn_3_imgReleased_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp901690167.png','rb') as f:
+        main_page_imgbtn_3_imgReleased_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp-1904199085.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp901690167.png')
     sys.exit()
 
-screen_imgbtn_3_imgReleased = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_3_imgReleased_data),
+main_page_imgbtn_3_imgReleased = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_3_imgReleased_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
-  'data': screen_imgbtn_3_imgReleased_data
+  'data': main_page_imgbtn_3_imgReleased_data
 })
-screen_imgbtn_3.set_src(lv.imgbtn.STATE.RELEASED, None, screen_imgbtn_3_imgReleased, None)
+main_page_imgbtn_3.set_src(lv.imgbtn.STATE.RELEASED, None, main_page_imgbtn_3_imgReleased, None)
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp-1904199085.png','rb') as f:
-        screen_imgbtn_3_imgPressed_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp901690167.png','rb') as f:
+        main_page_imgbtn_3_imgPressed_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp-1904199085.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp901690167.png')
     sys.exit()
 
-screen_imgbtn_3_imgPressed = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_3_imgPressed_data),
+main_page_imgbtn_3_imgPressed = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_3_imgPressed_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
-  'data': screen_imgbtn_3_imgPressed_data
+  'data': main_page_imgbtn_3_imgPressed_data
 })
-screen_imgbtn_3.set_src(lv.imgbtn.STATE.PRESSED, None, screen_imgbtn_3_imgPressed, None)
+main_page_imgbtn_3.set_src(lv.imgbtn.STATE.PRESSED, None, main_page_imgbtn_3_imgPressed, None)
 
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp-1904199085.png','rb') as f:
-        screen_imgbtn_3_imgCheckedReleased_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp901690167.png','rb') as f:
+        main_page_imgbtn_3_imgCheckedReleased_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp-1904199085.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp901690167.png')
     sys.exit()
 
-screen_imgbtn_3_imgCheckedReleased = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_3_imgCheckedReleased_data),
+main_page_imgbtn_3_imgCheckedReleased = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_3_imgCheckedReleased_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
-  'data': screen_imgbtn_3_imgCheckedReleased_data
+  'data': main_page_imgbtn_3_imgCheckedReleased_data
 })
-screen_imgbtn_3.set_src(lv.imgbtn.STATE.CHECKED_RELEASED, None, screen_imgbtn_3_imgCheckedReleased, None)
+main_page_imgbtn_3.set_src(lv.imgbtn.STATE.CHECKED_RELEASED, None, main_page_imgbtn_3_imgCheckedReleased, None)
 
 try:
-    with open('C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp-1904199085.png','rb') as f:
-        screen_imgbtn_3_imgCheckedPressed_data = f.read()
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp901690167.png','rb') as f:
+        main_page_imgbtn_3_imgCheckedPressed_data = f.read()
 except:
-    print('Could not open C:\\Users\\12250\\Desktop\\DDD\\WZMK\\generated\\mPythonImages\\mp-1904199085.png')
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp901690167.png')
     sys.exit()
 
-screen_imgbtn_3_imgCheckedPressed = lv.img_dsc_t({
-  'data_size': len(screen_imgbtn_3_imgCheckedPressed_data),
+main_page_imgbtn_3_imgCheckedPressed = lv.img_dsc_t({
+  'data_size': len(main_page_imgbtn_3_imgCheckedPressed_data),
   'header': {'always_zero': 0, 'w': 114, 'h': 114, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
-  'data': screen_imgbtn_3_imgCheckedPressed_data
+  'data': main_page_imgbtn_3_imgCheckedPressed_data
 })
-screen_imgbtn_3.set_src(lv.imgbtn.STATE.CHECKED_PRESSED, None, screen_imgbtn_3_imgCheckedPressed, None)
+main_page_imgbtn_3.set_src(lv.imgbtn.STATE.CHECKED_PRESSED, None, main_page_imgbtn_3_imgCheckedPressed, None)
 
-screen_imgbtn_3.add_flag(lv.obj.FLAG.CHECKABLE)
-# create style style_screen_imgbtn_3_main_main_default
-style_screen_imgbtn_3_main_main_default = lv.style_t()
-style_screen_imgbtn_3_main_main_default.init()
-style_screen_imgbtn_3_main_main_default.set_text_color(lv.color_make(0x00,0x00,0x00))
+main_page_imgbtn_3.add_flag(lv.obj.FLAG.CHECKABLE)
+# create style style_main_page_imgbtn_3_main_main_default
+style_main_page_imgbtn_3_main_main_default = lv.style_t()
+style_main_page_imgbtn_3_main_main_default.init()
+style_main_page_imgbtn_3_main_main_default.set_text_color(lv.color_make(0x00,0x00,0x00))
 try:
-    style_screen_imgbtn_3_main_main_default.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_3_main_main_default.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_3_main_main_default.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_3_main_main_default.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_3_main_main_default.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_3_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
-style_screen_imgbtn_3_main_main_default.set_img_recolor(lv.color_make(0xff,0xff,0xff))
-style_screen_imgbtn_3_main_main_default.set_img_recolor_opa(0)
-style_screen_imgbtn_3_main_main_default.set_img_opa(255)
+        style_main_page_imgbtn_3_main_main_default.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_3_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+style_main_page_imgbtn_3_main_main_default.set_img_recolor(lv.color_make(0xff,0xff,0xff))
+style_main_page_imgbtn_3_main_main_default.set_img_recolor_opa(0)
+style_main_page_imgbtn_3_main_main_default.set_img_opa(255)
 
-# add style for screen_imgbtn_3
-screen_imgbtn_3.add_style(style_screen_imgbtn_3_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for main_page_imgbtn_3
+main_page_imgbtn_3.add_style(style_main_page_imgbtn_3_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
-# create style style_screen_imgbtn_3_main_main_pressed
-style_screen_imgbtn_3_main_main_pressed = lv.style_t()
-style_screen_imgbtn_3_main_main_pressed.init()
-style_screen_imgbtn_3_main_main_pressed.set_text_color(lv.color_make(0xFF,0x33,0xFF))
+# create style style_main_page_imgbtn_3_main_main_pressed
+style_main_page_imgbtn_3_main_main_pressed = lv.style_t()
+style_main_page_imgbtn_3_main_main_pressed.init()
+style_main_page_imgbtn_3_main_main_pressed.set_text_color(lv.color_make(0xFF,0x33,0xFF))
 try:
-    style_screen_imgbtn_3_main_main_pressed.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_3_main_main_pressed.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_3_main_main_pressed.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_3_main_main_pressed.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_3_main_main_pressed.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_3_main_main_pressed.set_img_recolor(lv.color_make(0x00,0x00,0x00))
-style_screen_imgbtn_3_main_main_pressed.set_img_recolor_opa(0)
-style_screen_imgbtn_3_main_main_pressed.set_img_opa(255)
+        style_main_page_imgbtn_3_main_main_pressed.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_3_main_main_pressed.set_img_recolor(lv.color_make(0x00,0x00,0x00))
+style_main_page_imgbtn_3_main_main_pressed.set_img_recolor_opa(0)
+style_main_page_imgbtn_3_main_main_pressed.set_img_opa(255)
 
-# add style for screen_imgbtn_3
-screen_imgbtn_3.add_style(style_screen_imgbtn_3_main_main_pressed, lv.PART.MAIN|lv.STATE.PRESSED)
+# add style for main_page_imgbtn_3
+main_page_imgbtn_3.add_style(style_main_page_imgbtn_3_main_main_pressed, lv.PART.MAIN|lv.STATE.PRESSED)
 
-# create style style_screen_imgbtn_3_main_main_checked
-style_screen_imgbtn_3_main_main_checked = lv.style_t()
-style_screen_imgbtn_3_main_main_checked.init()
-style_screen_imgbtn_3_main_main_checked.set_text_color(lv.color_make(0xFF,0x33,0xFF))
+# create style style_main_page_imgbtn_3_main_main_checked
+style_main_page_imgbtn_3_main_main_checked = lv.style_t()
+style_main_page_imgbtn_3_main_main_checked.init()
+style_main_page_imgbtn_3_main_main_checked.set_text_color(lv.color_make(0xFF,0x33,0xFF))
 try:
-    style_screen_imgbtn_3_main_main_checked.set_text_font(lv.font_montserratMedium_12)
+    style_main_page_imgbtn_3_main_main_checked.set_text_font(lv.font_montserratMedium_12)
 except AttributeError:
     try:
-        style_screen_imgbtn_3_main_main_checked.set_text_font(lv.font_montserrat_12)
+        style_main_page_imgbtn_3_main_main_checked.set_text_font(lv.font_montserrat_12)
     except AttributeError:
-        style_screen_imgbtn_3_main_main_checked.set_text_font(lv.font_montserrat_16)
-style_screen_imgbtn_3_main_main_checked.set_img_recolor(lv.color_make(0x00,0x00,0x00))
-style_screen_imgbtn_3_main_main_checked.set_img_recolor_opa(0)
-style_screen_imgbtn_3_main_main_checked.set_img_opa(255)
+        style_main_page_imgbtn_3_main_main_checked.set_text_font(lv.font_montserrat_16)
+style_main_page_imgbtn_3_main_main_checked.set_img_recolor(lv.color_make(0x00,0x00,0x00))
+style_main_page_imgbtn_3_main_main_checked.set_img_recolor_opa(0)
+style_main_page_imgbtn_3_main_main_checked.set_img_opa(255)
 
-# add style for screen_imgbtn_3
-screen_imgbtn_3.add_style(style_screen_imgbtn_3_main_main_checked, lv.PART.MAIN|lv.STATE.CHECKED)
+# add style for main_page_imgbtn_3
+main_page_imgbtn_3.add_style(style_main_page_imgbtn_3_main_main_checked, lv.PART.MAIN|lv.STATE.CHECKED)
 
 
-# create screen_label_1
-screen_label_1 = lv.label(screen)
-screen_label_1.set_pos(int(38),int(226))
-screen_label_1.set_size(114,32)
-screen_label_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-screen_label_1.set_text("Engraving")
-screen_label_1.set_long_mode(lv.label.LONG.WRAP)
-# create style style_screen_label_1_main_main_default
-style_screen_label_1_main_main_default = lv.style_t()
-style_screen_label_1_main_main_default.init()
-style_screen_label_1_main_main_default.set_radius(0)
-style_screen_label_1_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
-style_screen_label_1_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_screen_label_1_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_screen_label_1_main_main_default.set_bg_opa(0)
-style_screen_label_1_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create main_page_label_1
+main_page_label_1 = lv.label(main_page)
+main_page_label_1.set_pos(int(38),int(226))
+main_page_label_1.set_size(114,32)
+main_page_label_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+main_page_label_1.set_text("Engraving")
+main_page_label_1.set_long_mode(lv.label.LONG.WRAP)
+# create style style_main_page_label_1_main_main_default
+style_main_page_label_1_main_main_default = lv.style_t()
+style_main_page_label_1_main_main_default.init()
+style_main_page_label_1_main_main_default.set_radius(0)
+style_main_page_label_1_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_main_page_label_1_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_main_page_label_1_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_main_page_label_1_main_main_default.set_bg_opa(0)
+style_main_page_label_1_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_screen_label_1_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_main_page_label_1_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_screen_label_1_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_main_page_label_1_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_screen_label_1_main_main_default.set_text_font(lv.font_montserrat_16)
-style_screen_label_1_main_main_default.set_text_letter_space(2)
-style_screen_label_1_main_main_default.set_text_line_space(0)
-style_screen_label_1_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
-style_screen_label_1_main_main_default.set_pad_left(0)
-style_screen_label_1_main_main_default.set_pad_right(0)
-style_screen_label_1_main_main_default.set_pad_top(8)
-style_screen_label_1_main_main_default.set_pad_bottom(0)
+        style_main_page_label_1_main_main_default.set_text_font(lv.font_montserrat_16)
+style_main_page_label_1_main_main_default.set_text_letter_space(2)
+style_main_page_label_1_main_main_default.set_text_line_space(0)
+style_main_page_label_1_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+style_main_page_label_1_main_main_default.set_pad_left(0)
+style_main_page_label_1_main_main_default.set_pad_right(0)
+style_main_page_label_1_main_main_default.set_pad_top(8)
+style_main_page_label_1_main_main_default.set_pad_bottom(0)
 
-# add style for screen_label_1
-screen_label_1.add_style(style_screen_label_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for main_page_label_1
+main_page_label_1.add_style(style_main_page_label_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create screen_label_2
-screen_label_2 = lv.label(screen)
-screen_label_2.set_pos(int(183),int(226))
-screen_label_2.set_size(114,32)
-screen_label_2.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-screen_label_2.set_text("Control")
-screen_label_2.set_long_mode(lv.label.LONG.WRAP)
-# create style style_screen_label_2_main_main_default
-style_screen_label_2_main_main_default = lv.style_t()
-style_screen_label_2_main_main_default.init()
-style_screen_label_2_main_main_default.set_radius(0)
-style_screen_label_2_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
-style_screen_label_2_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_screen_label_2_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_screen_label_2_main_main_default.set_bg_opa(0)
-style_screen_label_2_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create main_page_label_2
+main_page_label_2 = lv.label(main_page)
+main_page_label_2.set_pos(int(183),int(226))
+main_page_label_2.set_size(114,32)
+main_page_label_2.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+main_page_label_2.set_text("Control")
+main_page_label_2.set_long_mode(lv.label.LONG.WRAP)
+# create style style_main_page_label_2_main_main_default
+style_main_page_label_2_main_main_default = lv.style_t()
+style_main_page_label_2_main_main_default.init()
+style_main_page_label_2_main_main_default.set_radius(0)
+style_main_page_label_2_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_main_page_label_2_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_main_page_label_2_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_main_page_label_2_main_main_default.set_bg_opa(0)
+style_main_page_label_2_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_screen_label_2_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_main_page_label_2_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_screen_label_2_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_main_page_label_2_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_screen_label_2_main_main_default.set_text_font(lv.font_montserrat_16)
-style_screen_label_2_main_main_default.set_text_letter_space(2)
-style_screen_label_2_main_main_default.set_text_line_space(0)
-style_screen_label_2_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
-style_screen_label_2_main_main_default.set_pad_left(0)
-style_screen_label_2_main_main_default.set_pad_right(0)
-style_screen_label_2_main_main_default.set_pad_top(8)
-style_screen_label_2_main_main_default.set_pad_bottom(0)
+        style_main_page_label_2_main_main_default.set_text_font(lv.font_montserrat_16)
+style_main_page_label_2_main_main_default.set_text_letter_space(2)
+style_main_page_label_2_main_main_default.set_text_line_space(0)
+style_main_page_label_2_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+style_main_page_label_2_main_main_default.set_pad_left(0)
+style_main_page_label_2_main_main_default.set_pad_right(0)
+style_main_page_label_2_main_main_default.set_pad_top(8)
+style_main_page_label_2_main_main_default.set_pad_bottom(0)
 
-# add style for screen_label_2
-screen_label_2.add_style(style_screen_label_2_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for main_page_label_2
+main_page_label_2.add_style(style_main_page_label_2_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create screen_label_3
-screen_label_3 = lv.label(screen)
-screen_label_3.set_pos(int(328),int(226))
-screen_label_3.set_size(114,32)
-screen_label_3.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-screen_label_3.set_text("Tool")
-screen_label_3.set_long_mode(lv.label.LONG.WRAP)
-# create style style_screen_label_3_main_main_default
-style_screen_label_3_main_main_default = lv.style_t()
-style_screen_label_3_main_main_default.init()
-style_screen_label_3_main_main_default.set_radius(0)
-style_screen_label_3_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
-style_screen_label_3_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_screen_label_3_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_screen_label_3_main_main_default.set_bg_opa(0)
-style_screen_label_3_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create main_page_label_3
+main_page_label_3 = lv.label(main_page)
+main_page_label_3.set_pos(int(328),int(226))
+main_page_label_3.set_size(114,32)
+main_page_label_3.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+main_page_label_3.set_text("Tool")
+main_page_label_3.set_long_mode(lv.label.LONG.WRAP)
+# create style style_main_page_label_3_main_main_default
+style_main_page_label_3_main_main_default = lv.style_t()
+style_main_page_label_3_main_main_default.init()
+style_main_page_label_3_main_main_default.set_radius(0)
+style_main_page_label_3_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_main_page_label_3_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_main_page_label_3_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_main_page_label_3_main_main_default.set_bg_opa(0)
+style_main_page_label_3_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_screen_label_3_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_main_page_label_3_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_screen_label_3_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_main_page_label_3_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_screen_label_3_main_main_default.set_text_font(lv.font_montserrat_16)
-style_screen_label_3_main_main_default.set_text_letter_space(2)
-style_screen_label_3_main_main_default.set_text_line_space(0)
-style_screen_label_3_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
-style_screen_label_3_main_main_default.set_pad_left(0)
-style_screen_label_3_main_main_default.set_pad_right(0)
-style_screen_label_3_main_main_default.set_pad_top(8)
-style_screen_label_3_main_main_default.set_pad_bottom(0)
+        style_main_page_label_3_main_main_default.set_text_font(lv.font_montserrat_16)
+style_main_page_label_3_main_main_default.set_text_letter_space(2)
+style_main_page_label_3_main_main_default.set_text_line_space(0)
+style_main_page_label_3_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+style_main_page_label_3_main_main_default.set_pad_left(0)
+style_main_page_label_3_main_main_default.set_pad_right(0)
+style_main_page_label_3_main_main_default.set_pad_top(8)
+style_main_page_label_3_main_main_default.set_pad_bottom(0)
 
-# add style for screen_label_3
-screen_label_3.add_style(style_screen_label_3_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
-
-
-# create Engraving
-Engraving = lv.obj()
-Engraving.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-# create style style_engraving_main_main_default
-style_engraving_main_main_default = lv.style_t()
-style_engraving_main_main_default.init()
-style_engraving_main_main_default.set_bg_color(lv.color_make(0x1D,0x23,0x32))
-style_engraving_main_main_default.set_bg_opa(255)
-
-# add style for Engraving
-Engraving.add_style(style_engraving_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for main_page_label_3
+main_page_label_3.add_style(style_main_page_label_3_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create Engraving_btn_1
-Engraving_btn_1 = lv.btn(Engraving)
-Engraving_btn_1.set_pos(int(252),int(80))
-Engraving_btn_1.set_size(212,37)
-Engraving_btn_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-Engraving_btn_1_label = lv.label(Engraving_btn_1)
-Engraving_btn_1_label.set_text("Frame")
-Engraving_btn_1.set_style_pad_all(0, lv.STATE.DEFAULT)
-Engraving_btn_1_label.align(lv.ALIGN.CENTER,0,0)
-# create style style_engraving_btn_1_main_main_default
-style_engraving_btn_1_main_main_default = lv.style_t()
-style_engraving_btn_1_main_main_default.init()
-style_engraving_btn_1_main_main_default.set_radius(20)
-style_engraving_btn_1_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
-style_engraving_btn_1_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_btn_1_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_engraving_btn_1_main_main_default.set_bg_opa(255)
-style_engraving_btn_1_main_main_default.set_border_color(lv.color_make(0xFF,0x57,0x00))
-style_engraving_btn_1_main_main_default.set_border_width(1)
-style_engraving_btn_1_main_main_default.set_border_opa(255)
-style_engraving_btn_1_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create engraving_page
+engraving_page = lv.obj()
+engraving_page.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create style style_engraving_page_main_main_default
+style_engraving_page_main_main_default = lv.style_t()
+style_engraving_page_main_main_default.init()
+style_engraving_page_main_main_default.set_bg_color(lv.color_make(0x1D,0x23,0x32))
+style_engraving_page_main_main_default.set_bg_opa(255)
+
+# add style for engraving_page
+engraving_page.add_style(style_engraving_page_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+# create engraving_page_btn_frame
+engraving_page_btn_frame = lv.btn(engraving_page)
+engraving_page_btn_frame.set_pos(int(252),int(80))
+engraving_page_btn_frame.set_size(212,37)
+engraving_page_btn_frame.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_btn_frame_label = lv.label(engraving_page_btn_frame)
+engraving_page_btn_frame_label.set_text("Frame")
+engraving_page_btn_frame.set_style_pad_all(0, lv.STATE.DEFAULT)
+engraving_page_btn_frame_label.align(lv.ALIGN.CENTER,0,0)
+# create style style_engraving_page_btn_frame_main_main_default
+style_engraving_page_btn_frame_main_main_default = lv.style_t()
+style_engraving_page_btn_frame_main_main_default.init()
+style_engraving_page_btn_frame_main_main_default.set_radius(20)
+style_engraving_page_btn_frame_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
+style_engraving_page_btn_frame_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_frame_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_frame_main_main_default.set_bg_opa(255)
+style_engraving_page_btn_frame_main_main_default.set_border_color(lv.color_make(0xFF,0x57,0x00))
+style_engraving_page_btn_frame_main_main_default.set_border_width(1)
+style_engraving_page_btn_frame_main_main_default.set_border_opa(255)
+style_engraving_page_btn_frame_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_engraving_btn_1_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_engraving_page_btn_frame_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_engraving_btn_1_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_engraving_page_btn_frame_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_engraving_btn_1_main_main_default.set_text_font(lv.font_montserrat_16)
-style_engraving_btn_1_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+        style_engraving_page_btn_frame_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_frame_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
 
-# add style for Engraving_btn_1
-Engraving_btn_1.add_style(style_engraving_btn_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for engraving_page_btn_frame
+engraving_page_btn_frame.add_style(style_engraving_page_btn_frame_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create Engraving_btn_2
-Engraving_btn_2 = lv.btn(Engraving)
-Engraving_btn_2.set_pos(int(252),int(134))
-Engraving_btn_2.set_size(212,37)
-Engraving_btn_2.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-Engraving_btn_2_label = lv.label(Engraving_btn_2)
-Engraving_btn_2_label.set_text("Home")
-Engraving_btn_2.set_style_pad_all(0, lv.STATE.DEFAULT)
-Engraving_btn_2_label.align(lv.ALIGN.CENTER,0,0)
-# create style style_engraving_btn_2_main_main_default
-style_engraving_btn_2_main_main_default = lv.style_t()
-style_engraving_btn_2_main_main_default.init()
-style_engraving_btn_2_main_main_default.set_radius(20)
-style_engraving_btn_2_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
-style_engraving_btn_2_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_btn_2_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_engraving_btn_2_main_main_default.set_bg_opa(255)
-style_engraving_btn_2_main_main_default.set_border_color(lv.color_make(0xFF,0x57,0x00))
-style_engraving_btn_2_main_main_default.set_border_width(1)
-style_engraving_btn_2_main_main_default.set_border_opa(255)
-style_engraving_btn_2_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create engraving_page_btn_home
+engraving_page_btn_home = lv.btn(engraving_page)
+engraving_page_btn_home.set_pos(int(252),int(134))
+engraving_page_btn_home.set_size(212,37)
+engraving_page_btn_home.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_btn_home_label = lv.label(engraving_page_btn_home)
+engraving_page_btn_home_label.set_text("Home")
+engraving_page_btn_home.set_style_pad_all(0, lv.STATE.DEFAULT)
+engraving_page_btn_home_label.align(lv.ALIGN.CENTER,0,0)
+# create style style_engraving_page_btn_home_main_main_default
+style_engraving_page_btn_home_main_main_default = lv.style_t()
+style_engraving_page_btn_home_main_main_default.init()
+style_engraving_page_btn_home_main_main_default.set_radius(20)
+style_engraving_page_btn_home_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
+style_engraving_page_btn_home_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_home_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_home_main_main_default.set_bg_opa(255)
+style_engraving_page_btn_home_main_main_default.set_border_color(lv.color_make(0xFF,0x57,0x00))
+style_engraving_page_btn_home_main_main_default.set_border_width(1)
+style_engraving_page_btn_home_main_main_default.set_border_opa(255)
+style_engraving_page_btn_home_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_engraving_btn_2_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_engraving_page_btn_home_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_engraving_btn_2_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_engraving_page_btn_home_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_engraving_btn_2_main_main_default.set_text_font(lv.font_montserrat_16)
-style_engraving_btn_2_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+        style_engraving_page_btn_home_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_home_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
 
-# add style for Engraving_btn_2
-Engraving_btn_2.add_style(style_engraving_btn_2_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for engraving_page_btn_home
+engraving_page_btn_home.add_style(style_engraving_page_btn_home_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create Engraving_btn_3
-Engraving_btn_3 = lv.btn(Engraving)
-Engraving_btn_3.set_pos(int(252),int(188))
-Engraving_btn_3.set_size(212,37)
-Engraving_btn_3.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-Engraving_btn_3_label = lv.label(Engraving_btn_3)
-Engraving_btn_3_label.set_text("Position")
-Engraving_btn_3.set_style_pad_all(0, lv.STATE.DEFAULT)
-Engraving_btn_3_label.align(lv.ALIGN.CENTER,0,0)
-# create style style_engraving_btn_3_main_main_default
-style_engraving_btn_3_main_main_default = lv.style_t()
-style_engraving_btn_3_main_main_default.init()
-style_engraving_btn_3_main_main_default.set_radius(20)
-style_engraving_btn_3_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
-style_engraving_btn_3_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_btn_3_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_engraving_btn_3_main_main_default.set_bg_opa(255)
-style_engraving_btn_3_main_main_default.set_border_color(lv.color_make(0xFF,0x57,0x00))
-style_engraving_btn_3_main_main_default.set_border_width(1)
-style_engraving_btn_3_main_main_default.set_border_opa(255)
-style_engraving_btn_3_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create engraving_page_btn_position
+engraving_page_btn_position = lv.btn(engraving_page)
+engraving_page_btn_position.set_pos(int(252),int(188))
+engraving_page_btn_position.set_size(212,37)
+engraving_page_btn_position.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_btn_position_label = lv.label(engraving_page_btn_position)
+engraving_page_btn_position_label.set_text("Position")
+engraving_page_btn_position.set_style_pad_all(0, lv.STATE.DEFAULT)
+engraving_page_btn_position_label.align(lv.ALIGN.CENTER,0,0)
+# create style style_engraving_page_btn_position_main_main_default
+style_engraving_page_btn_position_main_main_default = lv.style_t()
+style_engraving_page_btn_position_main_main_default.init()
+style_engraving_page_btn_position_main_main_default.set_radius(20)
+style_engraving_page_btn_position_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
+style_engraving_page_btn_position_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_position_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_position_main_main_default.set_bg_opa(255)
+style_engraving_page_btn_position_main_main_default.set_border_color(lv.color_make(0xFF,0x57,0x00))
+style_engraving_page_btn_position_main_main_default.set_border_width(1)
+style_engraving_page_btn_position_main_main_default.set_border_opa(255)
+style_engraving_page_btn_position_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_engraving_btn_3_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_engraving_page_btn_position_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_engraving_btn_3_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_engraving_page_btn_position_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_engraving_btn_3_main_main_default.set_text_font(lv.font_montserrat_16)
-style_engraving_btn_3_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+        style_engraving_page_btn_position_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_position_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
 
-# add style for Engraving_btn_3
-Engraving_btn_3.add_style(style_engraving_btn_3_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for engraving_page_btn_position
+engraving_page_btn_position.add_style(style_engraving_page_btn_position_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create Engraving_btn_4
-Engraving_btn_4 = lv.btn(Engraving)
-Engraving_btn_4.set_pos(int(270),int(240))
-Engraving_btn_4.set_size(175,50)
-Engraving_btn_4.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-Engraving_btn_4_label = lv.label(Engraving_btn_4)
-Engraving_btn_4_label.set_text("Start")
-Engraving_btn_4.set_style_pad_all(0, lv.STATE.DEFAULT)
-Engraving_btn_4_label.align(lv.ALIGN.CENTER,0,0)
-# create style style_engraving_btn_4_main_main_default
-style_engraving_btn_4_main_main_default = lv.style_t()
-style_engraving_btn_4_main_main_default.init()
-style_engraving_btn_4_main_main_default.set_radius(25)
-style_engraving_btn_4_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
-style_engraving_btn_4_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_btn_4_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_engraving_btn_4_main_main_default.set_bg_opa(255)
-style_engraving_btn_4_main_main_default.set_border_color(lv.color_make(0xff,0x57,0x00))
-style_engraving_btn_4_main_main_default.set_border_width(2)
-style_engraving_btn_4_main_main_default.set_border_opa(255)
-style_engraving_btn_4_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create engraving_page_btn_start
+engraving_page_btn_start = lv.btn(engraving_page)
+engraving_page_btn_start.set_pos(int(270),int(240))
+engraving_page_btn_start.set_size(175,50)
+engraving_page_btn_start.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_btn_start_label = lv.label(engraving_page_btn_start)
+engraving_page_btn_start_label.set_text("Start")
+engraving_page_btn_start.set_style_pad_all(0, lv.STATE.DEFAULT)
+engraving_page_btn_start_label.align(lv.ALIGN.CENTER,0,0)
+# create style style_engraving_page_btn_start_main_main_default
+style_engraving_page_btn_start_main_main_default = lv.style_t()
+style_engraving_page_btn_start_main_main_default.init()
+style_engraving_page_btn_start_main_main_default.set_radius(25)
+style_engraving_page_btn_start_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
+style_engraving_page_btn_start_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_start_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_start_main_main_default.set_bg_opa(255)
+style_engraving_page_btn_start_main_main_default.set_border_color(lv.color_make(0xff,0x57,0x00))
+style_engraving_page_btn_start_main_main_default.set_border_width(2)
+style_engraving_page_btn_start_main_main_default.set_border_opa(255)
+style_engraving_page_btn_start_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_engraving_btn_4_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_engraving_page_btn_start_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_engraving_btn_4_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_engraving_page_btn_start_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_engraving_btn_4_main_main_default.set_text_font(lv.font_montserrat_16)
-style_engraving_btn_4_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+        style_engraving_page_btn_start_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_start_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
 
-# add style for Engraving_btn_4
-Engraving_btn_4.add_style(style_engraving_btn_4_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for engraving_page_btn_start
+engraving_page_btn_start.add_style(style_engraving_page_btn_start_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create Engraving_label_1
-Engraving_label_1 = lv.label(Engraving)
-Engraving_label_1.set_pos(int(10),int(22))
-Engraving_label_1.set_size(135,33)
-Engraving_label_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-Engraving_label_1.set_text("Engraving-")
-Engraving_label_1.set_long_mode(lv.label.LONG.WRAP)
-# create style style_engraving_label_1_main_main_default
-style_engraving_label_1_main_main_default = lv.style_t()
-style_engraving_label_1_main_main_default.init()
-style_engraving_label_1_main_main_default.set_radius(0)
-style_engraving_label_1_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_label_1_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_label_1_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_engraving_label_1_main_main_default.set_bg_opa(0)
-style_engraving_label_1_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create engraving_page_label_1
+engraving_page_label_1 = lv.label(engraving_page)
+engraving_page_label_1.set_pos(int(10),int(22))
+engraving_page_label_1.set_size(135,33)
+engraving_page_label_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_label_1.set_text("Engraving-")
+engraving_page_label_1.set_long_mode(lv.label.LONG.WRAP)
+# create style style_engraving_page_label_1_main_main_default
+style_engraving_page_label_1_main_main_default = lv.style_t()
+style_engraving_page_label_1_main_main_default.init()
+style_engraving_page_label_1_main_main_default.set_radius(0)
+style_engraving_page_label_1_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_label_1_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_label_1_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_label_1_main_main_default.set_bg_opa(0)
+style_engraving_page_label_1_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_engraving_label_1_main_main_default.set_text_font(lv.font_montserratMedium_20)
+    style_engraving_page_label_1_main_main_default.set_text_font(lv.font_montserratMedium_20)
 except AttributeError:
     try:
-        style_engraving_label_1_main_main_default.set_text_font(lv.font_montserrat_20)
+        style_engraving_page_label_1_main_main_default.set_text_font(lv.font_montserrat_20)
     except AttributeError:
-        style_engraving_label_1_main_main_default.set_text_font(lv.font_montserrat_16)
-style_engraving_label_1_main_main_default.set_text_letter_space(2)
-style_engraving_label_1_main_main_default.set_text_line_space(0)
-style_engraving_label_1_main_main_default.set_text_align(lv.TEXT_ALIGN.LEFT)
-style_engraving_label_1_main_main_default.set_pad_left(0)
-style_engraving_label_1_main_main_default.set_pad_right(0)
-style_engraving_label_1_main_main_default.set_pad_top(8)
-style_engraving_label_1_main_main_default.set_pad_bottom(0)
+        style_engraving_page_label_1_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_label_1_main_main_default.set_text_letter_space(2)
+style_engraving_page_label_1_main_main_default.set_text_line_space(0)
+style_engraving_page_label_1_main_main_default.set_text_align(lv.TEXT_ALIGN.LEFT)
+style_engraving_page_label_1_main_main_default.set_pad_left(0)
+style_engraving_page_label_1_main_main_default.set_pad_right(0)
+style_engraving_page_label_1_main_main_default.set_pad_top(8)
+style_engraving_page_label_1_main_main_default.set_pad_bottom(0)
 
-# add style for Engraving_label_1
-Engraving_label_1.add_style(style_engraving_label_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for engraving_page_label_1
+engraving_page_label_1.add_style(style_engraving_page_label_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create Engraving_label_2
-Engraving_label_2 = lv.label(Engraving)
-Engraving_label_2.set_pos(int(141),int(26))
-Engraving_label_2.set_size(110,25)
-Engraving_label_2.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-Engraving_label_2.set_text("Filename")
-Engraving_label_2.set_long_mode(lv.label.LONG.WRAP)
-# create style style_engraving_label_2_main_main_default
-style_engraving_label_2_main_main_default = lv.style_t()
-style_engraving_label_2_main_main_default.init()
-style_engraving_label_2_main_main_default.set_radius(0)
-style_engraving_label_2_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_label_2_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_label_2_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_engraving_label_2_main_main_default.set_bg_opa(0)
-style_engraving_label_2_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create engraving_page_label_2
+engraving_page_label_2 = lv.label(engraving_page)
+engraving_page_label_2.set_pos(int(141),int(26))
+engraving_page_label_2.set_size(110,25)
+engraving_page_label_2.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_label_2.set_text("Filename")
+engraving_page_label_2.set_long_mode(lv.label.LONG.WRAP)
+# create style style_engraving_page_label_2_main_main_default
+style_engraving_page_label_2_main_main_default = lv.style_t()
+style_engraving_page_label_2_main_main_default.init()
+style_engraving_page_label_2_main_main_default.set_radius(0)
+style_engraving_page_label_2_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_label_2_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_label_2_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_label_2_main_main_default.set_bg_opa(0)
+style_engraving_page_label_2_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_engraving_label_2_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_engraving_page_label_2_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_engraving_label_2_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_engraving_page_label_2_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_engraving_label_2_main_main_default.set_text_font(lv.font_montserrat_16)
-style_engraving_label_2_main_main_default.set_text_letter_space(2)
-style_engraving_label_2_main_main_default.set_text_line_space(0)
-style_engraving_label_2_main_main_default.set_text_align(lv.TEXT_ALIGN.LEFT)
-style_engraving_label_2_main_main_default.set_pad_left(0)
-style_engraving_label_2_main_main_default.set_pad_right(0)
-style_engraving_label_2_main_main_default.set_pad_top(8)
-style_engraving_label_2_main_main_default.set_pad_bottom(0)
+        style_engraving_page_label_2_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_label_2_main_main_default.set_text_letter_space(2)
+style_engraving_page_label_2_main_main_default.set_text_line_space(0)
+style_engraving_page_label_2_main_main_default.set_text_align(lv.TEXT_ALIGN.LEFT)
+style_engraving_page_label_2_main_main_default.set_pad_left(0)
+style_engraving_page_label_2_main_main_default.set_pad_right(0)
+style_engraving_page_label_2_main_main_default.set_pad_top(8)
+style_engraving_page_label_2_main_main_default.set_pad_bottom(0)
 
-# add style for Engraving_label_2
-Engraving_label_2.add_style(style_engraving_label_2_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for engraving_page_label_2
+engraving_page_label_2.add_style(style_engraving_page_label_2_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
 
 
-# create Engraving_btn_5
-Engraving_btn_5 = lv.btn(Engraving)
-Engraving_btn_5.set_pos(int(364),int(13))
-Engraving_btn_5.set_size(100,50)
-Engraving_btn_5.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
-Engraving_btn_5_label = lv.label(Engraving_btn_5)
-Engraving_btn_5_label.set_text("Back")
-Engraving_btn_5.set_style_pad_all(0, lv.STATE.DEFAULT)
-Engraving_btn_5_label.align(lv.ALIGN.CENTER,0,0)
-# create style style_engraving_btn_5_main_main_default
-style_engraving_btn_5_main_main_default = lv.style_t()
-style_engraving_btn_5_main_main_default.init()
-style_engraving_btn_5_main_main_default.set_radius(20)
-style_engraving_btn_5_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
-style_engraving_btn_5_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_btn_5_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
-style_engraving_btn_5_main_main_default.set_bg_opa(255)
-style_engraving_btn_5_main_main_default.set_border_color(lv.color_make(0x21,0x95,0xf6))
-style_engraving_btn_5_main_main_default.set_border_width(1)
-style_engraving_btn_5_main_main_default.set_border_opa(255)
-style_engraving_btn_5_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+# create engraving_page_btn_5
+engraving_page_btn_5 = lv.btn(engraving_page)
+engraving_page_btn_5.set_pos(int(364),int(13))
+engraving_page_btn_5.set_size(100,50)
+engraving_page_btn_5.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_btn_5_label = lv.label(engraving_page_btn_5)
+engraving_page_btn_5_label.set_text("Back")
+engraving_page_btn_5.set_style_pad_all(0, lv.STATE.DEFAULT)
+engraving_page_btn_5_label.align(lv.ALIGN.CENTER,0,0)
+# create style style_engraving_page_btn_5_main_main_default
+style_engraving_page_btn_5_main_main_default = lv.style_t()
+style_engraving_page_btn_5_main_main_default.init()
+style_engraving_page_btn_5_main_main_default.set_radius(20)
+style_engraving_page_btn_5_main_main_default.set_bg_color(lv.color_make(0x20,0x27,0x3A))
+style_engraving_page_btn_5_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_5_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_5_main_main_default.set_bg_opa(255)
+style_engraving_page_btn_5_main_main_default.set_border_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_5_main_main_default.set_border_width(1)
+style_engraving_page_btn_5_main_main_default.set_border_opa(255)
+style_engraving_page_btn_5_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
 try:
-    style_engraving_btn_5_main_main_default.set_text_font(lv.font_montserratMedium_16)
+    style_engraving_page_btn_5_main_main_default.set_text_font(lv.font_montserratMedium_16)
 except AttributeError:
     try:
-        style_engraving_btn_5_main_main_default.set_text_font(lv.font_montserrat_16)
+        style_engraving_page_btn_5_main_main_default.set_text_font(lv.font_montserrat_16)
     except AttributeError:
-        style_engraving_btn_5_main_main_default.set_text_font(lv.font_montserrat_16)
-style_engraving_btn_5_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+        style_engraving_page_btn_5_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_5_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
 
-# add style for Engraving_btn_5
-Engraving_btn_5.add_style(style_engraving_btn_5_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+# add style for engraving_page_btn_5
+engraving_page_btn_5.add_style(style_engraving_page_btn_5_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+# create engraving_page_img_1
+engraving_page_img_1 = lv.img(engraving_page)
+engraving_page_img_1.set_pos(int(30),int(62))
+engraving_page_img_1.set_size(184,185)
+engraving_page_img_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+engraving_page_img_1.add_flag(lv.obj.FLAG.CLICKABLE)
+try:
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp411342652.png','rb') as f:
+        engraving_page_img_1_img_data = f.read()
+except:
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp411342652.png')
+    sys.exit()
+
+engraving_page_img_1_img = lv.img_dsc_t({
+  'data_size': len(engraving_page_img_1_img_data),
+  'header': {'always_zero': 0, 'w': 184, 'h': 185, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
+  'data': engraving_page_img_1_img_data
+})
+
+engraving_page_img_1.set_src(engraving_page_img_1_img)
+engraving_page_img_1.set_pivot(50,50)
+engraving_page_img_1.set_angle(0)
+# create style style_engraving_page_img_1_main_main_default
+style_engraving_page_img_1_main_main_default = lv.style_t()
+style_engraving_page_img_1_main_main_default.init()
+style_engraving_page_img_1_main_main_default.set_img_recolor(lv.color_make(0xff,0xff,0xff))
+style_engraving_page_img_1_main_main_default.set_img_recolor_opa(0)
+style_engraving_page_img_1_main_main_default.set_img_opa(255)
+
+# add style for engraving_page_img_1
+engraving_page_img_1.add_style(style_engraving_page_img_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+# create engraving_page_imgbtn_1
+engraving_page_imgbtn_1 = lv.imgbtn(engraving_page)
+engraving_page_imgbtn_1.set_pos(int(11),int(262))
+engraving_page_imgbtn_1.set_size(222,38)
+engraving_page_imgbtn_1.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+try:
+    with open('E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp1030699549.png','rb') as f:
+        engraving_page_imgbtn_1_imgReleased_data = f.read()
+except:
+    print('Could not open E:\\Project_git\\myProject\\ESP32_LCD_PICO\\doc\\WZMK\\generated\\mPythonImages\\mp1030699549.png')
+    sys.exit()
+
+engraving_page_imgbtn_1_imgReleased = lv.img_dsc_t({
+  'data_size': len(engraving_page_imgbtn_1_imgReleased_data),
+  'header': {'always_zero': 0, 'w': 222, 'h': 38, 'cf': lv.img.CF.TRUE_COLOR_ALPHA},
+  'data': engraving_page_imgbtn_1_imgReleased_data
+})
+engraving_page_imgbtn_1.set_src(lv.imgbtn.STATE.RELEASED, None, engraving_page_imgbtn_1_imgReleased, None)
 
 
 
-def screen_imgbtn_1_released_1_event_cb(e,Engraving):
+
+
+engraving_page_imgbtn_1.add_flag(lv.obj.FLAG.CHECKABLE)
+# create style style_engraving_page_imgbtn_1_main_main_default
+style_engraving_page_imgbtn_1_main_main_default = lv.style_t()
+style_engraving_page_imgbtn_1_main_main_default.init()
+style_engraving_page_imgbtn_1_main_main_default.set_text_color(lv.color_make(0x00,0x00,0x00))
+try:
+    style_engraving_page_imgbtn_1_main_main_default.set_text_font(lv.font_montserratMedium_12)
+except AttributeError:
+    try:
+        style_engraving_page_imgbtn_1_main_main_default.set_text_font(lv.font_montserrat_12)
+    except AttributeError:
+        style_engraving_page_imgbtn_1_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_imgbtn_1_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+style_engraving_page_imgbtn_1_main_main_default.set_img_recolor(lv.color_make(0xff,0xff,0xff))
+style_engraving_page_imgbtn_1_main_main_default.set_img_recolor_opa(0)
+style_engraving_page_imgbtn_1_main_main_default.set_img_opa(255)
+
+# add style for engraving_page_imgbtn_1
+engraving_page_imgbtn_1.add_style(style_engraving_page_imgbtn_1_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+# create style style_engraving_page_imgbtn_1_main_main_pressed
+style_engraving_page_imgbtn_1_main_main_pressed = lv.style_t()
+style_engraving_page_imgbtn_1_main_main_pressed.init()
+style_engraving_page_imgbtn_1_main_main_pressed.set_text_color(lv.color_make(0xFF,0x33,0xFF))
+try:
+    style_engraving_page_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserratMedium_12)
+except AttributeError:
+    try:
+        style_engraving_page_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserrat_12)
+    except AttributeError:
+        style_engraving_page_imgbtn_1_main_main_pressed.set_text_font(lv.font_montserrat_16)
+style_engraving_page_imgbtn_1_main_main_pressed.set_img_recolor(lv.color_make(0x00,0x00,0x00))
+style_engraving_page_imgbtn_1_main_main_pressed.set_img_recolor_opa(0)
+style_engraving_page_imgbtn_1_main_main_pressed.set_img_opa(255)
+
+# add style for engraving_page_imgbtn_1
+engraving_page_imgbtn_1.add_style(style_engraving_page_imgbtn_1_main_main_pressed, lv.PART.MAIN|lv.STATE.PRESSED)
+
+# create style style_engraving_page_imgbtn_1_main_main_checked
+style_engraving_page_imgbtn_1_main_main_checked = lv.style_t()
+style_engraving_page_imgbtn_1_main_main_checked.init()
+style_engraving_page_imgbtn_1_main_main_checked.set_text_color(lv.color_make(0xFF,0x33,0xFF))
+try:
+    style_engraving_page_imgbtn_1_main_main_checked.set_text_font(lv.font_montserratMedium_12)
+except AttributeError:
+    try:
+        style_engraving_page_imgbtn_1_main_main_checked.set_text_font(lv.font_montserrat_12)
+    except AttributeError:
+        style_engraving_page_imgbtn_1_main_main_checked.set_text_font(lv.font_montserrat_16)
+style_engraving_page_imgbtn_1_main_main_checked.set_img_recolor(lv.color_make(0x00,0x00,0x00))
+style_engraving_page_imgbtn_1_main_main_checked.set_img_recolor_opa(0)
+style_engraving_page_imgbtn_1_main_main_checked.set_img_opa(255)
+
+# add style for engraving_page_imgbtn_1
+engraving_page_imgbtn_1.add_style(style_engraving_page_imgbtn_1_main_main_checked, lv.PART.MAIN|lv.STATE.CHECKED)
+
+
+# create engraving_page_btn_6
+engraving_page_btn_6 = lv.btn(engraving_page)
+engraving_page_btn_6.set_pos(int(75),int(70))
+engraving_page_btn_6.set_size(95,47)
+engraving_page_btn_6.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create style style_engraving_page_btn_6_main_main_default
+style_engraving_page_btn_6_main_main_default = lv.style_t()
+style_engraving_page_btn_6_main_main_default.init()
+style_engraving_page_btn_6_main_main_default.set_radius(5)
+style_engraving_page_btn_6_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_6_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_6_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_6_main_main_default.set_bg_opa(0)
+style_engraving_page_btn_6_main_main_default.set_border_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_6_main_main_default.set_border_width(0)
+style_engraving_page_btn_6_main_main_default.set_border_opa(255)
+style_engraving_page_btn_6_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+try:
+    style_engraving_page_btn_6_main_main_default.set_text_font(lv.font_montserratMedium_16)
+except AttributeError:
+    try:
+        style_engraving_page_btn_6_main_main_default.set_text_font(lv.font_montserrat_16)
+    except AttributeError:
+        style_engraving_page_btn_6_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_6_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+
+# add style for engraving_page_btn_6
+engraving_page_btn_6.add_style(style_engraving_page_btn_6_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+# create engraving_page_btn_7
+engraving_page_btn_7 = lv.btn(engraving_page)
+engraving_page_btn_7.set_pos(int(75),int(196))
+engraving_page_btn_7.set_size(95,47)
+engraving_page_btn_7.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create style style_engraving_page_btn_7_main_main_default
+style_engraving_page_btn_7_main_main_default = lv.style_t()
+style_engraving_page_btn_7_main_main_default.init()
+style_engraving_page_btn_7_main_main_default.set_radius(5)
+style_engraving_page_btn_7_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_7_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_7_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_7_main_main_default.set_bg_opa(0)
+style_engraving_page_btn_7_main_main_default.set_border_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_7_main_main_default.set_border_width(0)
+style_engraving_page_btn_7_main_main_default.set_border_opa(255)
+style_engraving_page_btn_7_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+try:
+    style_engraving_page_btn_7_main_main_default.set_text_font(lv.font_montserratMedium_16)
+except AttributeError:
+    try:
+        style_engraving_page_btn_7_main_main_default.set_text_font(lv.font_montserrat_16)
+    except AttributeError:
+        style_engraving_page_btn_7_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_7_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+
+# add style for engraving_page_btn_7
+engraving_page_btn_7.add_style(style_engraving_page_btn_7_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+# create engraving_page_btn_8
+engraving_page_btn_8 = lv.btn(engraving_page)
+engraving_page_btn_8.set_pos(int(30),int(127))
+engraving_page_btn_8.set_size(55,66)
+engraving_page_btn_8.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create style style_engraving_page_btn_8_main_main_default
+style_engraving_page_btn_8_main_main_default = lv.style_t()
+style_engraving_page_btn_8_main_main_default.init()
+style_engraving_page_btn_8_main_main_default.set_radius(5)
+style_engraving_page_btn_8_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_8_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_8_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_8_main_main_default.set_bg_opa(0)
+style_engraving_page_btn_8_main_main_default.set_border_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_8_main_main_default.set_border_width(0)
+style_engraving_page_btn_8_main_main_default.set_border_opa(255)
+style_engraving_page_btn_8_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+try:
+    style_engraving_page_btn_8_main_main_default.set_text_font(lv.font_montserratMedium_16)
+except AttributeError:
+    try:
+        style_engraving_page_btn_8_main_main_default.set_text_font(lv.font_montserrat_16)
+    except AttributeError:
+        style_engraving_page_btn_8_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_8_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+
+# add style for engraving_page_btn_8
+engraving_page_btn_8.add_style(style_engraving_page_btn_8_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+# create engraving_page_btn_9
+engraving_page_btn_9 = lv.btn(engraving_page)
+engraving_page_btn_9.set_pos(int(157),int(127))
+engraving_page_btn_9.set_size(53,61)
+engraving_page_btn_9.set_scrollbar_mode(lv.SCROLLBAR_MODE.OFF)
+# create style style_engraving_page_btn_9_main_main_default
+style_engraving_page_btn_9_main_main_default = lv.style_t()
+style_engraving_page_btn_9_main_main_default.init()
+style_engraving_page_btn_9_main_main_default.set_radius(5)
+style_engraving_page_btn_9_main_main_default.set_bg_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_9_main_main_default.set_bg_grad_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_9_main_main_default.set_bg_grad_dir(lv.GRAD_DIR.NONE)
+style_engraving_page_btn_9_main_main_default.set_bg_opa(0)
+style_engraving_page_btn_9_main_main_default.set_border_color(lv.color_make(0x21,0x95,0xf6))
+style_engraving_page_btn_9_main_main_default.set_border_width(0)
+style_engraving_page_btn_9_main_main_default.set_border_opa(255)
+style_engraving_page_btn_9_main_main_default.set_text_color(lv.color_make(0xff,0xff,0xff))
+try:
+    style_engraving_page_btn_9_main_main_default.set_text_font(lv.font_montserratMedium_16)
+except AttributeError:
+    try:
+        style_engraving_page_btn_9_main_main_default.set_text_font(lv.font_montserrat_16)
+    except AttributeError:
+        style_engraving_page_btn_9_main_main_default.set_text_font(lv.font_montserrat_16)
+style_engraving_page_btn_9_main_main_default.set_text_align(lv.TEXT_ALIGN.CENTER)
+
+# add style for engraving_page_btn_9
+engraving_page_btn_9.add_style(style_engraving_page_btn_9_main_main_default, lv.PART.MAIN|lv.STATE.DEFAULT)
+
+
+
+def engraving_page_btn_5_released_1_event_cb(e,main_page):
     src = e.get_target()
     code = e.get_code()
-    lv.scr_load_anim(Engraving, lv.SCR_LOAD_ANIM.OVER_LEFT, 100, 100, False)
-screen_imgbtn_1.add_event_cb(lambda e: screen_imgbtn_1_released_1_event_cb(e,Engraving), lv.EVENT.RELEASED, None)
+    lv.scr_load_anim(main_page, lv.SCR_LOAD_ANIM.OVER_RIGHT, 100, 100, False)
+engraving_page_btn_5.add_event_cb(lambda e: engraving_page_btn_5_released_1_event_cb(e,main_page), lv.EVENT.RELEASED, None)
 
 
-def Engraving_btn_5_released_1_event_cb(e,screen):
+def logo_page_pressed_1_event_cb(e,main_page):
     src = e.get_target()
     code = e.get_code()
-    lv.scr_load_anim(screen, lv.SCR_LOAD_ANIM.OVER_RIGHT, 100, 100, False)
-Engraving_btn_5.add_event_cb(lambda e: Engraving_btn_5_released_1_event_cb(e,screen), lv.EVENT.RELEASED, None)
+    lv.scr_load_anim(main_page, lv.SCR_LOAD_ANIM.NONE, 100, 100, False)
+logo_page.add_event_cb(lambda e: logo_page_pressed_1_event_cb(e,main_page), lv.EVENT.PRESSED, None)
+
+
+def main_page_imgbtn_1_released_1_event_cb(e,engraving_page):
+    src = e.get_target()
+    code = e.get_code()
+    lv.scr_load_anim(engraving_page, lv.SCR_LOAD_ANIM.OVER_LEFT, 100, 100, False)
+main_page_imgbtn_1.add_event_cb(lambda e: main_page_imgbtn_1_released_1_event_cb(e,engraving_page), lv.EVENT.RELEASED, None)
 
 
 
 # content from custom.py
 
 # Load the default screen
-lv.scr_load(screen)
+lv.scr_load(logo_page)
 
 while SDL.check():
     time.sleep_ms(5)
