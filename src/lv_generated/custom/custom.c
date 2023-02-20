@@ -161,17 +161,17 @@ static void ta_event_cb(lv_event_t * e)
         // connect the wifi
         if(ui->tool_wifi_msgbox )
         {
-            static lv_opa_t mask_map[LV_VER_RES_MAX * LV_HOR_RES_MAX];
-            /*Create a "8 bit alpha" canvas and clear it*/
-            lv_obj_t * canvas = lv_canvas_create(ui->tool_wifi);
-            lv_canvas_set_buffer(canvas, mask_map, LV_HOR_RES_MAX, LV_VER_RES_MAX, LV_IMG_CF_ALPHA_8BIT);
-            lv_obj_set_pos(canvas, 0, 0);
-            lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_50);
+            // static lv_opa_t mask_map[LV_VER_RES_MAX * LV_HOR_RES_MAX];
+            // /*Create a "8 bit alpha" canvas and clear it*/
+            // lv_obj_t * canvas = lv_canvas_create(ui->tool_wifi);
+            // lv_canvas_set_buffer(canvas, mask_map, LV_HOR_RES_MAX, LV_VER_RES_MAX, LV_IMG_CF_ALPHA_8BIT);
+            // lv_obj_set_pos(canvas, 0, 0);
+            // lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_50);
 
-            lv_obj_move_foreground(ui->tool_wifi_msgbox);
+            // lv_obj_move_foreground(ui->tool_wifi_msgbox);
 
-            lv_obj_add_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
-            lv_obj_clear_flag(ui->tool_wifi_msgbox, LV_OBJ_FLAG_HIDDEN);
+            // lv_obj_add_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
+            // lv_obj_clear_flag(ui->tool_wifi_msgbox, LV_OBJ_FLAG_HIDDEN);
             printf("ok is press3\n");
             // lv_obj_clear_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
         }
