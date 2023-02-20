@@ -146,6 +146,11 @@ void lvglTask(void *parg)  {
     #endif
 #else 
     lvDrawLogo();
+
+	setup_ui(&guider_ui);
+    events_init(&guider_ui);
+    custom_init(&guider_ui);  
+    
 #endif
 
     while(1) {

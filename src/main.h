@@ -44,4 +44,8 @@
 #include "lv_ui/tft_lvgl_configurate.h"
 #include "lv_ui/lv_port/lv_port_init.h"
 
+#include "./lv_generated/gui_guider.h"
+#include "./lv_generated/events_init.h"
+#include "./lv_generated/custom/custom.h"
+
 #endif

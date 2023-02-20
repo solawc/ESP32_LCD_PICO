@@ -16,9 +16,9 @@ static void event_handler(lv_event_t * e) {
 
 			if (d->prev_scr == NULL && (d->scr_to_load == NULL || d->scr_to_load == act_scr))
             {
-                lv_obj_clean(lv_ui.main_src);
+                lv_obj_clean(test_lv_ui.main_src);
                 draw_ready();
-                // lv_scr_load_anim(lv_ui.main_src, LV_SCR_LOAD_ANIM_OVER_LEFT, 50, 50, false);
+                // lv_scr_load_anim(test_lv_ui.main_src, LV_SCR_LOAD_ANIM_OVER_LEFT, 50, 50, false);
             }
 		}
 	}
@@ -50,7 +50,7 @@ void draw_engraving(void) {
 	lv_style_set_text_font(&src_engraving.btn_style_1, &lv_font_montserrat_16); 
 	lv_style_set_text_align(&src_engraving.btn_style_1, LV_TEXT_ALIGN_CENTER);
 	
-    src_engraving.btn_frame = lv_btn_create(lv_ui.main_src);
+    src_engraving.btn_frame = lv_btn_create(test_lv_ui.main_src);
 	lv_obj_set_pos(src_engraving.btn_frame, 252, 80);
 	lv_obj_set_size(src_engraving.btn_frame, 212, 37);
 	lv_obj_set_scrollbar_mode(src_engraving.btn_frame, LV_SCROLLBAR_MODE_OFF);
@@ -60,7 +60,7 @@ void draw_engraving(void) {
 	lv_obj_set_style_pad_all(src_engraving.btn_frame, 0, LV_STATE_DEFAULT);
 	lv_obj_align(src_engraving.label_frame, LV_ALIGN_CENTER, 0, 0);
 
-	src_engraving.btn_home = lv_btn_create(lv_ui.main_src);
+	src_engraving.btn_home = lv_btn_create(test_lv_ui.main_src);
 	lv_obj_set_pos(src_engraving.btn_home, 252, 134);
 	lv_obj_set_size(src_engraving.btn_home, 212, 37);
 	lv_obj_set_scrollbar_mode(src_engraving.btn_home, LV_SCROLLBAR_MODE_OFF);
@@ -70,7 +70,7 @@ void draw_engraving(void) {
 	lv_obj_set_style_pad_all(src_engraving.btn_home, 0, LV_STATE_DEFAULT);
 	lv_obj_align(src_engraving.label_home, LV_ALIGN_CENTER, 0, 0);
 
-	src_engraving.btn_position = lv_btn_create(lv_ui.main_src);
+	src_engraving.btn_position = lv_btn_create(test_lv_ui.main_src);
 	lv_obj_set_pos(src_engraving.btn_position, 252, 188);
 	lv_obj_set_size(src_engraving.btn_position, 212, 37);
 	lv_obj_set_scrollbar_mode(src_engraving.btn_position, LV_SCROLLBAR_MODE_OFF);
@@ -80,7 +80,7 @@ void draw_engraving(void) {
 	lv_obj_set_style_pad_all(src_engraving.btn_position, 0, LV_STATE_DEFAULT);
 	lv_obj_align(src_engraving.label_position, LV_ALIGN_CENTER, 0, 0);
 
-	src_engraving.btn_start = lv_btn_create(lv_ui.main_src);
+	src_engraving.btn_start = lv_btn_create(test_lv_ui.main_src);
 	lv_obj_set_pos(src_engraving.btn_start, 270, 240);
 	lv_obj_set_size(src_engraving.btn_start, 175, 50);
 	lv_obj_set_scrollbar_mode(src_engraving.btn_start, LV_SCROLLBAR_MODE_OFF);
@@ -90,7 +90,7 @@ void draw_engraving(void) {
 	lv_obj_set_style_pad_all(src_engraving.btn_start, 0, LV_STATE_DEFAULT);
 	lv_obj_align(src_engraving.label_start, LV_ALIGN_CENTER, 0, 0);
 
-	src_engraving.btn_back = lv_btn_create(lv_ui.main_src);
+	src_engraving.btn_back = lv_btn_create(test_lv_ui.main_src);
 	lv_obj_set_pos(src_engraving.btn_back, 364, 13);
 	lv_obj_set_size(src_engraving.btn_back, 100, 50);
 	lv_obj_set_scrollbar_mode(src_engraving.btn_back, LV_SCROLLBAR_MODE_OFF);
