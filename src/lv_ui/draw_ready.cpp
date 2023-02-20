@@ -16,9 +16,9 @@ static void event_handler(lv_event_t * e) {
 
             if (d->prev_scr == NULL && (d->scr_to_load == NULL || d->scr_to_load == act_scr))
             {
-                lv_obj_clean(lv_ui.main_src);
+                lv_obj_clean(test_lv_ui.main_src);
                 draw_engraving();
-                // lv_scr_load_anim(lv_ui.main_src, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 10, false);
+                // lv_scr_load_anim(test_lv_ui.main_src, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 10, false);
             }
         }
     }else if(e->target == src_ready.imgbtn_control) {
