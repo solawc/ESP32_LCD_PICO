@@ -144,6 +144,7 @@ LV_IMG_DECLARE(_larse_power_206x33);
 LV_IMG_DECLARE(_home_alpha_206x33);
 LV_IMG_DECLARE(_sub_alpha_25x25);
 LV_IMG_DECLARE(_plus_alpha_25x25);
+LV_IMG_DECLARE(_wifi_disconnect_76x58);
 
 
 #ifdef __cplusplus
