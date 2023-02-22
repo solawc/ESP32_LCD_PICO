@@ -12,6 +12,9 @@ LV_FONT_DECLARE(lv_font_simsun_12)
 LV_FONT_DECLARE(lv_font_Acme_Regular_30)
 LV_FONT_DECLARE(lv_font_montserratMedium_18)
 LV_FONT_DECLARE(lv_font_Acme_Regular_12)
+LV_FONT_DECLARE(lv_font_Abel_regular_16)
+LV_FONT_DECLARE(lv_font_simsun_16)
+LV_FONT_DECLARE(lv_font_Alatsi_Regular_22)
 
     
     #ifdef __cplusplus

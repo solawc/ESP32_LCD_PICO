@@ -142,6 +142,9 @@ LV_IMG_DECLARE(_stop_alpha_150x32);
 LV_IMG_DECLARE(_tool_info_alpha_114x114);
 LV_IMG_DECLARE(_larse_power_206x33);
 LV_IMG_DECLARE(_home_alpha_206x33);
+LV_IMG_DECLARE(_sub_alpha_25x25);
+LV_IMG_DECLARE(_plus_alpha_25x25);
+
 
 #ifdef __cplusplus
 }
