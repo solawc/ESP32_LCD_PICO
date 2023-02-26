@@ -425,3 +425,97 @@ void wifi_password_error_popview_test_case()
 	objmask_init();
   	lv_obj_t* obj = wifi_password_error_popview_init(objmask);
 }
+
+static void obj_bar_anim_exec_callback(void * bar, int32_t value)
+{
+    if (bar != NULL)
+    {
+        lv_bar_set_value((lv_obj_t *)bar, value, LV_ANIM_ON); // 设置进度条对象的值
+    }
+}
+
+lv_obj_t* file_download_popview_init(lv_obj_t* parent)
+{
+    lv_obj_t* background = lv_img_create(parent);
+    lv_obj_set_size(background, 292, 186);
+    lv_obj_set_pos(background, 94, 67);
+
+    static lv_style_t background_style;
+    lv_style_init(&background_style);
+    lv_style_set_bg_color(&background_style, lv_color_hex(0x254b73));
+    lv_style_set_bg_opa(&background_style, LV_OPA_COVER);
+    lv_style_set_radius(&background_style, 5); 
+    lv_obj_add_style(background, &background_style, 0);
+
+    lv_obj_move_foreground(background);
+    lv_obj_add_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
+
+	//Write codes file_download_label
+	lv_obj_t* file_download_label = lv_label_create(background);
+	lv_obj_align(file_download_label, LV_ALIGN_CENTER, 0, -24);
+	lv_obj_set_size(file_download_label, 212, 31);
+	lv_obj_set_scrollbar_mode(file_download_label, LV_SCROLLBAR_MODE_OFF);
+	lv_label_set_text(file_download_label, "Receiving file");
+	lv_label_set_long_mode(file_download_label, LV_LABEL_LONG_WRAP);
+
+	//Write style state: LV_STATE_DEFAULT for style_file_download_label_main_main_default
+	static lv_style_t style_file_download_label_main_main_default;
+	if (style_file_download_label_main_main_default.prop_cnt > 1)
+		lv_style_reset(&style_file_download_label_main_main_default);
+	else
+		lv_style_init(&style_file_download_label_main_main_default);
+	lv_style_set_radius(&style_file_download_label_main_main_default, 0);
+	lv_style_set_bg_color(&style_file_download_label_main_main_default, lv_color_make(0x21, 0x95, 0xf6));
+	lv_style_set_bg_grad_color(&style_file_download_label_main_main_default, lv_color_make(0x21, 0x95, 0xf6));
+	lv_style_set_bg_grad_dir(&style_file_download_label_main_main_default, LV_GRAD_DIR_NONE);
+	lv_style_set_bg_opa(&style_file_download_label_main_main_default, 0);
+	lv_style_set_shadow_width(&style_file_download_label_main_main_default, 0);
+	lv_style_set_shadow_color(&style_file_download_label_main_main_default, lv_color_make(0x21, 0x95, 0xf6));
+	lv_style_set_shadow_opa(&style_file_download_label_main_main_default, 255);
+	lv_style_set_shadow_spread(&style_file_download_label_main_main_default, 0);
+	lv_style_set_shadow_ofs_x(&style_file_download_label_main_main_default, 0);
+	lv_style_set_shadow_ofs_y(&style_file_download_label_main_main_default, 0);
+	lv_style_set_text_color(&style_file_download_label_main_main_default, lv_color_make(0xff, 0xff, 0xff));
+	lv_style_set_text_font(&style_file_download_label_main_main_default, &lv_font_Acme_Regular_16);
+	lv_style_set_text_letter_space(&style_file_download_label_main_main_default, 2);
+	lv_style_set_text_line_space(&style_file_download_label_main_main_default, 0);
+	lv_style_set_text_align(&style_file_download_label_main_main_default, LV_TEXT_ALIGN_CENTER);
+	lv_style_set_pad_left(&style_file_download_label_main_main_default, 0);
+	lv_style_set_pad_right(&style_file_download_label_main_main_default, 0);
+	lv_style_set_pad_top(&style_file_download_label_main_main_default, 0);
+	lv_style_set_pad_bottom(&style_file_download_label_main_main_default, 0);
+	lv_obj_add_style(file_download_label, &style_file_download_label_main_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
+ 
+    static lv_style_t style_indic;
+    lv_style_init(&style_indic);
+    lv_style_reset(&style_indic);
+
+    lv_style_set_bg_opa(&style_indic, LV_OPA_COVER); // 设置背景不透明度
+    lv_style_set_bg_color(&style_indic, lv_color_hex(0x35B935));
+    lv_style_set_radius(&style_indic, 3);
+ 
+    lv_obj_t * obj_bar = lv_bar_create(background);
+    if (obj_bar != NULL)
+    {
+        lv_obj_remove_style_all(obj_bar);  // 清除所有样式
+        // lv_obj_add_style(obj_bar, &style_bg, 0);
+        lv_obj_add_style(obj_bar, &style_indic, LV_PART_INDICATOR);
+        lv_obj_set_size(obj_bar, 100, 30);
+        lv_obj_align(obj_bar, LV_ALIGN_CENTER, 0, 30);
+ 
+        lv_anim_t anim;
+        lv_anim_init(&anim); // 初始化动画
+        lv_anim_set_exec_cb(&anim, obj_bar_anim_exec_callback); // 添加回调函数
+        lv_anim_set_time(&anim, 5000); // 设置动画时长
+        lv_anim_set_var(&anim, obj_bar); // 动画绑定对象
+        lv_anim_set_values(&anim, 0, 100); // 设置开始值和结束值
+        lv_anim_set_repeat_count(&anim, LV_ANIM_REPEAT_INFINITE); // 重复次数，默认值为1 LV_ANIM_REPEAT_INFINIT用于无限重复
+        lv_anim_start(&anim); // 应用动画效果
+    }
+}
+
+void file_download_popview_test_case()
+{
+	objmask_init();
+  	lv_obj_t* obj = file_download_popview_init(objmask);
+}
