@@ -441,7 +441,11 @@ lv_obj_t* file_download_popview_init(lv_obj_t* parent)
     lv_obj_set_pos(background, 94, 67);
 
     static lv_style_t background_style;
-    lv_style_init(&background_style);
+	if (background_style.prop_cnt > 1)
+		lv_style_reset(&background_style);
+	else
+		lv_style_init(&background_style);
+			
     lv_style_set_bg_color(&background_style, lv_color_hex(0x254b73));
     lv_style_set_bg_opa(&background_style, LV_OPA_COVER);
     lv_style_set_radius(&background_style, 5); 
@@ -487,13 +491,14 @@ lv_obj_t* file_download_popview_init(lv_obj_t* parent)
 	lv_obj_add_style(file_download_label, &style_file_download_label_main_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
  
     static lv_style_t style_indic;
-    lv_style_init(&style_indic);
-    lv_style_reset(&style_indic);
-
+	if (style_indic.prop_cnt > 1)
+		lv_style_reset(&style_indic);
+	else
+		lv_style_init(&style_indic);
     lv_style_set_bg_opa(&style_indic, LV_OPA_COVER); // 设置背景不透明度
     lv_style_set_bg_color(&style_indic, lv_color_hex(0x35B935));
     lv_style_set_radius(&style_indic, 3);
- 
+	
     lv_obj_t * obj_bar = lv_bar_create(background);
     if (obj_bar != NULL)
     {
