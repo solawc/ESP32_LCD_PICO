@@ -79,6 +79,14 @@ typedef struct
 	lv_obj_t *control_img_1;
 	lv_obj_t *control_imgbtn_6;
 	lv_obj_t *control_imgbtn_6_label;
+	lv_obj_t *control_imgbtn_7;
+	lv_obj_t *control_imgbtn_7_label;
+	lv_obj_t *control_imgbtn_8;
+	lv_obj_t *control_imgbtn_8_label;
+	lv_obj_t *control_imgbtn_9;
+	lv_obj_t *control_imgbtn_9_label;
+	lv_obj_t *control_imgbtn_10;
+	lv_obj_t *control_imgbtn_10_label;	
 	lv_obj_t *tool;
 	bool tool_del;
 	lv_obj_t *tool_imgbtn_1;
@@ -145,6 +153,11 @@ LV_IMG_DECLARE(_home_alpha_206x33);
 LV_IMG_DECLARE(_sub_alpha_25x25);
 LV_IMG_DECLARE(_plus_alpha_25x25);
 LV_IMG_DECLARE(_wifi_disconnect_76x58);
+LV_IMG_DECLARE(_Slice_41_alpha_184x184);
+LV_IMG_DECLARE(_y_up_alpha_15x30);
+LV_IMG_DECLARE(_y_down_alpha_15x30);
+LV_IMG_DECLARE(_x_left_alpha_28x15);
+LV_IMG_DECLARE(_x_right_alpha_28x15);
 
 
 #ifdef __cplusplus
