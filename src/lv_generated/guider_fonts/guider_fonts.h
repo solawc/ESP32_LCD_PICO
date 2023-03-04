@@ -16,6 +16,10 @@ LV_FONT_DECLARE(lv_font_Abel_regular_16)
 LV_FONT_DECLARE(lv_font_simsun_16)
 LV_FONT_DECLARE(lv_font_Alatsi_Regular_22)
 LV_FONT_DECLARE(lv_font_Acme_Regular_16)
+LV_FONT_DECLARE(lv_font_FontAwesome5_58)
+LV_FONT_DECLARE(lv_font_montserratMedium_16)
+LV_FONT_DECLARE(lv_font_FontAwesome5_20)
+LV_FONT_DECLARE(lv_font_montserratMedium_20)
 
     
     #ifdef __cplusplus

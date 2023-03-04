@@ -29,7 +29,7 @@ enum SCR_ID {
 	SCR_TOOL_INFO           = 5,
     SCR_TOOL_WIFI           = 6,
     SCR_ENGRAING_FILE       = 7,
-    SCR_TOOL_WIFI_KEYBORAD  = 8,
+    SCR_INCARVING            = 8,
 };
 
 extern int cur_scr;

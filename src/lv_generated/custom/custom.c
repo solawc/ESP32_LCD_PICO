@@ -76,11 +76,20 @@ void load_disbtn_engraving_switch_cb(lv_event_t * event){
     }
 }
 
+void load_incarving_cb(lv_event_t * event)
+{
+    lv_event_code_t code = lv_event_get_code(event);
+    lv_obj_t * obj = lv_event_get_target(event);
+    if (code == LV_EVENT_PRESSED) {
+        guider_load_screen(SCR_INCARVING);
+    }
+}
+
 void scr_engraving_event_init(void){
     lv_obj_add_event_cb(guider_ui.engraving_imgbtn_2, load_disbtn_engraving_switch_cb, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(guider_ui.engraving_imgbtn_3, load_disbtn_engraving_switch_cb, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(guider_ui.engraving_imgbtn_6, load_disbtn_home_cb, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(guider_ui.engraving_imgbtn_5, load_disbtn_home_cb, LV_EVENT_ALL, NULL);
+    lv_obj_add_event_cb(guider_ui.engraving_imgbtn_5, load_incarving_cb, LV_EVENT_ALL, NULL);
 }
 
 void load_disbtn_file_management_switch_cb(lv_event_t * event){
@@ -196,6 +205,10 @@ void scr_tool_wifi_event_init(void){
     // lv_obj_add_event_cb(guider_ui.tool_wifi_msgbox, msgbox_event_cb, LV_EVENT_ALL, NULL);
 }
 
+void scr_incarving_event_init(void){
+    lv_obj_add_event_cb(guider_ui.incarving_imgbtn_6, load_disbtn_home_cb, LV_EVENT_ALL, NULL);
+}
+
 lv_obj_t **get_scr_by_id(int scr_id)
 {
     if(scr_id ==SCR_LOGO)
@@ -214,8 +227,8 @@ lv_obj_t **get_scr_by_id(int scr_id)
         return &guider_ui.tool_wifi;        
     else if(scr_id == SCR_ENGRAING_FILE)
         return &guider_ui.file_management;  
-    // else if(scr_id == SCR_TOOL_WIFI_KEYBORAD)
-    //     return &guider_ui.about;           
+    else if(scr_id == SCR_INCARVING)
+        return &guider_ui.incarving;           
     return NULL;
 }
 
@@ -279,7 +292,14 @@ void guider_load_screen(int scr_id)
                 setup_scr_tool_wifi(&guider_ui);
                 scr_tool_wifi_event_init();
             }
-            break;                                                                                 
+            break; 
+        case SCR_INCARVING:
+            if(!guider_ui.incarving) {
+                scr = &guider_ui.incarving;
+                setup_scr_incarving(&guider_ui);
+                scr_incarving_event_init();
+            }
+            break;                                                                                              
     }
 
     lv_scr_load(*scr);
