@@ -72,6 +72,13 @@ typedef struct
 	lv_obj_t *incarving_imgbtn_4_label;
 	lv_obj_t *incarving_imgbtn_5;
 	lv_obj_t *incarving_imgbtn_5_label;
+	lv_obj_t *incarving_label_1;
+	lv_obj_t *incarving_label_2;
+	lv_obj_t *incarving_label_3;
+	lv_obj_t *incarving_label_4;
+	lv_obj_t *incarving_label_5;	
+	lv_obj_t *incarving_imgbtn_6;
+	lv_obj_t *incarving_imgbtn_6_label;
 	lv_obj_t *control;
 	bool control_del;
 	lv_obj_t *control_imgbtn_1;
@@ -140,20 +147,15 @@ void setup_scr_tool_wifi(lv_ui *ui);
 LV_IMG_DECLARE(_position_label_alpha_222x38);
 LV_IMG_DECLARE(_unlock_alpha_206x33);
 LV_IMG_DECLARE(_MakeGo_Logo_460x320);
-LV_IMG_DECLARE(_home_alpha_157x26);
 LV_IMG_DECLARE(_file_alpha_206x33);
 LV_IMG_DECLARE(_position_alpha_206x33);
-LV_IMG_DECLARE(_emptypane_alpha_150x150);
 LV_IMG_DECLARE(_control_alpha_109x109);
-LV_IMG_DECLARE(_Frame_alpha_151x23);
 LV_IMG_DECLARE(_start_alpha_175x50);
-LV_IMG_DECLARE(_position_alpha_154x24);
 LV_IMG_DECLARE(_tool_wifi_alpha_114x114);
 LV_IMG_DECLARE(_tool_alpha_109x109);
 LV_IMG_DECLARE(_return_alpha_25x21);
 LV_IMG_DECLARE(_Engraving_alpha_109x109);
 LV_IMG_DECLARE(_wifi_icon_15x9);
-LV_IMG_DECLARE(_stop_alpha_150x32);
 LV_IMG_DECLARE(_tool_info_alpha_114x114);
 LV_IMG_DECLARE(_larse_power_206x33);
 LV_IMG_DECLARE(_home_alpha_206x33);
@@ -165,6 +167,11 @@ LV_IMG_DECLARE(_y_up_alpha_15x30);
 LV_IMG_DECLARE(_y_down_alpha_15x30);
 LV_IMG_DECLARE(_x_left_alpha_28x15);
 LV_IMG_DECLARE(_x_right_alpha_28x15);
+LV_IMG_DECLARE(_emptypane_alpha_207x207);
+LV_IMG_DECLARE(_Frame_alpha_200x37);
+LV_IMG_DECLARE(_home_alpha_200x37);
+LV_IMG_DECLARE(_position_alpha_200x37);
+LV_IMG_DECLARE(_stop_alpha_175x50);
 
 
 #ifdef __cplusplus
