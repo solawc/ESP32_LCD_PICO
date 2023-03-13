@@ -68,6 +68,7 @@ lv_obj_t* file_grid_init(lv_obj_t* parent){
 		lv_style_init(&style_cont_main_main_default);
 	lv_style_set_bg_color(&style_cont_main_main_default, lv_color_make(0x1d, 0x23, 0x32));
 	lv_style_set_bg_opa(&style_cont_main_main_default, 255);
+    lv_style_set_border_color(&style_cont_main_main_default,lv_color_make(0x1d, 0x23, 0x32));        //设置样式边框颜色
 
     static lv_coord_t col_dsc[] = {206, 206, 206, LV_GRID_TEMPLATE_LAST};
     static lv_coord_t row_dsc[] = {30, 30, 30, 30, LV_GRID_TEMPLATE_LAST};
