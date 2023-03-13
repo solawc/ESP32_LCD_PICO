@@ -13,6 +13,7 @@
 #include "lvgl.h"
 #include "custom.h"
 #include "file_grid.h"
+#include "../../wrapper/SdCardWrapper.h"
 
 /*********************
  *      DEFINES
@@ -110,13 +111,14 @@ void load_disbtn_file_management_last_page_event_cb(lv_event_t* e){
     lv_ui* handle = (lv_ui*)lv_event_get_user_data(e);
 
     if(code == LV_EVENT_CLICKED){
-        lv_obj_clean(handle->file_management_table);
-        uint32_t num = lv_rand(1, 8);
-        for (size_t i = 0; i < num; i++)
-        {
-            file_grid_insert_cell(handle->file_management_table, NULL);
-            file_grid_set_cell_text(handle->file_management_table, "test");
-        }   
+        // lv_obj_clean(handle->file_management_table);
+        // uint32_t num = lv_rand(1, 8);
+        // for (size_t i = 0; i < num; i++)
+        // {
+        //     file_grid_insert_cell(handle->file_management_table, NULL);
+        //     file_grid_set_cell_text(handle->file_management_table, "test");
+        // } 
+        update_file_list(getCurrentDir(), handle->file_management_table);  
     }
 }
 
@@ -126,13 +128,14 @@ void load_disbtn_file_management_next_page_event_cb(lv_event_t* e){
     lv_ui* handle = (lv_ui*)lv_event_get_user_data(e);
 
     if(code == LV_EVENT_CLICKED){
-        lv_obj_clean(handle->file_management_table);
-        uint32_t num = lv_rand(1, 8);
-        for (size_t i = 0; i < num; i++)
-        {
-            file_grid_insert_cell(handle->file_management_table, NULL);
-            file_grid_set_cell_text(handle->file_management_table, "test");
-        }        
+        // lv_obj_clean(handle->file_management_table);
+        // uint32_t num = lv_rand(1, 8);
+        // for (size_t i = 0; i < num; i++)
+        // {
+        //     file_grid_insert_cell(handle->file_management_table, NULL);
+        //     file_grid_set_cell_text(handle->file_management_table, "test");
+        // }
+        update_file_list(getCurrentDir(), handle->file_management_table);
     }
 }
 
@@ -269,6 +272,8 @@ void guider_load_screen(int scr_id)
             if(!guider_ui.file_management) {
                 scr = &guider_ui.file_management;
                 setup_scr_file_management(&guider_ui);
+                file_list_init();
+                update_file_list(getCurrentDir(), guider_ui.file_management_table);
                 scr_file_management_event_init();
             }
             break;                

@@ -121,6 +121,12 @@ std::string   SDCard::getCurrentDir(){
     return currentDir;
 }
 
+void  SDCard::cleanFileList()
+{
+    fileList.list.clear();
+    fileList.type.clear();
+}
+
 bool    SDCard::isDirectory(fs::FS& fs, const char* dirname){
     File root = fs.open(dirname);
     bool ret = root.isDirectory();
