@@ -20,6 +20,10 @@ void app_task_init(void) {
     else { 
         debug_send(CLIENT_SERIAL, "SD mount fail\n"); 
     }
+
+    #ifdef ENABLE_DEBUG_WIFI
+        HAL_WIFI::wifi_config.init();                      /* init wifi state */
+    #endif   
 }
 
 void setup() {
@@ -36,6 +40,9 @@ void setup() {
     // disp Board Info
     report_mcu_info();
 
+#ifdef ENABLE_DEBUG_WIFI
+    HAL_WIFI::wifi_config.begin();
+#endif
     // init test
     // lv_draw_test();
 

@@ -86,6 +86,8 @@ public:
     std::vector<std::string>     getFileList();
     std::vector<uint8_t>         getFileType();
     std::string                  getCurrentDir();
+    void                         cleanFileList();
+    
     bool    isDirectory(fs::FS& fs, const char* dirname);    
 };
 extern SDCard mysdcard;

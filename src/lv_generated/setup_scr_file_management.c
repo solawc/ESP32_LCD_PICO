@@ -111,13 +111,6 @@ void setup_scr_file_management(lv_ui *ui){
 	// lv_obj_set_align(ui->file_management_table, LV_ALIGN_CENTER);
 	// lv_obj_align(ui->file_management_table, LV_ALIGN_CENTER, 0, 10);
 	lv_obj_set_pos(ui->file_management_table, 0, 10);
-	
-	// files search, and put the file info into cell.
-	for (size_t i = 0; i < 8; i++)
-	{
-		file_grid_insert_cell(ui->file_management_table, NULL);
-		file_grid_set_cell_text(ui->file_management_table, "test");
-	}
 
     ui->file_management_btn_next_page = lv_obj_create(ui->file_management);
     lv_obj_set_size(ui->file_management_btn_next_page, 29, 29);
