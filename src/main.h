@@ -15,6 +15,7 @@
 #include <SPI.h>
 
 #include "CommonMarco.h"
+#include "default_config.h"
 
 #include <driver/rmt.h>
 #include <esp_task_wdt.h>
@@ -30,6 +31,9 @@
 #include "hal/hal_wdt.h"
 #include "hal/hal_info.h"
 #include "hal/hal_sdcard.h"
+#ifdef ENABLE_DEBUG_WIFI
+#    include "hal/hal_wifi.h"
+#endif
 
 #include "mid/serial.h"
 #include "mid/report.h"
