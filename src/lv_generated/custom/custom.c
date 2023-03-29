@@ -13,6 +13,7 @@
 #include "lvgl.h"
 #include "custom.h"
 #include "file_grid.h"
+#include "wifi_grid.h"
 #include "../../wrapper/SdCardWrapper.h"
 
 /*********************
@@ -82,7 +83,10 @@ void load_incarving_cb(lv_event_t * event)
     lv_event_code_t code = lv_event_get_code(event);
     lv_obj_t * obj = lv_event_get_target(event);
     if (code == LV_EVENT_PRESSED) {
-        guider_load_screen(SCR_INCARVING);
+        if (obj == guider_ui.engraving_imgbtn_5)
+        {
+            guider_load_screen(SCR_INCARVING);
+        }       
     }
 }
 
@@ -163,34 +167,6 @@ void scr_tool_info_event_init(void){
     lv_obj_add_event_cb(guider_ui.tool_info_imgbtn_3, load_disbtn_tool_cb, LV_EVENT_ALL, NULL);
 }
 
-static void ta_event_cb(lv_event_t * e)
-{
-    lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t * ta = lv_event_get_current_target(e);
-    lv_ui * ui = (lv_ui*)lv_event_get_user_data(e);
-    
-    if(code == LV_EVENT_READY) {
-        // connect the wifi
-        if(ui->tool_wifi_msgbox )
-        {
-            // static lv_opa_t mask_map[LV_VER_RES_MAX * LV_HOR_RES_MAX];
-            // /*Create a "8 bit alpha" canvas and clear it*/
-            // lv_obj_t * canvas = lv_canvas_create(ui->tool_wifi);
-            // lv_canvas_set_buffer(canvas, mask_map, LV_HOR_RES_MAX, LV_VER_RES_MAX, LV_IMG_CF_ALPHA_8BIT);
-            // lv_obj_set_pos(canvas, 0, 0);
-            // lv_canvas_fill_bg(canvas, lv_color_black(), LV_OPA_50);
-
-            // lv_obj_move_foreground(ui->tool_wifi_msgbox);
-
-            // lv_obj_add_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
-            // lv_obj_clear_flag(ui->tool_wifi_msgbox, LV_OBJ_FLAG_HIDDEN);
-            printf("ok is press3\n");
-            // lv_obj_clear_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
-        }
-   
-    }
-}
-
 void msgbox_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -204,7 +180,6 @@ void msgbox_event_cb(lv_event_t * e)
 
 void scr_tool_wifi_event_init(void){
     lv_obj_add_event_cb(guider_ui.tool_wifi_imgbtn_3, load_disbtn_tool_cb, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(guider_ui.tool_wifi_textare, ta_event_cb, LV_EVENT_ALL, &guider_ui);
     // lv_obj_add_event_cb(guider_ui.tool_wifi_msgbox, msgbox_event_cb, LV_EVENT_ALL, NULL);
 }
 

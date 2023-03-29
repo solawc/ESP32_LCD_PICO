@@ -90,6 +90,7 @@ namespace HAL_WIFI {
         static bool        Is_WiFi_on();
         static void        setWifiMode(int8_t mode);
         static int8_t      getWifiMode();
+        static bool        getWifiInitStatus();
         ~WiFiConfig();
 
     private:
@@ -98,6 +99,7 @@ namespace HAL_WIFI {
         static String _hostname;
         static bool   _events_registered;
         static int8_t  _wifi_radio_mode;
+        static bool _wifi_init_status; // true: success; false: falied
     };
 
     extern WiFiConfig wifi_config;

@@ -17,6 +17,7 @@ namespace HAL_WIFI {
     String WiFiConfig::_hostname          = "";
     bool   WiFiConfig::_events_registered = false;
     int8_t  WiFiConfig::_wifi_radio_mode = ESP_WIFI_AP;
+    bool    WiFiConfig::_wifi_init_status = false;
     WiFiConfig::WiFiConfig() {
         _wifi_radio_mode = ESP_WIFI_AP;
     }
@@ -364,7 +365,7 @@ namespace HAL_WIFI {
         //Start AP
         // if (WiFi.softAP(SSID.c_str(), (password.length() > 0) ? password.c_str() : NULL, channel)) {
         if (WiFi.softAP(ssdi_str, (password.length() > 0) ? password.c_str() : NULL, channel)) {
-            debug_send(CLIENT_SERIAL, "\n[MSG:Local access point started]\r\n");
+            debug_send(CLIENT_SERIAL, "\n[TestCase2: Wifi Local access point started]\r\n");
             return true;
         } else {
             debug_send(CLIENT_SERIAL, "[MSG:Starting AP failed]\r\n");
@@ -405,10 +406,10 @@ namespace HAL_WIFI {
         _hostname       = DEFAULT_HOSTNAME;
         int8_t wifiMode = getWifiMode();
         if (wifiMode == ESP_WIFI_AP) {
-            StartAP();
+            _wifi_init_status = StartAP();
         } else if (wifiMode == ESP_WIFI_STA) {
             if (!StartSTA()) {
-                StartAP();
+                _wifi_init_status = StartAP();
             }
         } else {
             WiFi.mode(WIFI_OFF);
@@ -440,7 +441,7 @@ namespace HAL_WIFI {
 
     void        WiFiConfig::setWifiMode(int8_t mode){ _wifi_radio_mode = mode; }
     int8_t      WiFiConfig::getWifiMode(){ return _wifi_radio_mode; }
-
+    bool        WiFiConfig::getWifiInitStatus(){ return _wifi_init_status; }
     /**
      * Handle not critical actions that must be done in sync environement
      */

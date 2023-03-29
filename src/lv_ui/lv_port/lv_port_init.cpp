@@ -146,7 +146,7 @@ void lvglTask(void *parg)  {
     #endif
 #else 
     lvDrawLogo();
-
+    debug_send(CLIENT_SERIAL, "TestCase3: SD begin ok..\n");
 	setup_ui(&guider_ui);
     events_init(&guider_ui);
     custom_init(&guider_ui);  
