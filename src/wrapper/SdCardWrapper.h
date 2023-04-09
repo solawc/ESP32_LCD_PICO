@@ -8,7 +8,7 @@ extern "C" {
 
 extern const char* getCurrentDir();
 extern void file_list_init();
-extern void update_file_list(char * path, lv_obj_t* obj);
+extern void update_file_list(char * path, lv_obj_t* obj, uint8_t last_or_next);
 extern uint8_t get_sd_state(bool refresh);
 
 #ifdef __cplusplus

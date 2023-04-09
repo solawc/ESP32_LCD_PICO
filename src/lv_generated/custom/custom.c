@@ -122,7 +122,7 @@ void load_disbtn_file_management_last_page_event_cb(lv_event_t* e){
         //     file_grid_insert_cell(handle->file_management_table, NULL);
         //     file_grid_set_cell_text(handle->file_management_table, "test");
         // } 
-        update_file_list(getCurrentDir(), handle->file_management_table);  
+        update_file_list(getCurrentDir(), handle->file_management_table, 2);  
     }
 }
 
@@ -139,7 +139,7 @@ void load_disbtn_file_management_next_page_event_cb(lv_event_t* e){
         //     file_grid_insert_cell(handle->file_management_table, NULL);
         //     file_grid_set_cell_text(handle->file_management_table, "test");
         // }
-        update_file_list(getCurrentDir(), handle->file_management_table);
+        update_file_list(getCurrentDir(), handle->file_management_table, 1);
     }
 }
 
@@ -248,7 +248,7 @@ void guider_load_screen(int scr_id)
                 scr = &guider_ui.file_management;
                 setup_scr_file_management(&guider_ui);
                 file_list_init();
-                update_file_list(getCurrentDir(), guider_ui.file_management_table);
+                update_file_list(getCurrentDir(), guider_ui.file_management_table, 0);
                 scr_file_management_event_init();
             }
             break;                
