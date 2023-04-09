@@ -54,6 +54,7 @@ typedef struct
 	lv_obj_t *engraving_imgbtn_10;
 	lv_obj_t *engraving_imgbtn_10_label;	
 	lv_obj_t *file_management;
+	lv_obj_t *engraving_label_1;
 	bool file_management_del;
 	lv_obj_t *file_management_label_1;
 	lv_obj_t *file_management_imgbtn_1;
@@ -102,6 +103,8 @@ typedef struct
 	lv_obj_t *control_imgbtn_9_label;
 	lv_obj_t *control_imgbtn_10;
 	lv_obj_t *control_imgbtn_10_label;	
+	lv_obj_t *control_label_1;
+	lv_obj_t *control_img_2;
 	lv_obj_t *tool;
 	bool tool_del;
 	lv_obj_t *tool_imgbtn_1;

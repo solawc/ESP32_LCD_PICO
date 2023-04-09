@@ -677,4 +677,62 @@ void setup_scr_control(lv_ui *ui){
 	lv_obj_add_style(ui->control_imgbtn_10, &style_control_imgbtn_10_main_main_checked, LV_PART_MAIN|LV_STATE_CHECKED);
 	lv_imgbtn_set_src(ui->control_imgbtn_10, LV_IMGBTN_STATE_RELEASED, NULL, &_x_right_alpha_28x15, NULL);
 	lv_obj_add_flag(ui->control_imgbtn_10, LV_OBJ_FLAG_CHECKABLE);
+
+	//Write codes control_label_1
+	ui->control_label_1 = lv_label_create(ui->control);
+	lv_obj_set_pos(ui->control_label_1, 10, 5);
+	lv_obj_set_size(ui->control_label_1, 80, 20);
+	lv_obj_set_scrollbar_mode(ui->control_label_1, LV_SCROLLBAR_MODE_OFF);
+	lv_label_set_text(ui->control_label_1, "MakeGo");
+	lv_label_set_long_mode(ui->control_label_1, LV_LABEL_LONG_WRAP);
+
+	//Write style state: LV_STATE_DEFAULT for style_control_label_1_main_main_default
+	static lv_style_t style_control_label_1_main_main_default;
+	if (style_control_label_1_main_main_default.prop_cnt > 1)
+		lv_style_reset(&style_control_label_1_main_main_default);
+	else
+		lv_style_init(&style_control_label_1_main_main_default);
+	lv_style_set_radius(&style_control_label_1_main_main_default, 0);
+	lv_style_set_bg_color(&style_control_label_1_main_main_default, lv_color_make(0x1D, 0x23, 0x32));
+	lv_style_set_bg_grad_color(&style_control_label_1_main_main_default, lv_color_make(0x21, 0x95, 0xf6));
+	lv_style_set_bg_grad_dir(&style_control_label_1_main_main_default, LV_GRAD_DIR_NONE);
+	lv_style_set_bg_opa(&style_control_label_1_main_main_default, 255);
+	lv_style_set_shadow_width(&style_control_label_1_main_main_default, 0);
+	lv_style_set_shadow_color(&style_control_label_1_main_main_default, lv_color_make(0x21, 0x95, 0xf6));
+	lv_style_set_shadow_opa(&style_control_label_1_main_main_default, 255);
+	lv_style_set_shadow_spread(&style_control_label_1_main_main_default, 0);
+	lv_style_set_shadow_ofs_x(&style_control_label_1_main_main_default, 0);
+	lv_style_set_shadow_ofs_y(&style_control_label_1_main_main_default, 0);
+	lv_style_set_text_color(&style_control_label_1_main_main_default, lv_color_make(0xff, 0xff, 0xff));
+	lv_style_set_text_font(&style_control_label_1_main_main_default, &lv_font_montserratMedium_10);
+	lv_style_set_text_letter_space(&style_control_label_1_main_main_default, 2);
+	lv_style_set_text_line_space(&style_control_label_1_main_main_default, 0);
+	lv_style_set_text_align(&style_control_label_1_main_main_default, LV_TEXT_ALIGN_CENTER);
+	lv_style_set_pad_left(&style_control_label_1_main_main_default, 0);
+	lv_style_set_pad_right(&style_control_label_1_main_main_default, 0);
+	lv_style_set_pad_top(&style_control_label_1_main_main_default, 8);
+	lv_style_set_pad_bottom(&style_control_label_1_main_main_default, 0);
+	lv_obj_add_style(ui->control_label_1, &style_control_label_1_main_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
+
+	//Write codes control_img_2
+	ui->control_img_2 = lv_img_create(ui->control);
+	lv_obj_set_pos(ui->control_img_2, 103, 12);
+	lv_obj_set_size(ui->control_img_2, 15, 9);
+	lv_obj_set_scrollbar_mode(ui->control_img_2, LV_SCROLLBAR_MODE_OFF);
+
+	//Write style state: LV_STATE_DEFAULT for style_control_img_2_main_main_default
+	static lv_style_t style_control_img_2_main_main_default;
+	if (style_control_img_2_main_main_default.prop_cnt > 1)
+		lv_style_reset(&style_control_img_2_main_main_default);
+	else
+		lv_style_init(&style_control_img_2_main_main_default);
+	lv_style_set_img_recolor(&style_control_img_2_main_main_default, lv_color_make(0xff, 0xff, 0xff));
+	lv_style_set_img_recolor_opa(&style_control_img_2_main_main_default, 0);
+	lv_style_set_img_opa(&style_control_img_2_main_main_default, 255);
+	lv_obj_add_style(ui->control_img_2, &style_control_img_2_main_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
+	lv_obj_add_flag(ui->control_img_2, LV_OBJ_FLAG_CLICKABLE);
+	lv_img_set_src(ui->control_img_2,&_wifi_icon_15x9);
+	lv_img_set_pivot(ui->control_img_2, 0,0);
+	lv_img_set_angle(ui->control_img_2, 0);
+
 }
