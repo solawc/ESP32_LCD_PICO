@@ -143,7 +143,7 @@ void SDCard::cardInit() {
 boolean SDCard::mount(void) {
 
     if (SD.begin((GRBL_SPI_SS == -1) ? SS : GRBL_SPI_SS, SD_SPI, GRBL_SPI_FREQ, SD_ROOT_PATH, SD_MAX_OPEN_FILE)) {
-        serial_send(CLIENT_SERIAL, "SD begin ok..\n");
+        debug_send(CLIENT_SERIAL, "TestCase1: SD begin ok..\n");
         if (SD.cardSize() > 0) {
             serial_send(CLIENT_SERIAL, "SD size ok..\n");
             sd_state = SDState::Idle;

@@ -9,6 +9,7 @@
 #include "gui_guider.h"
 #include "events_init.h"
 #include "./custom/custom.h"
+#include "./custom/wifi_grid.h"
 
 void setup_scr_tool_wifi(lv_ui *ui){
 
@@ -103,24 +104,21 @@ void setup_scr_tool_wifi(lv_ui *ui){
 	lv_imgbtn_set_src(ui->tool_wifi_imgbtn_3, LV_IMGBTN_STATE_RELEASED, NULL, &_return_alpha_25x21, NULL);
 	lv_obj_add_flag(ui->tool_wifi_imgbtn_3, LV_OBJ_FLAG_CHECKABLE);
 
-    /*Create a keyboard to use it with an of the text areas*/
-    ui->tool_wifi_keyboard = lv_keyboard_create(ui->tool_wifi);
-	 
-    /*Create a text area. The keyboard will write here*/
-    ui->tool_wifi_textare = lv_textarea_create(ui->tool_wifi);
-    lv_obj_set_pos(ui->tool_wifi_textare, 29, 85);
-	lv_textarea_set_max_length(ui->tool_wifi_textare, 22);
-	lv_obj_set_scrollbar_mode(ui->tool_wifi_textare, LV_SCROLLBAR_MODE_OFF);
-    // lv_obj_add_event_cb(ta, ta_event_cb, LV_EVENT_ALL, kb);
-    lv_textarea_set_placeholder_text(ui->tool_wifi_textare, "Password:");
-	lv_textarea_set_one_line(ui->tool_wifi_textare, true);
-    lv_obj_set_size(ui->tool_wifi_textare, 423, 33);
+	ui->tool_wifi_management_table = wifi_grid_init(ui->tool_wifi);
+	lv_obj_set_size(ui->tool_wifi_management_table, 480, 237);
 
-	lv_keyboard_set_textarea(ui->tool_wifi_keyboard, ui->tool_wifi_textare);
+	// lv_obj_set_align(ui->tool_wifi_management_table, LV_ALIGN_CENTER);
+	// lv_obj_align(ui->tool_wifi_management_table, LV_ALIGN_CENTER, 0, 10);
+	lv_obj_set_pos(ui->tool_wifi_management_table, 0, 10);
 
-	ui->tool_wifi_msgbox = lv_msgbox_create(ui->tool_wifi, NULL, "Link please wait", NULL, false); // false: doesn't have "x" button
-	lv_obj_set_align(ui->tool_wifi_msgbox, LV_ALIGN_CENTER);
-	lv_obj_add_flag(ui->tool_wifi_msgbox, LV_OBJ_FLAG_HIDDEN);
-	
+    ui->tool_wifi_management_btn_next_page = lv_obj_create(ui->tool_wifi);
+    lv_obj_set_size(ui->tool_wifi_management_btn_next_page, 29, 29);
+    lv_obj_align(ui->tool_wifi_management_btn_next_page, LV_ALIGN_BOTTOM_RIGHT, 0, 0);
+    lv_obj_set_style_bg_img_src(ui->tool_wifi_management_btn_next_page, LV_SYMBOL_RIGHT, 0);
+
+    ui->tool_wifi_management_btn_last_page = lv_obj_create(ui->tool_wifi);
+    lv_obj_set_size(ui->tool_wifi_management_btn_last_page, 29, 29);
+    lv_obj_align_to(ui->tool_wifi_management_btn_last_page, ui->tool_wifi_management_btn_next_page, LV_ALIGN_OUT_LEFT_MID, -66, 0);
+    lv_obj_set_style_bg_img_src(ui->tool_wifi_management_btn_last_page, LV_SYMBOL_LEFT, 0);	
 
 }

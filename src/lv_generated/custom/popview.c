@@ -524,3 +524,62 @@ void file_download_popview_test_case()
 	objmask_init();
   	lv_obj_t* obj = file_download_popview_init(objmask);
 }
+
+lv_obj_t* msg_popview_init(lv_obj_t* parent, char* msg)
+{
+    lv_obj_t* background = lv_img_create(parent);
+    lv_obj_set_size(background, 292, 186);
+    lv_obj_set_pos(background, 94, 67);
+
+    static lv_style_t background_style;
+    lv_style_init(&background_style);
+    lv_style_set_bg_color(&background_style, lv_color_hex(0x254b73));
+    lv_style_set_bg_opa(&background_style, LV_OPA_COVER);
+    lv_style_set_radius(&background_style, 5); 
+    lv_obj_add_style(background, &background_style, 0);
+
+    lv_obj_move_foreground(background);
+    lv_obj_add_flag(lv_layer_top(), LV_OBJ_FLAG_CLICKABLE);
+
+	//Write codes tool_wifi_label_2
+	lv_obj_t* tool_wifi_label_2 = lv_label_create(background);
+	lv_obj_align(tool_wifi_label_2, LV_ALIGN_CENTER, 0, 0);
+	lv_obj_set_size(tool_wifi_label_2, 212, 31);
+	lv_obj_set_scrollbar_mode(tool_wifi_label_2, LV_SCROLLBAR_MODE_OFF);
+	lv_label_set_text(tool_wifi_label_2, msg);
+	lv_label_set_long_mode(tool_wifi_label_2, LV_LABEL_LONG_WRAP);
+
+	//Write style state: LV_STATE_DEFAULT for style_tool_wifi_label_2_main_main_default
+	static lv_style_t style_tool_wifi_label_2_main_main_default;
+	if (style_tool_wifi_label_2_main_main_default.prop_cnt > 1)
+		lv_style_reset(&style_tool_wifi_label_2_main_main_default);
+	else
+		lv_style_init(&style_tool_wifi_label_2_main_main_default);
+	lv_style_set_radius(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_bg_color(&style_tool_wifi_label_2_main_main_default, lv_color_make(0x21, 0x95, 0xf6));
+	lv_style_set_bg_grad_color(&style_tool_wifi_label_2_main_main_default, lv_color_make(0x21, 0x95, 0xf6));
+	lv_style_set_bg_grad_dir(&style_tool_wifi_label_2_main_main_default, LV_GRAD_DIR_NONE);
+	lv_style_set_bg_opa(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_shadow_width(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_shadow_color(&style_tool_wifi_label_2_main_main_default, lv_color_make(0x21, 0x95, 0xf6));
+	lv_style_set_shadow_opa(&style_tool_wifi_label_2_main_main_default, 255);
+	lv_style_set_shadow_spread(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_shadow_ofs_x(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_shadow_ofs_y(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_text_color(&style_tool_wifi_label_2_main_main_default, lv_color_make(0xff, 0xff, 0xff));
+	lv_style_set_text_font(&style_tool_wifi_label_2_main_main_default, &lv_font_Acme_Regular_16);
+	lv_style_set_text_letter_space(&style_tool_wifi_label_2_main_main_default, 2);
+	lv_style_set_text_line_space(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_text_align(&style_tool_wifi_label_2_main_main_default, LV_TEXT_ALIGN_CENTER);
+	lv_style_set_pad_left(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_pad_right(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_pad_top(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_style_set_pad_bottom(&style_tool_wifi_label_2_main_main_default, 0);
+	lv_obj_add_style(tool_wifi_label_2, &style_tool_wifi_label_2_main_main_default, LV_PART_MAIN|LV_STATE_DEFAULT);
+}
+
+void msg_popview_test_case()
+{
+	objmask_init();
+  	lv_obj_t* obj = msg_popview_init(objmask, "All initial Successful");
+}

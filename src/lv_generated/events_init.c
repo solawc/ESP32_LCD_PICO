@@ -8,6 +8,9 @@
 #include <stdio.h>
 #include "lvgl.h"
 #include "./custom/custom.h"
+#include "./custom/popview.h"
+#include "../wrapper/SdCardWrapper.h"
+#include "../wrapper/WifiWrapper.h"
 
 void events_init(lv_ui *ui)
 {

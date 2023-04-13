@@ -149,7 +149,7 @@ void setup_scr_home(lv_ui *ui){
 	lv_style_set_text_align(&style_home_imgbtn_tools_main_main_pressed, LV_TEXT_ALIGN_CENTER);
 	lv_style_set_img_recolor(&style_home_imgbtn_tools_main_main_pressed, lv_color_make(0x00, 0x00, 0x00));
 	lv_style_set_img_recolor_opa(&style_home_imgbtn_tools_main_main_pressed, 0);
-	lv_style_set_img_opa(&style_home_imgbtn_tools_main_main_pressed, 255);
+	lv_style_set_img_opa(&style_home_imgbtn_tools_main_main_pressed, 255);	
 	lv_obj_add_style(ui->home_imgbtn_tools, &style_home_imgbtn_tools_main_main_pressed, LV_PART_MAIN|LV_STATE_PRESSED);
 
 	//Write style state: LV_STATE_CHECKED for style_home_imgbtn_tools_main_main_checked
@@ -162,7 +162,7 @@ void setup_scr_home(lv_ui *ui){
 	lv_style_set_text_align(&style_home_imgbtn_tools_main_main_checked, LV_TEXT_ALIGN_CENTER);
 	lv_style_set_img_recolor(&style_home_imgbtn_tools_main_main_checked, lv_color_make(0x00, 0x00, 0x00));
 	lv_style_set_img_recolor_opa(&style_home_imgbtn_tools_main_main_checked, 0);
-	lv_style_set_img_opa(&style_home_imgbtn_tools_main_main_checked, 255);
+	lv_style_set_img_opa(&style_home_imgbtn_tools_main_main_checked, 255);	
 	lv_obj_add_style(ui->home_imgbtn_tools, &style_home_imgbtn_tools_main_main_checked, LV_PART_MAIN|LV_STATE_CHECKED);
 	lv_imgbtn_set_src(ui->home_imgbtn_tools, LV_IMGBTN_STATE_RELEASED, NULL, &_tool_alpha_109x109, NULL);
 	lv_obj_add_flag(ui->home_imgbtn_tools, LV_OBJ_FLAG_CHECKABLE);
