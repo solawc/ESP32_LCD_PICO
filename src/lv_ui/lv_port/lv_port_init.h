@@ -11,20 +11,20 @@
 
 #define DISP_TASK_STACK                                 4096 * 2
 #define DISP_TASK_PRO                                   2
-#define DISP_TASK_CORE                                  1
+#define DISP_TASK_CORE                                  0
 
 #define TOUCH_TASK_STACK                                4096 * 2
 #define TOUCH_TASK_PRO                                  2
 #define TOUCH_TASK_CORE                                 1
 
 
-#define LV_BUFF_SIZE                                    (LCD_SIZE_HOR_RES * LCD_SIZE_VER_RES) / 4
+#define LV_BUFF_SIZE                                    (LCD_SIZE_HOR_RES * LCD_SIZE_VER_RES) / 10 // 4
 
 class LVGL_UI {
 
 private:
     TaskHandle_t        lv_disp_tcb         = NULL;         /* LVGL任务句柄 */
-    TaskHandle_t        lv_touch_tcb         = NULL;         /* LVGL任务句柄 */
+    TaskHandle_t        lv_touch_tcb        = NULL;         /* LVGL任务句柄 */
     SemaphoreHandle_t   lvglMutex           = NULL;         /* LVGL互斥锁 */
     lv_indev_t*         indev_touchpad;                     /* 注册Touch句柄 */
     lv_color_t          *DispBuff;                          /* A buffer for 10 rows */

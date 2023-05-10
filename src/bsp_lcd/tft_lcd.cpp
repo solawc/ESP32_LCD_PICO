@@ -77,7 +77,7 @@ uint8_t HAL_TFT_LCD::tftTouchRead(uint16_t *xPos, uint16_t *yPos) {
             return false;
         }
     }else {
-        if(tft.getTouch(&y_temp, &x_temp) != false) {
+        if(tft.getTouch(&y_temp, &x_temp) != 0) {
             x_temp = 320 - x_temp;
             y_temp = 480 - y_temp;
             *xPos = x_temp;

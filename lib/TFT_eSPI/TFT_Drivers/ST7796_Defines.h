@@ -28,7 +28,7 @@
     #define TFT_MAD_COLOR_ORDER TFT_MAD_BGR
   #endif
 #else
-  #define TFT_MAD_COLOR_ORDER TFT_MAD_BGR
+  #define TFT_MAD_COLOR_ORDER TFT_MAD_BGR// TFT_MAD_BGR
 #endif
 
 #define TFT_INVOFF  0x20

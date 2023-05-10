@@ -25,10 +25,8 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
         uint32_t w = (area->x2 - area->x1 + 1);
         uint32_t h = (area->y2 - area->y1 + 1);
 #ifndef USE_MY_TFT_DRIVER
-        tft_lcd.tft.startWrite();
         tft_lcd.tft.setAddrWindow(area->x1, area->y1, w, h);
         tft_lcd.tft.pushColorsDMA(&color_p->full, w * h, true);
-        tft_lcd.tft.endWrite();
 #else
         tft_start_write();
         tft_set_windows(area->x1, area->y1, w, h);
@@ -163,7 +161,7 @@ void lvglTask(void *parg)  {
 
 void LVGL_UI::lvglTaskInit(void) {
 
-    xTaskCreatePinnedToCore(lvglTask,     // task
+    xTaskCreatePinnedToCore(lvglTask,           // task
                             "lvglTask",         // name for task
                             DISP_TASK_STACK,    // size of task stack
                             NULL,               // parameters

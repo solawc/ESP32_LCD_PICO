@@ -125,7 +125,7 @@ uint8_t TFT_eSPI::validTouch(uint16_t *x, uint16_t *y, uint16_t threshold){
   {
     z2 = z1;
     z1 = getTouchRawZ();
-    delay(1);
+    // delay(1);
   }
 
   //  Serial.print("Z = ");Serial.println(z1);
@@ -137,10 +137,10 @@ uint8_t TFT_eSPI::validTouch(uint16_t *x, uint16_t *y, uint16_t threshold){
   //  Serial.print("Sample 1 x,y = "); Serial.print(x_tmp);Serial.print(",");Serial.print(y_tmp);
   //  Serial.print(", Z = ");Serial.println(z1);
 
-  delay(1); // Small delay to the next sample
+  // delay(1); // Small delay to the next sample
   if (getTouchRawZ() <= threshold) return false;
 
-  delay(2); // Small delay to the next sample
+  // delay(2); // Small delay to the next sample
   getTouchRaw(&x_tmp2,&y_tmp2);
   
   //  Serial.print("Sample 2 x,y = "); Serial.print(x_tmp2);Serial.print(",");Serial.println(y_tmp2);
@@ -166,7 +166,7 @@ uint8_t TFT_eSPI::getTouch(uint16_t *x, uint16_t *y, uint16_t threshold){
   if (threshold<20) threshold = 20;
   if (_pressTime > millis()) threshold=20;
 
-  uint8_t n = 5;
+  uint8_t n = 1; // 5;
   uint8_t valid = 0;
   while (n--)
   {
@@ -222,7 +222,6 @@ void TFT_eSPI::convertRawXY(uint16_t *x, uint16_t *y)
 void TFT_eSPI::calibrateTouch(uint16_t *parameters, uint32_t color_fg, uint32_t color_bg, uint8_t size){
   int16_t values[] = {0,0,0,0,0,0,0,0};
   uint16_t x_tmp, y_tmp;
-
 
 
   for(uint8_t i = 0; i<4; i++){
