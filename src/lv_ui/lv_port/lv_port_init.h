@@ -15,8 +15,14 @@
 #define TOUCH_TASK_PRO                                  2
 #define TOUCH_TASK_CORE                                 1
 
+/**
+ * LV_BUFF_DIV
+ * LV_BUFF_DIV = 10 , FPS = 38
+ * LV_BUFF_DIV = 5  , FPS = 40
+*/
+#define LV_BUFF_DIV                                     5
+#define LV_BUFF_SIZE                                    (LCD_SIZE_HOR_RES * LCD_SIZE_VER_RES) / LV_BUFF_DIV 
 
-#define LV_BUFF_SIZE                                    (LCD_SIZE_HOR_RES * LCD_SIZE_VER_RES) / 10 // 4
 
 class LVGL_UI {
 

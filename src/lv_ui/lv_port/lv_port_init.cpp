@@ -84,7 +84,7 @@ void LVGL_UI::lvPortDispInit(void) {
     DispBuff = static_cast<lv_color_t*>(malloc(LV_BUFF_SIZE * sizeof(lv_color_t)));
     if (DispBuff == nullptr)
         LV_LOG_WARN("lv_port_disp_init malloc failed!\n");
-    
+
     lv_disp_draw_buf_init(&draw_buf_dsc_1, DispBuff, NULL, LV_BUFF_SIZE);       /* Initialize the display buffer */
 
     static lv_disp_drv_t disp_drv;                                              /* Descriptor of a display driver */
