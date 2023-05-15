@@ -128,8 +128,6 @@ uint8_t TFT_eSPI::validTouch(uint16_t *x, uint16_t *y, uint16_t threshold){
     // delay(1);
   }
 
-  //  Serial.print("Z = ");Serial.println(z1);
-
   if (z1 <= threshold) return false;
     
   getTouchRaw(&x_tmp,&y_tmp);
@@ -175,7 +173,7 @@ uint8_t TFT_eSPI::getTouch(uint16_t *x, uint16_t *y, uint16_t threshold){
 
   if (valid<1) { _pressTime = 0; return false; }
   
-  _pressTime = millis() + 50;
+  _pressTime = millis() + 10;//50;
 
   convertRawXY(&x_tmp, &y_tmp);
 

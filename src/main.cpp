@@ -1,7 +1,5 @@
 #include "main.h"
 
-
-
 void app_task_init(void) {
 
     // init client and init serial port
@@ -43,8 +41,6 @@ void setup() {
 #ifdef ENABLE_DEBUG_WIFI
     HAL_WIFI::wifi_config.begin();
 #endif
-    // init test
-    // lv_draw_test();
 
     // turn on the lcd and finish Init
     ui.lvglTaskInit();  
