@@ -25,6 +25,8 @@ extern TFT_eSPI tft;
 #define DEFAULT_TOUCH_TYPE  TOUCH_TYPE_RES
 #endif
 
+#define USE_TOUCH_INT       0
+
 typedef enum {
     TOUCH_TYPE_CAP = 0,         // TP as cap type.
     TOUCH_TYPE_RES,             // TP as res type.
@@ -44,6 +46,9 @@ class HAL_TFT_LCD {
 private:
     FT6336U_TouchPointType      capTp;                                  /* Cap touch */
     touch_type_t                touchType = DEFAULT_TOUCH_TYPE;
+    #if USE_TOUCH_INT
+    bool                        is_have_touch = false;
+    #endif
 public:
     
     TFT_eSPI tft = TFT_eSPI();

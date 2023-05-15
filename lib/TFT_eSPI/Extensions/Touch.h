@@ -19,6 +19,8 @@
            // Set the screen calibration values
   void     setTouch(uint16_t *data);
 
+  uint8_t  getTouch_INT(uint16_t *x, uint16_t *y);
+
  private:
            // Legacy support only - deprecated TODO: delete
   void     spi_begin_touch();

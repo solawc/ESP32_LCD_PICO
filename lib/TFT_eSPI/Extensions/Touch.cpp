@@ -186,6 +186,42 @@ uint8_t TFT_eSPI::getTouch(uint16_t *x, uint16_t *y, uint16_t threshold){
   return valid;
 }
 
+uint8_t TFT_eSPI::getTouch_INT(uint16_t *x, uint16_t *y) {
+
+  uint16_t x_tmp, y_tmp;
+  
+  // uint16_t x_tmp2, y_tmp2;
+  
+  // uint8_t n = 1; // 5;
+  // uint8_t valid = 0;
+  // while (n--)
+  // {
+  //   if (validTouch(&x_tmp, &y_tmp, threshold)) valid++;;
+  // }
+
+  getTouchRaw(&x_tmp,&y_tmp);
+
+  // getTouchRaw(&x_tmp2,&y_tmp2);
+
+  // if (abs(x_tmp - x_tmp2) > _RAWERR) return 0;
+  // if (abs(y_tmp - y_tmp2) > _RAWERR) return 0;
+
+  // if (valid<1) { _pressTime = 0; return false; }
+  
+  // _pressTime = millis() + 10;//50;
+
+  convertRawXY(&x_tmp, &y_tmp);
+
+  if (x_tmp >= _width || y_tmp >= _height) return 0;
+
+  _pressX = x_tmp;
+  _pressY = y_tmp;
+  *x = _pressX;
+  *y = _pressY;
+  return 1;
+
+}
+
 /***************************************************************************************
 ** Function name:           convertRawXY
 ** Description:             convert raw touch x,y values to screen coordinates 

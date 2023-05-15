@@ -390,11 +390,11 @@ void init_ST7796() {
 	tft_write_cmd(0xF0); //Command Set control                                 
 	tft_write_data(0x69);    //Disable extension command 2 partII
 
-    tft_end_trans();
-    LCD_DELAY(120);
-    tft_begin_trans();
+  tft_end_trans();
+  LCD_DELAY(120);
+  tft_begin_trans();
 
-    tft_write_cmd(0x29); //Display on   
+  tft_write_cmd(0x29); //Display on   
 }
 
 

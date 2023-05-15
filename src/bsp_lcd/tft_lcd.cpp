@@ -27,6 +27,14 @@ void IRAM_ATTR disp_flush_callback(spi_transaction_t *spi_tx) {
     ui.lvPortDispCallback();
 }
 
+#if USE_TOUCH_INT
+void tft_touch_int_init(void) {
+
+    
+    
+}
+#endif
+
 void HAL_TFT_LCD::tft_init(void) {
     tft.begin();
     tft.setRotation(1);
