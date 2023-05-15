@@ -398,4 +398,122 @@ void init_ST7796() {
 }
 
 
+void tft_trans_buff(const void* data_in, uint32_t len) {
 
+//   if(_swapBytes) {
+//     pushSwapBytePixels(data_in, len);
+//     return;
+//   }
+
+  uint32_t *data = (uint32_t*)data_in;
+
+  if (len > 31)
+  {
+    WRITE_PERI_REG(SPI_MOSI_DLEN_REG(LCD_SPI_USE), 511);
+    while(len>31)
+    {
+      while (READ_PERI_REG(SPI_CMD_REG(LCD_SPI_USE))&SPI_USR);
+      WRITE_PERI_REG(SPI_W0_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W1_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W2_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W3_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W4_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W5_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W6_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W7_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W8_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W9_REG(LCD_SPI_USE),  *data++);
+      WRITE_PERI_REG(SPI_W10_REG(LCD_SPI_USE), *data++);
+      WRITE_PERI_REG(SPI_W11_REG(LCD_SPI_USE), *data++);
+      WRITE_PERI_REG(SPI_W12_REG(LCD_SPI_USE), *data++);
+      WRITE_PERI_REG(SPI_W13_REG(LCD_SPI_USE), *data++);
+      WRITE_PERI_REG(SPI_W14_REG(LCD_SPI_USE), *data++);
+      WRITE_PERI_REG(SPI_W15_REG(LCD_SPI_USE), *data++);
+      SET_PERI_REG_MASK(SPI_CMD_REG(LCD_SPI_USE), SPI_USR);
+      len -= 32;
+    }
+  }
+
+  if (len)
+  {
+    while (READ_PERI_REG(SPI_CMD_REG(LCD_SPI_USE))&SPI_USR);
+    WRITE_PERI_REG(SPI_MOSI_DLEN_REG(LCD_SPI_USE), (len << 4) - 1);
+    for (uint32_t i=0; i <= (len<<1); i+=4) WRITE_PERI_REG((SPI_W0_REG(LCD_SPI_USE) + i), *data++);
+    SET_PERI_REG_MASK(SPI_CMD_REG(LCD_SPI_USE), SPI_USR);
+  }
+  while (READ_PERI_REG(SPI_CMD_REG(LCD_SPI_USE))&SPI_USR);
+}
+
+
+void tft_swap_trans_buff(const void* data_in, uint32_t len) { 
+
+  uint8_t* data = (uint8_t*)data_in;
+  uint32_t color[16];
+
+  if (len > 31)
+  {
+    WRITE_PERI_REG(SPI_MOSI_DLEN_REG(LCD_SPI_USE), 511);
+    while(len>31)
+    {
+      uint32_t i = 0;
+      while(i<16)
+      {
+        color[i++] = DAT8TO32(data);
+        data+=4;
+      }
+      while (READ_PERI_REG(SPI_CMD_REG(LCD_SPI_USE))&SPI_USR);
+      WRITE_PERI_REG(SPI_W0_REG(LCD_SPI_USE),  color[0]);
+      WRITE_PERI_REG(SPI_W1_REG(LCD_SPI_USE),  color[1]);
+      WRITE_PERI_REG(SPI_W2_REG(LCD_SPI_USE),  color[2]);
+      WRITE_PERI_REG(SPI_W3_REG(LCD_SPI_USE),  color[3]);
+      WRITE_PERI_REG(SPI_W4_REG(LCD_SPI_USE),  color[4]);
+      WRITE_PERI_REG(SPI_W5_REG(LCD_SPI_USE),  color[5]);
+      WRITE_PERI_REG(SPI_W6_REG(LCD_SPI_USE),  color[6]);
+      WRITE_PERI_REG(SPI_W7_REG(LCD_SPI_USE),  color[7]);
+      WRITE_PERI_REG(SPI_W8_REG(LCD_SPI_USE),  color[8]);
+      WRITE_PERI_REG(SPI_W9_REG(LCD_SPI_USE),  color[9]);
+      WRITE_PERI_REG(SPI_W10_REG(LCD_SPI_USE), color[10]);
+      WRITE_PERI_REG(SPI_W11_REG(LCD_SPI_USE), color[11]);
+      WRITE_PERI_REG(SPI_W12_REG(LCD_SPI_USE), color[12]);
+      WRITE_PERI_REG(SPI_W13_REG(LCD_SPI_USE), color[13]);
+      WRITE_PERI_REG(SPI_W14_REG(LCD_SPI_USE), color[14]);
+      WRITE_PERI_REG(SPI_W15_REG(LCD_SPI_USE), color[15]);
+      SET_PERI_REG_MASK(SPI_CMD_REG(LCD_SPI_USE), SPI_USR);
+      len -= 32;
+    }
+  }
+
+  if (len > 15)
+  {
+    uint32_t i = 0;
+    while(i<8)
+    {
+      color[i++] = DAT8TO32(data);
+      data+=4;
+    }
+    while (READ_PERI_REG(SPI_CMD_REG(LCD_SPI_USE))&SPI_USR);
+    WRITE_PERI_REG(SPI_MOSI_DLEN_REG(LCD_SPI_USE), 255);
+    WRITE_PERI_REG(SPI_W0_REG(LCD_SPI_USE),  color[0]);
+    WRITE_PERI_REG(SPI_W1_REG(LCD_SPI_USE),  color[1]);
+    WRITE_PERI_REG(SPI_W2_REG(LCD_SPI_USE),  color[2]);
+    WRITE_PERI_REG(SPI_W3_REG(LCD_SPI_USE),  color[3]);
+    WRITE_PERI_REG(SPI_W4_REG(LCD_SPI_USE),  color[4]);
+    WRITE_PERI_REG(SPI_W5_REG(LCD_SPI_USE),  color[5]);
+    WRITE_PERI_REG(SPI_W6_REG(LCD_SPI_USE),  color[6]);
+    WRITE_PERI_REG(SPI_W7_REG(LCD_SPI_USE),  color[7]);
+    SET_PERI_REG_MASK(SPI_CMD_REG(LCD_SPI_USE), SPI_USR);
+    len -= 16;
+  }
+
+  if (len)
+  {
+    while (READ_PERI_REG(SPI_CMD_REG(LCD_SPI_USE))&SPI_USR);
+    WRITE_PERI_REG(SPI_MOSI_DLEN_REG(LCD_SPI_USE), (len << 4) - 1);
+    for (uint32_t i=0; i <= (len<<1); i+=4) {
+      WRITE_PERI_REG(SPI_W0_REG(LCD_SPI_USE)+i, DAT8TO32(data)); data+=4;
+    }
+    SET_PERI_REG_MASK(SPI_CMD_REG(LCD_SPI_USE), SPI_USR);
+  }
+  while (READ_PERI_REG(SPI_CMD_REG(LCD_SPI_USE))&SPI_USR);
+
+}

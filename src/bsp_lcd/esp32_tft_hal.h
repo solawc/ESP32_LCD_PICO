@@ -18,12 +18,13 @@
 
 #define DMA_BUSY_CHECK  tft_dma_wait()
 
-
 void tft_delay(uint32_t ms);
 void tft_begin(void);
 void tft_set_rotation(void);
 void tft_set_windows(int32_t x0, int32_t y0, int32_t x1, int32_t y1);
 void tft_trans_buff_dma(uint16_t *data, uint32_t len, bool swap);
+void tft_trans_buff(const void* data_in, uint32_t len);
+void tft_swap_trans_buff(const void* data_in, uint32_t len);
 
 void tft_start_write(void);
 void tft_end_write(void);

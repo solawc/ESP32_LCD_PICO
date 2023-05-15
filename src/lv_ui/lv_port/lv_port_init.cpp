@@ -28,10 +28,17 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
         tft_lcd.tft.setAddrWindow(area->x1, area->y1, w, h);
         tft_lcd.tft.pushColorsDMA(&color_p->full, w * h, true);
 #else
-        tft_start_write();
+        // tft_start_write();
         tft_set_windows(area->x1, area->y1, w, h);
-        tft_trans_buff_dma(&color_p->full, w * h, true);
+        // tft_trans_buff_dma(&color_p->full, w * h, true);
+
+        tft_start_write();
+        // tft_trans_buff(&color_p->full, w * h);
+        tft_swap_trans_buff(&color_p->full, w * h);
         tft_end_write();
+        // tft_end_write();
+
+        lv_disp_flush_ready(ui.dispHandler);
 #endif
     }
 }
