@@ -27,9 +27,6 @@ void update_file_list(char * path, lv_obj_t* obj, uint8_t flag)
 {
     std::vector<std::string> fileList;
     std::vector<uint8_t>     fileType;
-
-    // clean the file list object
-    lv_obj_clean(obj);
    
     // get file list
     debug_send(CLIENT_SERIAL, path);
@@ -51,6 +48,9 @@ void update_file_list(char * path, lv_obj_t* obj, uint8_t flag)
     switch (flag)
     {
         case 0: 
+            // clean the file list object
+            lv_obj_clean(obj);
+
             files_cnt = fileList.size(); 
             cnt = (files_cnt >PAGE_MAX_FILE)?PAGE_MAX_FILE:files_cnt;
             for(int i = 0; i<cnt; i++){
@@ -74,6 +74,8 @@ void update_file_list(char * path, lv_obj_t* obj, uint8_t flag)
             }
             else if (cnt < PAGE_MAX_FILE )
             {
+                // clean the file list object
+                lv_obj_clean(obj);                
                 for(int i = 0; i<cnt; i++){
                     std::string str = fileList[fileListPointer+i];
 
@@ -87,6 +89,8 @@ void update_file_list(char * path, lv_obj_t* obj, uint8_t flag)
             }
             else
             {
+                // clean the file list object
+                lv_obj_clean(obj);                     
                 for(int i = 0; i<PAGE_MAX_FILE; i++){
                     std::string str = fileList[fileListPointer+i];
 
@@ -100,6 +104,8 @@ void update_file_list(char * path, lv_obj_t* obj, uint8_t flag)
             }
             break;            
         case 2:// last page
+            // clean the file list object
+            lv_obj_clean(obj);             
             if(fileListPointer > PAGE_MAX_FILE)
             {
                 for(int i = 0; i<PAGE_MAX_FILE; i++){
@@ -129,6 +135,9 @@ void update_file_list(char * path, lv_obj_t* obj, uint8_t flag)
         // default:
         //     break;
     }
+    // char tmp[15];
+    // sprintf(tmp, "file point: %d\n", fileListPointer);
+    // debug_send(CLIENT_SERIAL, tmp);
 
 }
 
